@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WeBuild — La plateforme qui bâtit le Canada, en confiance</title>
+<meta name="description" content="WeBuild met en relation les gens qui veulent bâtir avec les meilleurs entrepreneurs de leur région. Du carrelage à la maison clé en main. Paiement sécurisé par séquestre.">
+<meta property="og:title" content="WeBuild — Bâtir en confiance, partout au Canada">
+<meta property="og:description" content="Trouvez l'entrepreneur idéal près de chez vous. Paiement retenu en sécurité jusqu'à la fin des travaux.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============ WeBuild — Design System (Confiance premium) ============ */
+:root{
+  --navy-900:#0A1420; --navy-800:#0E1C2E; --navy-700:#15293F; --navy-600:#1E3A5A;
+  --navy-500:#2C4E71; --navy-tint:#38597c;
+  --gold:#C9A24B; --gold-light:#E4C77A; --gold-soft:#F4E7C4; --gold-deep:#A9832F;
+  --cream:#F6F1E7; --paper:#FCFAF5; --white:#ffffff;
+  --ink:#132030; --ink-soft:#33475b; --muted:#647587; --faint:#8a99a8;
+  --line:#E7E0D0; --line-2:#EFEAdd; --line-navy:rgba(255,255,255,.12);
+  --ok:#2E9E6B; --ok-soft:#E3F3EA; --warn:#D98A2B; --warn-soft:#FBEEDA; --danger:#C6503E;
+  --r-sm:10px; --r:16px; --r-lg:22px; --r-xl:30px;
+  --sh-sm:0 1px 3px rgba(16,32,50,.06),0 1px 2px rgba(16,32,50,.04);
+  --sh:0 10px 30px -12px rgba(16,32,50,.16);
+  --sh-lg:0 30px 70px -28px rgba(12,26,45,.34);
+  --sh-gold:0 14px 34px -14px rgba(169,131,47,.5);
+  --wrap:1200px; --pad:clamp(1.15rem,4vw,2.4rem);
+  --ease:cubic-bezier(.22,1,.36,1);
+  --f-display:'Fraunces',Georgia,serif; --f-body:'Manrope',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--f-body);background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{font-family:var(--f-display);font-weight:600;line-height:1.08;letter-spacing:-.015em;color:var(--ink)}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+.serif{font-family:var(--f-display)}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-inline:var(--pad)}
+.eyebrow{font-size:.74rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-deep)}
+.eyebrow.on-dark{color:var(--gold-light)}
+section{position:relative}
+.muted{color:var(--muted)}
+/* ---------- Buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55em;font-weight:700;font-size:.95rem;padding:.85em 1.5em;border-radius:100px;transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .2s,color .2s;white-space:nowrap}
+.btn svg{width:1.05em;height:1.05em}
+.btn-gold{background:linear-gradient(135deg,var(--gold-light),var(--gold));color:var(--navy-900);box-shadow:var(--sh-gold)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 20px 40px -14px rgba(169,131,47,.62)}
+.btn-navy{background:var(--navy-800);color:#fff}
+.btn-navy:hover{transform:translateY(-2px);background:var(--navy-700);box-shadow:var(--sh)}
+.btn-ghost{background:transparent;border:1.5px solid var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--navy-600);background:var(--white)}
+.btn-ghost-light{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.22);color:#fff}
+.btn-ghost-light:hover{background:rgba(255,255,255,.13)}
+.btn-sm{padding:.6em 1.05em;font-size:.86rem}
+.btn-block{width:100%}
+.btn-white{background:#fff;color:var(--navy-800)}
+.btn-white:hover{transform:translateY(-2px);box-shadow:var(--sh)}
+/* ---------- Nav ---------- */
+.nav{position:sticky;top:0;z-index:60;background:rgba(252,250,245,.82);backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s,background .3s,box-shadow .3s}
+.nav.scrolled{border-color:var(--line);box-shadow:var(--sh-sm)}
+.nav.on-app{background:var(--white);border-color:var(--line)}
+.nav-in{display:flex;align-items:center;gap:1.5rem;height:72px;max-width:var(--wrap);margin:0 auto;padding-inline:var(--pad)}
+.logo{display:flex;align-items:center;gap:.6rem;font-family:var(--f-display);font-weight:600;font-size:1.32rem;letter-spacing:-.02em;color:var(--navy-900)}
+.logo-mark{width:34px;height:34px;flex:none}
+.logo b{color:var(--gold-deep);font-weight:600}
+.nav-links{display:flex;gap:.35rem;margin-left:.5rem}
+.nav-links a{padding:.5rem .8rem;border-radius:9px;font-size:.9rem;font-weight:600;color:var(--ink-soft);transition:color .2s,background .2s}
+.nav-links a:hover{color:var(--navy-900);background:rgba(30,58,90,.06)}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:.65rem}
+.lang{display:inline-flex;align-items:center;border:1.5px solid var(--line);border-radius:100px;overflow:hidden;font-size:.78rem;font-weight:700}
+.lang button{padding:.36em .66em;color:var(--muted);transition:.2s}
+.lang button.on{background:var(--navy-800);color:#fff}
+.nav-toggle{display:none;place-items:center;width:40px;height:40px;border-radius:10px;color:var(--navy-900)}
+.nav-toggle:hover{background:rgba(30,58,90,.06)}
+.nav-menu-only{display:none}
+/* ---------- Views ---------- */
+.view{display:none;animation:fade .5s var(--ease)}
+.view.is-active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+/* ---------- Hero ---------- */
+.hero{position:relative;background:radial-gradient(120% 130% at 78% 8%,var(--navy-700),var(--navy-900) 60%);color:#fff;overflow:hidden;padding:clamp(3rem,7vw,5.5rem) 0 0}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.5rem,4vw,3.5rem);align-items:center}
+.hero-glow{position:absolute;inset:0;background:radial-gradient(50% 45% at 15% 90%,rgba(201,162,75,.16),transparent 70%);pointer-events:none}
+.hero h1{font-size:clamp(2.5rem,5.6vw,4.35rem);color:#fff;font-weight:600}
+.hero h1 em{font-style:italic;color:var(--gold-light);font-weight:500}
+.hero-sub{font-size:clamp(1.02rem,1.5vw,1.22rem);color:#cfdae6;max-width:33ch;margin:1.4rem 0 2rem}
+.hero-cta{display:flex;gap:.8rem;flex-wrap:wrap}
+.hero-trust{display:flex;gap:1.5rem;margin-top:2.5rem;flex-wrap:wrap}
+.hero-trust .ht{display:flex;align-items:center;gap:.5rem;font-size:.84rem;color:#b9c6d4;font-weight:600}
+.hero-trust svg{width:1.15rem;height:1.15rem;color:var(--gold-light);flex:none}
+.hero-visual{position:relative;height:clamp(360px,44vw,540px)}
+.hv-img{position:absolute;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-lg);border:1px solid rgba(255,255,255,.1)}
+.hv-img img{width:100%;height:100%;object-fit:cover}
+.hv-1{width:63%;height:74%;top:0;right:0;z-index:2}
+.hv-2{width:47%;height:52%;bottom:0;left:0;z-index:3}
+.hv-card{position:absolute;z-index:5;background:rgba(255,255,255,.94);backdrop-filter:blur(6px);border-radius:var(--r);padding:.85rem 1rem;box-shadow:var(--sh-lg);display:flex;align-items:center;gap:.7rem;color:var(--ink)}
+.hv-card.c1{top:12%;left:-2%;animation:float 6s ease-in-out infinite}
+.hv-card.c2{bottom:8%;right:-3%;animation:float 6s ease-in-out infinite .8s}
+@keyframes float{50%{transform:translateY(-12px)}}
+.hv-card .ic{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;flex:none}
+.hv-card .t{font-size:.7rem;color:var(--muted);font-weight:600}
+.hv-card .v{font-size:.92rem;font-weight:800;color:var(--ink)}
+.hero-marquee{margin-top:clamp(2.5rem,5vw,4rem);border-top:1px solid var(--line-navy);padding:1.1rem 0;overflow:hidden;white-space:nowrap}
+.hero-marquee .track{display:inline-flex;gap:2.6rem;animation:marq 34s linear infinite;font-family:var(--f-display);font-size:1.05rem;color:#9fb0c0;font-style:italic}
+.hero-marquee .track span{opacity:.8}
+@keyframes marq{to{transform:translateX(-50%)}}
+/* ---------- Section scaffolding ---------- */
+.sec{padding:clamp(3.6rem,8vw,6.5rem) 0}
+.sec-navy{background:var(--navy-900);color:#fff}
+.sec-cream{background:var(--cream)}
+.sec-head{max-width:640px;margin-bottom:clamp(2rem,4vw,3.2rem)}
+.sec-head.center{margin-inline:auto;text-align:center}
+.sec-head h2{font-size:clamp(1.9rem,3.6vw,2.9rem);margin:.7rem 0 .5rem}
+.sec-navy .sec-head h2,.sec-navy h2,.sec-navy h3{color:#fff}
+.sec-head p{font-size:1.06rem;color:var(--muted)}
+.sec-navy .sec-head p{color:#aebccb}
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+/* ---------- How it works ---------- */
+.tabs{display:inline-flex;background:var(--white);border:1px solid var(--line);border-radius:100px;padding:.3rem;gap:.2rem;box-shadow:var(--sh-sm);margin-bottom:2.4rem}
+.tabs button{padding:.6rem 1.25rem;border-radius:100px;font-weight:700;font-size:.9rem;color:var(--muted);transition:.25s}
+.tabs button.on{background:var(--navy-800);color:#fff;box-shadow:var(--sh-sm)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;counter-reset:s}
+.step{position:relative;background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);padding:1.9rem 1.6rem;box-shadow:var(--sh-sm)}
+.step:before{counter-increment:s;content:counter(s);font-family:var(--f-display);font-size:1.05rem;font-weight:700;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--navy-800);color:var(--gold-light);margin-bottom:1.1rem}
+.step h3{font-size:1.22rem;margin-bottom:.5rem}
+.step p{color:var(--muted);font-size:.96rem}
+.step .num-line{position:absolute;top:2.4rem;right:-.7rem;width:1.4rem;height:2px;background:var(--line);z-index:1}
+.step:last-child .num-line{display:none}
+/* ---------- Métiers grid ---------- */
+.metier-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.metier{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:1/1.06;box-shadow:var(--sh-sm);border:1px solid var(--line);isolation:isolate;transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.metier:hover{transform:translateY(-4px);box-shadow:var(--sh-lg)}
+.metier img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .6s var(--ease)}
+.metier:hover img{transform:scale(1.07)}
+.metier:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,20,32,.05) 30%,rgba(10,20,32,.86))}
+.metier .lab{position:absolute;left:0;right:0;bottom:0;padding:1rem;color:#fff}
+.metier .lab .k{font-size:.72rem;color:var(--gold-light);font-weight:700;letter-spacing:.04em}
+.metier .lab h4{color:#fff;font-size:1.06rem;font-weight:600}
+.metier-more{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.6rem}
+.chip{display:inline-flex;align-items:center;gap:.45rem;padding:.5rem .95rem;border-radius:100px;background:var(--white);border:1px solid var(--line);font-size:.85rem;font-weight:600;color:var(--ink-soft)}
+.sec-navy .chip{background:rgba(255,255,255,.05);border-color:var(--line-navy);color:#d7e0ea}
+.chip .d{width:7px;height:7px;border-radius:50%;background:var(--gold)}
+/* ---------- Environments ---------- */
+.env-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem}
+.env{background:rgba(255,255,255,.04);border:1px solid var(--line-navy);border-radius:var(--r);padding:1.5rem 1.2rem;transition:.3s}
+.env:hover{background:rgba(255,255,255,.08);transform:translateY(-4px)}
+.env .ei{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,rgba(201,162,75,.22),rgba(201,162,75,.08));display:grid;place-items:center;margin-bottom:1rem;color:var(--gold-light)}
+.env .ei svg{width:24px;height:24px}
+.env h4{color:#fff;font-size:1.1rem;margin-bottom:.3rem}
+.env p{color:#9fb0c0;font-size:.85rem}
+/* ---------- Feature split / escrow / boost ---------- */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.6rem,4vw,4rem);align-items:center}
+.split.rev .split-media{order:2}
+.split-media{border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-lg);position:relative}
+.split-media img{width:100%;height:100%;object-fit:cover;aspect-ratio:5/4}
+.feature-list{margin-top:1.5rem;display:grid;gap:.9rem}
+.feature-list li{display:flex;gap:.8rem;align-items:flex-start;list-style:none}
+.feature-list .fi{width:30px;height:30px;border-radius:9px;background:var(--gold-soft);color:var(--gold-deep);display:grid;place-items:center;flex:none;margin-top:2px}
+.sec-navy .feature-list .fi{background:rgba(201,162,75,.16);color:var(--gold-light)}
+.feature-list b{font-weight:700}
+.feature-list p{font-size:.94rem;color:var(--muted)}
+.sec-navy .feature-list p{color:#a9b8c7}
+/* Escrow stepper */
+.escrow-flow{display:grid;grid-template-columns:repeat(5,1fr);gap:.7rem;margin-top:1rem;counter-reset:e}
+.eflow{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:1.2rem 1rem;position:relative;box-shadow:var(--sh-sm)}
+.eflow .en{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:.9rem;background:var(--navy-800);color:var(--gold-light);margin-bottom:.7rem}
+.eflow h4{font-size:.98rem;margin-bottom:.25rem}
+.eflow p{font-size:.8rem;color:var(--muted)}
+.eflow .arrow{position:absolute;right:-.55rem;top:1.7rem;color:var(--gold);z-index:2}
+.eflow:last-child .arrow{display:none}
+.escrow-badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--ok-soft);color:#1d6e49;padding:.5rem 1rem;border-radius:100px;font-weight:700;font-size:.85rem;margin-top:1.6rem}
+/* ---------- Stats ---------- */
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;text-align:center}
+.stat .n{font-family:var(--f-display);font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:600;color:var(--gold-light);line-height:1}
+.stat .l{font-size:.9rem;color:#a9b8c7;margin-top:.5rem;font-weight:600}
+/* ---------- Discover teaser feed ---------- */
+.feed-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem}
+.pro-card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-sm);transition:transform .3s var(--ease),box-shadow .3s var(--ease);display:flex;flex-direction:column}
+.pro-card:hover{transform:translateY(-5px);box-shadow:var(--sh-lg)}
+.pro-card.boosted{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold),var(--sh)}
+.pc-media{position:relative;aspect-ratio:16/10;overflow:hidden}
+.pc-media img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+.pro-card:hover .pc-media img{transform:scale(1.06)}
+.pc-tags{position:absolute;top:.7rem;left:.7rem;display:flex;gap:.4rem;flex-wrap:wrap}
+.tag{font-size:.68rem;font-weight:800;padding:.3em .7em;border-radius:100px;letter-spacing:.02em;text-transform:uppercase;backdrop-filter:blur(4px)}
+.tag-new{background:rgba(46,158,107,.92);color:#fff}
+.tag-boost{background:linear-gradient(135deg,var(--gold-light),var(--gold));color:var(--navy-900)}
+.pc-body{padding:1.1rem 1.15rem 1.25rem;display:flex;flex-direction:column;flex:1}
+.pc-head{display:flex;align-items:center;gap:.7rem;margin-bottom:.7rem}
+.avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--gold-soft);flex:none}
+.pc-head .nm{font-weight:800;font-size:.98rem;display:flex;align-items:center;gap:.35rem}
+.pc-head .sp{font-size:.8rem;color:var(--muted)}
+.verify{width:15px;height:15px;color:var(--navy-600);flex:none}
+.pc-meta{display:flex;align-items:center;gap:.9rem;font-size:.82rem;color:var(--muted);margin-bottom:.55rem;flex-wrap:wrap}
+.pc-meta .st{color:var(--gold-deep);font-weight:800}
+.pc-desc{font-size:.88rem;color:var(--ink-soft);flex:1;margin-bottom:1rem}
+.pc-foot{display:flex;gap:.5rem}
+.pc-loc{display:inline-flex;align-items:center;gap:.3rem}
+.pc-loc svg{width:.95em;height:.95em}
+/* ---------- Coverage ---------- */
+.cov-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(1.5rem,4vw,3rem);align-items:center}
+.region-list{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1.4rem}
+.region-list .rg{padding:.5rem 1rem;border-radius:100px;background:rgba(255,255,255,.05);border:1px solid var(--line-navy);font-size:.86rem;font-weight:600;color:#d7e0ea;transition:.2s}
+.region-list .rg:hover{border-color:var(--gold);color:#fff}
+.region-list .rg.hot{background:rgba(201,162,75,.16);border-color:var(--gold);color:var(--gold-light)}
+.map-card{background:linear-gradient(160deg,var(--navy-700),var(--navy-800));border:1px solid var(--line-navy);border-radius:var(--r-lg);padding:1.6rem;box-shadow:var(--sh-lg)}
+/* ---------- Pricing ---------- */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;align-items:stretch}
+.price{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);padding:1.9rem 1.7rem;box-shadow:var(--sh-sm);display:flex;flex-direction:column}
+.price.feat{border-color:var(--navy-700);box-shadow:var(--sh-lg);position:relative}
+.price.feat:before{content:"Populaire";position:absolute;top:-.8rem;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--gold-light),var(--gold));color:var(--navy-900);font-size:.72rem;font-weight:800;padding:.35em 1em;border-radius:100px;letter-spacing:.05em}
+.price .pk{font-weight:800;font-size:1.05rem;color:var(--navy-700)}
+.price .amt{font-family:var(--f-display);font-size:2.6rem;font-weight:600;margin:.6rem 0 .1rem}
+.price .amt small{font-size:.9rem;color:var(--muted);font-weight:600;font-family:var(--f-body)}
+.price .pd{color:var(--muted);font-size:.9rem;margin-bottom:1.2rem}
+.price ul{list-style:none;display:grid;gap:.65rem;margin-bottom:1.5rem;flex:1}
+.price li{display:flex;gap:.55rem;font-size:.9rem;align-items:flex-start}
+.price li svg{width:1.1em;height:1.1em;color:var(--ok);flex:none;margin-top:.2em}
+.commission-note{text-align:center;margin-top:1.6rem;font-size:.92rem;color:var(--muted)}
+.commission-note b{color:var(--navy-700)}
+/* ---------- FAQ ---------- */
+.faq{max-width:780px;margin:0 auto}
+.qa{border-bottom:1px solid var(--line)}
+.qa button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.25rem 0;text-align:left;font-family:var(--f-display);font-size:1.12rem;font-weight:600;color:var(--ink)}
+.qa .ans{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
+.qa .ans p{padding:0 0 1.25rem;color:var(--muted);font-size:.96rem}
+.qa .pm{width:26px;height:26px;flex:none;transition:transform .3s;color:var(--gold-deep)}
+.qa.open .pm{transform:rotate(45deg)}
+/* ---------- Final CTA ---------- */
+.cta-band{background:radial-gradient(120% 130% at 80% 0,var(--navy-600),var(--navy-900));border-radius:var(--r-xl);padding:clamp(2.5rem,6vw,4.5rem);text-align:center;color:#fff;position:relative;overflow:hidden}
+.cta-band h2{color:#fff;font-size:clamp(1.9rem,4vw,3rem)}
+.cta-band p{color:#c3d0dd;max-width:46ch;margin:1rem auto 2rem}
+.cta-band .glow{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(201,162,75,.25),transparent 70%);top:-140px;left:-90px}
+/* ---------- Footer ---------- */
+.foot{background:var(--navy-900);color:#9fb0c0;padding:clamp(3rem,6vw,4.5rem) 0 2rem}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:2rem}
+.foot h5{color:#fff;font-family:var(--f-body);font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:1.1rem;font-weight:700}
+.foot a{display:block;padding:.32rem 0;font-size:.9rem;transition:color .2s}
+.foot a:hover{color:var(--gold-light)}
+.foot-brand p{font-size:.92rem;margin:1rem 0;max-width:34ch}
+.foot-bar{border-top:1px solid var(--line-navy);margin-top:2.5rem;padding-top:1.5rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.82rem}
+/* ================= APP SHELL ================= */
+.app{min-height:100vh;background:var(--cream)}
+.app-shell{display:grid;grid-template-columns:250px 1fr;min-height:calc(100vh - 0px)}
+.side{background:var(--navy-900);color:#c3d0dd;padding:1.4rem 1rem;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:.25rem}
+.side .logo{color:#fff;margin:.2rem .6rem 1.4rem}
+.side .logo b{color:var(--gold-light)}
+.side-lab{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:#6d8093;margin:1.1rem .8rem .4rem;font-weight:700}
+.side a{display:flex;align-items:center;gap:.75rem;padding:.7rem .8rem;border-radius:11px;font-size:.92rem;font-weight:600;color:#b6c4d3;transition:.2s;cursor:pointer}
+.side a svg{width:1.15rem;height:1.15rem;flex:none;opacity:.85}
+.side a:hover{background:rgba(255,255,255,.06);color:#fff}
+.side a.on{background:linear-gradient(135deg,rgba(201,162,75,.2),rgba(201,162,75,.07));color:#fff;box-shadow:inset 0 0 0 1px rgba(201,162,75,.3)}
+.side a.on svg{opacity:1;color:var(--gold-light)}
+.side-foot{margin-top:auto;padding:.8rem;border-top:1px solid var(--line-navy)}
+.side-user{display:flex;align-items:center;gap:.6rem;font-size:.85rem}
+.side-user .av{width:36px;height:36px;border-radius:50%;object-fit:cover}
+.side-user .nm{font-weight:700;color:#fff;font-size:.85rem}
+.side-user .rl{font-size:.72rem;color:#7f92a5}
+.app-main{padding:clamp(1.2rem,3vw,2.2rem);max-width:1160px}
+.app-top{display:flex;align-items:center;gap:1rem;margin-bottom:1.7rem;flex-wrap:wrap}
+.app-top h1{font-size:clamp(1.5rem,3vw,2.1rem)}
+.app-top .sub{color:var(--muted);font-size:.95rem;margin-top:.2rem}
+.app-top .right{margin-left:auto;display:flex;gap:.6rem;align-items:center}
+.mobile-appbar{display:none}
+/* switch role floating */
+.role-switch{position:fixed;bottom:1.1rem;left:50%;transform:translateX(-50%);z-index:70;background:var(--navy-900);color:#fff;border-radius:100px;padding:.4rem;display:flex;gap:.25rem;box-shadow:var(--sh-lg);border:1px solid var(--line-navy)}
+.role-switch button{padding:.5rem 1rem;border-radius:100px;font-size:.82rem;font-weight:700;color:#9fb0c0;display:flex;align-items:center;gap:.45rem}
+.role-switch button.on{background:linear-gradient(135deg,var(--gold-light),var(--gold));color:var(--navy-900)}
+.role-switch button svg{width:1rem;height:1rem}
+/* cards & tiles in app */
+.grid-cards{display:grid;gap:1.1rem}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:1.3rem;box-shadow:var(--sh-sm)}
+.card-pad{padding:1.5rem}
+.stat-tile{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:1.25rem;box-shadow:var(--sh-sm)}
+.stat-tile .t{font-size:.8rem;color:var(--muted);font-weight:600;display:flex;align-items:center;gap:.4rem}
+.stat-tile .t svg{width:1rem;height:1rem;color:var(--gold-deep)}
+.stat-tile .n{font-family:var(--f-display);font-size:2rem;font-weight:600;margin-top:.4rem;line-height:1}
+.stat-tile .d{font-size:.78rem;margin-top:.35rem;font-weight:700}
+.up{color:var(--ok)} .down{color:var(--danger)}
+.section-title{display:flex;align-items:center;justify-content:space-between;margin:2rem 0 1rem;gap:1rem}
+.section-title h3{font-size:1.3rem}
+.section-title a{font-size:.85rem;font-weight:700;color:var(--navy-600)}
+/* filter bar */
+.filters{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.5rem;align-items:center}
+.select{position:relative}
+.select select,.inp,textarea.inp{font-family:inherit;font-size:.9rem;font-weight:600;color:var(--ink);padding:.6rem 1rem;border:1.5px solid var(--line);border-radius:100px;background:#fff;cursor:pointer;appearance:none;padding-right:2.2rem}
+.inp{border-radius:12px;cursor:text;width:100%;font-weight:500}
+textarea.inp{border-radius:14px;resize:vertical;min-height:120px;line-height:1.5}
+.select:after{content:"▾";position:absolute;right:1rem;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none;font-size:.8rem}
+.fchip{padding:.55rem 1.05rem;border-radius:100px;border:1.5px solid var(--line);background:#fff;font-size:.86rem;font-weight:700;color:var(--ink-soft);transition:.2s;cursor:pointer}
+.fchip:hover{border-color:var(--navy-500)}
+.fchip.on{background:var(--navy-800);color:#fff;border-color:var(--navy-800)}
+/* list rows */
+.row-item{display:flex;gap:1rem;align-items:center;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:1rem 1.15rem;box-shadow:var(--sh-sm);transition:.2s}
+.row-item:hover{box-shadow:var(--sh);transform:translateY(-2px)}
+.row-thumb{width:70px;height:56px;border-radius:10px;object-fit:cover;flex:none}
+.badge{display:inline-flex;align-items:center;gap:.35rem;font-size:.74rem;font-weight:800;padding:.28em .7em;border-radius:100px;text-transform:uppercase;letter-spacing:.02em}
+.b-ok{background:var(--ok-soft);color:#1d6e49}
+.b-warn{background:var(--warn-soft);color:#9a5d16}
+.b-navy{background:rgba(30,58,90,.1);color:var(--navy-700)}
+.b-gold{background:var(--gold-soft);color:var(--gold-deep)}
+.b-danger{background:#fbe6e2;color:#a53b2b}
+.progressbar{height:8px;border-radius:100px;background:var(--line-2);overflow:hidden}
+.progressbar i{display:block;height:100%;border-radius:100px;background:linear-gradient(90deg,var(--gold),var(--gold-deep))}
+/* escrow timeline in app */
+.milestone{display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--line-2)}
+.milestone:last-child{border:none}
+.ms-dot{width:30px;height:30px;border-radius:50%;flex:none;display:grid;place-items:center;font-weight:800;font-size:.8rem}
+.ms-done{background:var(--ok);color:#fff}
+.ms-active{background:var(--gold);color:var(--navy-900)}
+.ms-wait{background:var(--line);color:var(--muted)}
+/* chat */
+.chat{display:grid;grid-template-columns:280px 1fr;height:560px;background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh-sm)}
+.chat-list{border-right:1px solid var(--line);overflow-y:auto}
+.chat-c{display:flex;gap:.7rem;padding:.9rem 1rem;border-bottom:1px solid var(--line-2);cursor:pointer;transition:.2s}
+.chat-c:hover,.chat-c.on{background:var(--cream)}
+.chat-c .av{width:40px;height:40px;border-radius:50%;object-fit:cover;flex:none}
+.chat-c .nm{font-weight:700;font-size:.88rem}
+.chat-c .pv{font-size:.78rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:150px}
+.chat-main{display:flex;flex-direction:column}
+.chat-head{padding:1rem 1.2rem;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:.7rem}
+.chat-body{flex:1;overflow-y:auto;padding:1.2rem;display:flex;flex-direction:column;gap:.7rem;background:var(--cream)}
+.bubble{max-width:74%;padding:.7rem 1rem;border-radius:16px;font-size:.9rem;line-height:1.45}
+.bubble.them{background:#fff;border:1px solid var(--line);border-bottom-left-radius:4px}
+.bubble.me{background:var(--navy-800);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+.chat-input{padding:.8rem;border-top:1px solid var(--line);display:flex;gap:.6rem}
+/* modal */
+.modal-back{position:fixed;inset:0;background:rgba(10,20,32,.6);backdrop-filter:blur(5px);z-index:100;display:flex;align-items:center;justify-content:center;padding:1.2rem;opacity:0;pointer-events:none;transition:opacity .3s}
+.modal-back.show{opacity:1;pointer-events:auto}
+.modal{background:var(--paper);border-radius:var(--r-lg);max-width:560px;width:100%;max-height:92vh;overflow-y:auto;box-shadow:var(--sh-lg);transform:translateY(20px) scale(.98);transition:transform .35s var(--ease)}
+.modal-back.show .modal{transform:none}
+.modal-x{position:absolute;top:1rem;right:1rem;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.06);display:grid;place-items:center;font-size:1.1rem;color:var(--muted)}
+.modal-hd{padding:1.6rem 1.8rem 0}
+.modal-bd{padding:1.4rem 1.8rem 1.8rem}
+.field{margin-bottom:1rem}
+.field label{display:block;font-size:.82rem;font-weight:700;margin-bottom:.4rem;color:var(--ink-soft)}
+/* portfolio gallery */
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem}
+.gallery img{aspect-ratio:1;object-fit:cover;border-radius:12px;width:100%}
+.gallery img.big{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+/* opportunity card */
+.opp{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:1.2rem;box-shadow:var(--sh-sm);transition:.2s}
+.opp:hover{box-shadow:var(--sh);transform:translateY(-2px)}
+.opp .top{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start;margin-bottom:.6rem}
+.opp h4{font-size:1.08rem}
+.opp .price{font-family:var(--f-display);font-weight:700;color:var(--navy-700);font-size:1.1rem;white-space:nowrap}
+.opp .meta{display:flex;gap:1rem;flex-wrap:wrap;font-size:.82rem;color:var(--muted);margin:.5rem 0 .9rem}
+.opp .meta span{display:inline-flex;align-items:center;gap:.3rem}
+.opp .meta svg{width:1em;height:1em}
+/* boost preview */
+.boost-tier{border:1.5px solid var(--line);border-radius:var(--r);padding:1.4rem;background:#fff;transition:.2s;cursor:pointer}
+.boost-tier.sel{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold),var(--sh)}
+.boost-tier .bt-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem}
+.boost-tier .amt{font-family:var(--f-display);font-size:1.7rem;font-weight:600}
+/* helpers */
+.stars{color:var(--gold);letter-spacing:1px;font-size:.9rem}
+.divider{height:1px;background:var(--line);margin:1.4rem 0}
+.pill-note{display:inline-flex;align-items:center;gap:.5rem;background:var(--gold-soft);color:var(--gold-deep);padding:.5rem 1rem;border-radius:100px;font-size:.84rem;font-weight:700}
+.hide{display:none!important}
+.center{text-align:center}
+.mt1{margin-top:1rem}.mt2{margin-top:2rem}
+/* ---------- Responsive ---------- */
+@media(max-width:1000px){
+  .hero-grid,.split,.cov-grid{grid-template-columns:1fr}
+  .split.rev .split-media{order:0}
+  .hero-visual{height:380px;margin-top:1rem}
+  .metier-grid{grid-template-columns:repeat(3,1fr)}
+  .env-grid{grid-template-columns:repeat(3,1fr)}
+  .escrow-flow{grid-template-columns:repeat(2,1fr)}
+  .eflow .arrow{display:none}
+  .feed-grid,.price-grid{grid-template-columns:repeat(2,1fr)}
+  .stat-row{grid-template-columns:repeat(2,1fr);gap:2rem 1rem}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .app-shell{grid-template-columns:1fr}
+  .side{display:none}
+  .mobile-appbar{display:flex}
+}
+@media(max-width:640px){
+  .nav-in{gap:.6rem}
+  .nav-right{gap:.4rem}
+  #navLogin{display:none}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;margin:0;flex-direction:column;gap:.15rem;padding:.6rem var(--pad) 1rem;background:var(--paper);border-bottom:1px solid var(--line);box-shadow:var(--sh-sm)}
+  .nav.open .nav-links{display:flex}
+  .nav-links a{padding:.8rem .6rem;font-size:1rem}
+  .nav-menu-only{display:block}
+  .nav-toggle{display:grid}
+  .steps{grid-template-columns:1fr}
+  .metier-grid,.env-grid,.feed-grid,.price-grid,.g2,.g3,.g4{grid-template-columns:1fr}
+  .g2.keep,.g4.keep{grid-template-columns:repeat(2,1fr)}
+  .chat{grid-template-columns:1fr}
+  .chat-list{display:none}
+  .foot-grid{grid-template-columns:1fr}
+  .hero-trust{gap:.8rem}
+  .role-switch{bottom:.6rem}
+  .app-main{padding:1rem}
+}
+/* scroll reveal ready */
+.metier,.step,.pro-card,.price,.env,.eflow,.stat,.split-media,.feature-list{}
+</style>
+</head>
+<body>
+<!-- ================= PUBLIC NAV ================= -->
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a class="logo" onclick="go('landing')" style="cursor:pointer">
+      <svg class="logo-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="40" height="40" rx="10" fill="#0E1C2E"/>
+        <path d="M9 27V17l6-4 6 4v10" stroke="#E4C77A" stroke-width="2.3" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M19 27V19l6-4 6 4v8" stroke="#C9A24B" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M6 27h28" stroke="#E4C77A" stroke-width="2.3" stroke-linecap="round"/>
+      </svg>
+      <span>We<b>Build</b></span>
+    </a>
+    <nav class="nav-links" id="pubLinks">
+      <a onclick="go('landing');scrollToId('how')" data-i18n="nav_how">Comment ça marche</a>
+      <a onclick="go('landing');scrollToId('metiers')" data-i18n="nav_trades">Métiers</a>
+      <a onclick="go('landing');scrollToId('discover')" data-i18n="nav_discover">Découvrir</a>
+      <a onclick="go('landing');scrollToId('pricing')" data-i18n="nav_pricing">Tarifs</a>
+      <a class="nav-menu-only" onclick="openAuth('client')" data-i18n="nav_login">Se connecter</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang">
+        <button id="lgfr" class="on" onclick="setLang('fr')">FR</button>
+        <button id="lgen" onclick="setLang('en')">EN</button>
+      </div>
+      <button class="btn btn-ghost btn-sm" onclick="openAuth('client')" id="navLogin" data-i18n="nav_login">Se connecter</button>
+      <button class="btn btn-gold btn-sm" onclick="openAuth('pro')" data-i18n="nav_join">Rejoindre</button>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="pubLinks" onclick="toggleNav()"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ================= LANDING ================= -->
+<div id="view-landing" class="view is-active">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow on-dark" data-i18n="hero_eyebrow">Marketplace de construction · Canada</span>
+          <h1 data-i18n="hero_h1">Bâtir en <em>confiance</em>,<br>du carrelage à la maison clé en main.</h1>
+          <p class="hero-sub" data-i18n="hero_sub">WeBuild met en relation les gens qui veulent construire avec les meilleurs entrepreneurs de leur région — et retient chaque paiement en sécurité jusqu'à la fin des travaux.</p>
+          <div class="hero-cta">
+            <button class="btn btn-gold" onclick="openAuth('client')"><span data-i18n="hero_cta1">J'ai un projet</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="btn btn-ghost-light" onclick="openAuth('pro')" data-i18n="hero_cta2">Je suis un entrepreneur</button>
+          </div>
+          <div class="hero-trust">
+            <div class="ht"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4z" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="hero_t1">Paiement séquestre sécurisé</span></div>
+            <div class="ht"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9"/></svg><span data-i18n="hero_t2">Entrepreneurs vérifiés (RBQ)</span></div>
+            <div class="ht"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.3 5.8 20.9l1.6-6.8L2.2 8.9l6.9-.6z"/></svg><span data-i18n="hero_t3">4,9/5 · 2 400+ avis</span></div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hv-img hv-1"><img data-img="house_exterior_0" alt="Maison neuve"></div>
+          <div class="hv-img hv-2"><img data-img="interior_0" alt="Design intérieur"></div>
+          <div class="hv-card c1">
+            <div class="ic" style="background:var(--ok-soft)"><svg viewBox="0 0 24 24" width="20" fill="none" stroke="#1d6e49" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="t" data-i18n="hv_c1t">En séquestre</div><div class="v">18 500 $ CA</div></div>
+          </div>
+          <div class="hv-card c2">
+            <div class="ic" style="background:var(--gold-soft)"><svg viewBox="0 0 24 24" width="20" fill="none" stroke="#A9832F" stroke-width="2"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="t" data-i18n="hv_c2t">Jalon approuvé</div><div class="v" data-i18n="hv_c2v">Fondation coulée</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-marquee">
+        <div class="track" id="marqueeTrack"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="sec" id="how">
+    <div class="wrap">
+      <div class="sec-head center reveal">
+        <span class="eyebrow" data-i18n="how_eyebrow">Simple des deux côtés</span>
+        <h2 data-i18n="how_h2">Comment WeBuild fonctionne</h2>
+        <p data-i18n="how_p">Que vous cherchiez à bâtir ou à décrocher des contrats, tout passe par une seule plateforme sécurisée.</p>
+      </div>
+      <div class="center reveal">
+        <div class="tabs" role="tablist">
+          <button class="on" id="tab-client" onclick="switchHow('client')" data-i18n="how_tab_client">Je veux bâtir</button>
+          <button id="tab-pro" onclick="switchHow('pro')" data-i18n="how_tab_pro">Je suis entrepreneur</button>
+        </div>
+      </div>
+      <div class="steps reveal" id="howSteps"></div>
+    </div>
+  </section>
+
+  <!-- MÉTIERS -->
+  <section class="sec sec-cream" id="metiers">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow" data-i18n="met_eyebrow">Tous les métiers, une seule place</span>
+        <h2 data-i18n="met_h2">Du petit changement au grand chantier</h2>
+        <p data-i18n="met_p">Un carreau à reposer ou une maison à ériger — chaque projet trouve son professionnel vérifié.</p>
+      </div>
+      <div class="metier-grid reveal" id="metierGrid"></div>
+      <div class="metier-more reveal" id="metierChips"></div>
+    </div>
+  </section>
+
+  <!-- ENVIRONMENTS -->
+  <section class="sec sec-navy">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow on-dark" data-i18n="env_eyebrow">Partout, tous les contextes</span>
+        <h2 data-i18n="env_h2">En ville, à la ferme, au chalet ou en condo</h2>
+        <p data-i18n="env_p">Nos entrepreneurs maîtrisent chaque environnement de construction au Canada.</p>
+      </div>
+      <div class="env-grid reveal" id="envGrid"></div>
+    </div>
+  </section>
+  <!-- DISCOVER TEASER (For You feed) -->
+  <section class="sec" id="discover">
+    <div class="wrap">
+      <div class="sec-head reveal" style="display:flex;justify-content:space-between;align-items:flex-end;max-width:100%;gap:1rem;flex-wrap:wrap">
+        <div style="max-width:640px">
+          <span class="eyebrow" data-i18n="disc_eyebrow">La page « Pour vous »</span>
+          <h2 data-i18n="disc_h2">Les entrepreneurs de votre région, à découvrir</h2>
+          <p data-i18n="disc_p">Dès votre inscription, WeBuild vous montre les pros qui viennent d'arriver près de chez vous — avec leurs réalisations. Comme à Shawinigan, ci-dessous.</p>
+        </div>
+        <button class="btn btn-navy" onclick="openAuth('client')" data-i18n="disc_cta">Explorer ma région</button>
+      </div>
+      <div class="feed-grid reveal" id="teaserFeed"></div>
+    </div>
+  </section>
+
+  <!-- ESCROW -->
+  <section class="sec sec-cream">
+    <div class="wrap">
+      <div class="split">
+        <div class="reveal">
+          <span class="eyebrow" data-i18n="esc_eyebrow">Le cœur de WeBuild</span>
+          <h2 style="font-size:clamp(1.9rem,3.6vw,2.9rem);margin:.6rem 0 .8rem" data-i18n="esc_h2">Votre argent, retenu en sécurité jusqu'à la livraison</h2>
+          <p class="muted" data-i18n="esc_p">Vous déposez les fonds sur WeBuild. Ils restent bloqués en séquestre. L'entrepreneur travaille en confiance, vous libérez le paiement à chaque jalon approuvé. Zéro avance risquée, zéro chantier abandonné.</p>
+          <ul class="feature-list">
+            <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4z" stroke-linejoin="round"/></svg></span><div><b data-i18n="esc_f1t">Fonds protégés</b><p data-i18n="esc_f1p">L'argent n'est libéré qu'à votre approbation, jalon par jalon.</p></div></li>
+            <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9"/></svg></span><div><b data-i18n="esc_f2t">Litiges gérés</b><p data-i18n="esc_f2p">Un désaccord ? WeBuild agit comme tiers de confiance jusqu'à résolution.</p></div></li>
+            <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 10h18M7 15h4M6 4h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2z" stroke-linejoin="round"/></svg></span><div><b data-i18n="esc_f3t">Paiement par jalons</b><p data-i18n="esc_f3p">Divisez un grand projet en étapes claires et payables une à une.</p></div></li>
+          </ul>
+          <div class="escrow-badge"><svg viewBox="0 0 24 24" width="16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9"/></svg><span data-i18n="esc_badge">Argent remboursé si le jalon n'est jamais livré</span></div>
+        </div>
+        <div class="reveal">
+          <div class="escrow-flow" id="escrowFlow"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOST / PROMO -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="split rev">
+        <div class="split-media reveal"><img data-img="worker_portrait_0" alt="Entrepreneur mis en avant"></div>
+        <div class="reveal">
+          <span class="eyebrow" data-i18n="boost_eyebrow">Pour les entrepreneurs</span>
+          <h2 style="font-size:clamp(1.9rem,3.6vw,2.9rem);margin:.6rem 0 .8rem" data-i18n="boost_h2">Nouveau dans la région ? Mettez-vous à l'avant</h2>
+          <p class="muted" data-i18n="boost_p">Les nouveaux arrivants et les entreprises ambitieuses peuvent payer pour apparaître en vedette dans la page « Pour vous » de leur région. Plus de visibilité, plus de demandes, dès la première semaine.</p>
+          <ul class="feature-list">
+            <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" stroke-linejoin="round"/></svg></span><div><b data-i18n="boost_f1t">Vedette régionale</b><p data-i18n="boost_f1p">Votre fiche en tête du fil des clients de votre secteur.</p></div></li>
+            <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3v18h18" stroke-linecap="round"/><path d="M7 14l4-4 3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><b data-i18n="boost_f2t">Portfolio automatique</b><p data-i18n="boost_f2p">Vos réalisations s'affichent seules aux clients qui cherchent votre métier.</p></div></li>
+            <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><b data-i18n="boost_f3t">Contact direct</b><p data-i18n="boost_f3p">Le client vous écrit directement — pas d'intermédiaire, pas d'attente.</p></div></li>
+          </ul>
+          <button class="btn btn-navy mt1" onclick="openAuth('pro')" data-i18n="boost_cta">Faire grandir mon entreprise</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="sec sec-navy">
+    <div class="wrap">
+      <div class="stat-row reveal" id="statRow"></div>
+    </div>
+  </section>
+
+  <!-- COVERAGE -->
+  <section class="sec sec-navy" style="padding-top:0">
+    <div class="wrap">
+      <div class="cov-grid">
+        <div class="reveal">
+          <span class="eyebrow on-dark" data-i18n="cov_eyebrow">Couverture pancanadienne</span>
+          <h2 style="font-size:clamp(1.9rem,3.6vw,2.7rem);margin:.6rem 0 .8rem" data-i18n="cov_h2">Du Québec à toutes les provinces</h2>
+          <p style="color:#aebccb" data-i18n="cov_p">On grandit région par région. Le Québec d'abord — Montréal, Québec, la Mauricie, l'Estrie — puis tout le Canada.</p>
+          <div class="region-list" id="regionList"></div>
+        </div>
+        <div class="reveal">
+          <div class="map-card">
+            <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1rem">
+              <svg viewBox="0 0 24 24" width="22" fill="none" stroke="var(--gold-light)" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 0114 0c0 5.5-7 11-7 11z" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5"/></svg>
+              <div style="font-weight:800;color:#fff" data-i18n="cov_card_t">Près de Shawinigan</div>
+            </div>
+            <div id="regionSpotlight"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="sec" id="pricing">
+    <div class="wrap">
+      <div class="sec-head center reveal">
+        <span class="eyebrow" data-i18n="price_eyebrow">Modèle transparent</span>
+        <h2 data-i18n="price_h2">On gagne quand la transaction réussit</h2>
+        <p data-i18n="price_p">Une petite commission sécurise chaque paiement. Les entrepreneurs choisissent leur niveau de visibilité.</p>
+      </div>
+      <div class="price-grid reveal" id="priceGrid"></div>
+      <p class="commission-note reveal" data-i18n="price_note">Côté client, ouvrir un compte et publier un projet est <b>gratuit</b>. WeBuild prélève une commission de service de <b>5 %</b> sur chaque paiement sécurisé — c'est tout.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="sec sec-cream">
+    <div class="wrap">
+      <div class="sec-head center reveal">
+        <span class="eyebrow" data-i18n="faq_eyebrow">Questions fréquentes</span>
+        <h2 data-i18n="faq_h2">Ce que les gens nous demandent</h2>
+      </div>
+      <div class="faq reveal" id="faqList"></div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <div class="glow"></div>
+        <span class="eyebrow on-dark" data-i18n="cta_eyebrow">Prêt à bâtir ?</span>
+        <h2 data-i18n="cta_h2">Votre prochain projet commence ici</h2>
+        <p data-i18n="cta_p">Rejoignez les milliers de Canadiens qui construisent et rénovent en toute confiance avec WeBuild.</p>
+        <div style="display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap">
+          <button class="btn btn-gold" onclick="openAuth('client')" data-i18n="cta_b1">J'ai un projet à réaliser</button>
+          <button class="btn btn-white" onclick="openAuth('pro')" data-i18n="cta_b2">Je veux des contrats</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div><!-- /view-landing -->
+
+<!-- ================= AUTH / ROLE SELECT ================= -->
+<div id="view-auth" class="view">
+  <section class="hero" style="min-height:100vh;display:flex;align-items:center;padding:2rem 0">
+    <div class="hero-glow"></div>
+    <div class="wrap" style="width:100%">
+      <div style="max-width:820px;margin:0 auto;text-align:center">
+        <a class="logo" onclick="go('landing')" style="justify-content:center;cursor:pointer;margin-bottom:1.6rem;color:#fff">We<b style="color:var(--gold-light)">Build</b></a>
+        <span class="eyebrow on-dark" id="authEyebrow">Bienvenue</span>
+        <h1 style="color:#fff;font-size:clamp(2rem,4vw,3rem);margin:.6rem 0 2rem" id="authTitle">Comment voulez-vous utiliser WeBuild ?</h1>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;text-align:left" id="roleCards"></div>
+        <p style="color:#9fb0c0;margin-top:1.6rem;font-size:.9rem" id="authSwitch"></p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= CLIENT APP ================= -->
+<div id="app-client" class="view app">
+  <div class="app-shell">
+    <aside class="side">
+      <a class="logo" onclick="go('landing')">We<b>Build</b></a>
+      <div class="side-lab" data-i18n="side_client">Espace client</div>
+      <a data-cpage="discover" onclick="renderClient('discover')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6 4.4 2.3 7.2-6.3-4.6L5.7 21l2.3-7.2-6-4.4h7.6z" stroke-linejoin="round"/></svg><span data-i18n="cnav_discover">Découvrir</span></a>
+      <a data-cpage="post" onclick="renderClient('post')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg><span data-i18n="cnav_post">Publier un projet</span></a>
+      <a data-cpage="projects" onclick="renderClient('projects')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18v13H3zM8 7V4h8v3" stroke-linejoin="round"/></svg><span data-i18n="cnav_projects">Mes projets</span></a>
+      <a data-cpage="messages" onclick="renderClient('messages')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke-linejoin="round"/></svg><span data-i18n="cnav_messages">Messages</span></a>
+      <div class="side-lab" data-i18n="side_account">Compte</div>
+      <a onclick="alert(T[lang].demo_note)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6" stroke-linecap="round"/></svg><span data-i18n="cnav_profile">Mon profil</span></a>
+      <a onclick="go('landing')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="nav_logout">Quitter la démo</span></a>
+      <div class="side-foot">
+        <div class="side-user"><img class="av" data-img="client_avatar" alt=""><div><div class="nm">Mishka T.</div><div class="rl" data-i18n="role_client">Client · Shawinigan</div></div></div>
+      </div>
+    </aside>
+    <div class="app-main">
+      <div class="mobile-appbar app-top"><a class="logo" onclick="go('landing')" style="color:var(--navy-900)">We<b style="color:var(--gold-deep)">Build</b></a><div class="right"><button class="btn btn-ghost btn-sm" onclick="renderClient('discover')">Découvrir</button><button class="btn btn-navy btn-sm" onclick="renderClient('post')">+ Projet</button></div></div>
+      <div id="client-main"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= PRO APP ================= -->
+<div id="app-pro" class="view app">
+  <div class="app-shell">
+    <aside class="side">
+      <a class="logo" onclick="go('landing')">We<b>Build</b></a>
+      <div class="side-lab" data-i18n="side_pro">Espace entrepreneur</div>
+      <a data-ppage="dashboard" onclick="renderPro('dashboard')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 13h8V3H3zM13 21h8v-8h-8zM13 3v6h8V3zM3 17v4h8v-4z" stroke-linejoin="round"/></svg><span data-i18n="pnav_dash">Tableau de bord</span></a>
+      <a data-ppage="opps" onclick="renderPro('opps')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18v13H3zM8 7V4h8v3" stroke-linejoin="round"/></svg><span data-i18n="pnav_opps">Opportunités</span></a>
+      <a data-ppage="jobs" onclick="renderPro('jobs')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z" stroke-linejoin="round"/></svg><span data-i18n="pnav_jobs">Contrats & paiements</span></a>
+      <a data-ppage="profile" onclick="renderPro('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V7l8-4 8 4v13M9 20v-6h6v6" stroke-linejoin="round"/></svg><span data-i18n="pnav_profile">Ma vitrine</span></a>
+      <a data-ppage="boost" onclick="renderPro('boost')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z" stroke-linejoin="round"/></svg><span data-i18n="pnav_boost">Mise en avant</span></a>
+      <a data-ppage="messages" onclick="renderPro('messages')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke-linejoin="round"/></svg><span data-i18n="pnav_messages">Messages</span></a>
+      <a onclick="go('landing')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="nav_logout">Quitter la démo</span></a>
+      <div class="side-foot">
+        <div class="side-user"><img class="av" data-img="pro_avatar" alt=""><div><div class="nm">Éric Lapointe</div><div class="rl" data-i18n="role_pro">Design intérieur · Shawinigan</div></div></div>
+      </div>
+    </aside>
+    <div class="app-main">
+      <div class="mobile-appbar app-top"><a class="logo" onclick="go('landing')" style="color:var(--navy-900)">We<b style="color:var(--gold-deep)">Build</b></a><div class="right"><button class="btn btn-ghost btn-sm" onclick="renderPro('opps')">Opportunités</button><button class="btn btn-gold btn-sm" onclick="renderPro('boost')">Booster</button></div></div>
+      <div id="pro-main"></div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="foot" id="pubFooter">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="logo" style="color:#fff">We<b style="color:var(--gold-light)">Build</b></a>
+        <p data-i18n="foot_tag">La marketplace qui met en relation les gens qui bâtissent avec les meilleurs entrepreneurs du Canada — paiement sécurisé de bout en bout.</p>
+        <div style="display:flex;gap:.6rem;margin-top:.4rem">
+          <a href="#" aria-label="Instagram" style="width:38px;height:38px;border:1px solid var(--line-navy);border-radius:10px;display:grid;place-items:center"><svg viewBox="0 0 24 24" width="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="LinkedIn" style="width:38px;height:38px;border:1px solid var(--line-navy);border-radius:10px;display:grid;place-items:center"><svg viewBox="0 0 24 24" width="18" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 002.5 6 2.5 2.5 0 005 8.5 2.5 2.5 0 007.5 6 2.5 2.5 0 004.98 3.5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.3 0-2.95-1.8-2.95-1.8 0-2.07 1.4-2.07 2.85V21h-4z"/></svg></a>
+          <a href="#" aria-label="Facebook" style="width:38px;height:38px;border:1px solid var(--line-navy);border-radius:10px;display:grid;place-items:center"><svg viewBox="0 0 24 24" width="18" fill="currentColor"><path d="M22 12a10 10 0 10-11.5 9.9v-7H8v-2.9h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6v1.8h2.8L15.7 15h-2.3v7A10 10 0 0022 12z"/></svg></a>
+        </div>
+      </div>
+      <div><h5 data-i18n="foot_c1">Plateforme</h5><a onclick="openAuth('client')" data-i18n="foot_l1">Trouver un pro</a><a onclick="openAuth('pro')" data-i18n="foot_l2">Devenir entrepreneur</a><a onclick="scrollToId('discover')" data-i18n="foot_l3">Page Pour vous</a><a onclick="scrollToId('pricing')" data-i18n="foot_l4">Tarifs & commission</a></div>
+      <div><h5 data-i18n="foot_c2">Confiance</h5><a onclick="scrollToId('metiers')" data-i18n="foot_l5">Paiement séquestre</a><a href="#" data-i18n="foot_l6">Vérification RBQ</a><a href="#" data-i18n="foot_l7">Résolution de litiges</a><a href="#" data-i18n="foot_l8">Assurance chantier</a></div>
+      <div><h5 data-i18n="foot_c3">Entreprise</h5><a href="#" data-i18n="foot_l9">À propos</a><a href="#" data-i18n="foot_l10">Régions desservies</a><a href="#" data-i18n="foot_l11">Blogue</a><a href="#" data-i18n="foot_l12">Contact</a></div>
+    </div>
+    <div class="foot-bar">
+      <span>© <span id="yr"></span> WeBuild Technologies Inc. · Montréal, QC</span>
+      <span style="display:flex;gap:1.2rem"><a href="#" data-i18n="foot_legal1">Confidentialité</a><a href="#" data-i18n="foot_legal2">Conditions</a><a href="#" data-i18n="foot_legal3">Cookies</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- ROLE SWITCH (demo helper) -->
+<div class="role-switch" id="roleSwitch" style="display:none">
+  <button id="rsClient" onclick="enterApp('client')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V7l8-4 8 4v13" stroke-linejoin="round"/></svg><span data-i18n="rs_client">Vue client</span></button>
+  <button id="rsPro" onclick="enterApp('pro')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z" stroke-linejoin="round"/></svg><span data-i18n="rs_pro">Vue entrepreneur</span></button>
+</div>
+
+<!-- MODAL ROOT -->
+<div class="modal-back" id="modalBack" onclick="if(event.target===this)closeModal()">
+  <div class="modal" id="modalBox" style="position:relative"></div>
+</div>
+
+<script>
+/* ============================ IMAGE BANK ============================ */
+const U = id => `https://images.unsplash.com/photo-${id}?w=1000&q=80&auto=format&fit=crop`;
+const AV = n => `https://i.pravatar.cc/140?img=${n}`;
+const IMG = {
+  house_exterior:['1600596542815-ffad4c1539a9','1523217582562-09d0def993a6','1691425700585-c108acad6467'].map(U),
+  interior:['1564078516393-cf04bd966897','1724582586529-62622e50c0b3','1705321963943-de94bb3f0dd3'].map(U),
+  kitchen:['1628745277862-bc0b2d68c50c','1502005097973-6a7082348e28','1556912167-f556f1f39fdf'].map(U),
+  bathroom:['1576698483491-8c43f0862543','1572742482459-e04d6cfdd6f3','1742134131017-44d377a611b1'].map(U),
+  cabin:['1623398243568-dae0e12aa2d0','1635678976860-1c1a59fd66c1','1616404236921-103982790572'].map(U),
+  landscaping:['1729058015948-592a8e4a1772','1681853108586-f29b4ef5c0fb','1749803915455-a7642520d0d3'].map(U),
+  tile:['1523413307857-ef24c53571ae','1523413363574-c30aa1c2a516','1703868669362-562283170216'].map(U),
+  worker_portrait:['1672748341520-6a839e6c05bb','1646227655685-a530813759b3','1646227655588-b44f246c04fb'].map(U),
+  construction:['1587582423116-ec07293f0395','1672627170267-fca17bb54156','1676802037786-3697d60497ae','1556156653-e5a7c69cc263'].map(U),
+  carpentry:['1513467535987-fd81bc7d62f8','1505798577917-a65157d3320a'].map(U),
+  reno:['1618832515490-e181c4794a45'].map(U),
+  blueprint:['1503387762-592deb58ef4e'].map(U)
+};
+const AVATARS={ client_avatar:AV(45), pro_avatar:AV(12) };
+function applyImages(){
+  document.querySelectorAll('img[data-img]:not([data-done])').forEach(img=>{
+    img.setAttribute('data-done','1');
+    const key=img.getAttribute('data-img');
+    let src;
+    if(AVATARS[key]) src=AVATARS[key];
+    else { const m=key.match(/^(.*)_(\d+)$/); if(m&&IMG[m[1]]) src=IMG[m[1]][(+m[2])%IMG[m[1]].length]; else if(IMG[key]) src=IMG[key][0]; }
+    if(!src) return;
+    img.onerror=()=>{ img.style.visibility='hidden'; const p=img.parentElement; if(p){p.style.background='linear-gradient(135deg,#26456a,#0E1C2E)';} };
+    img.src=src;
+  });
+}
+/* ============================ HELPERS ============================ */
+const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+let lang='fr', currentView='landing', cPage='discover', pPage='dashboard';
+const L=o=>o?(o[lang]??o.fr):'';
+const stars=n=>{let f=Math.round(n);return '★★★★★'.slice(0,f)+'☆☆☆☆☆'.slice(0,5-f);};
+/* ============================ i18n ============================ */
+const T={fr:{
+ nav_how:"Comment ça marche",nav_trades:"Métiers",nav_discover:"Découvrir",nav_pricing:"Tarifs",nav_login:"Se connecter",nav_join:"Rejoindre",nav_logout:"Quitter la démo",
+ hero_eyebrow:"Marketplace de construction · Canada",hero_h1:"Bâtir en <em>confiance</em>,<br>du carrelage à la maison clé en main.",hero_sub:"WeBuild met en relation les gens qui veulent construire avec les meilleurs entrepreneurs de leur région — et retient chaque paiement en sécurité jusqu'à la fin des travaux.",hero_cta1:"J'ai un projet",hero_cta2:"Je suis un entrepreneur",hero_t1:"Paiement séquestre sécurisé",hero_t2:"Entrepreneurs vérifiés (RBQ)",hero_t3:"4,9/5 · 2 400+ avis",hv_c1t:"En séquestre",hv_c2t:"Jalon approuvé",hv_c2v:"Fondation coulée",
+ how_eyebrow:"Simple des deux côtés",how_h2:"Comment WeBuild fonctionne",how_p:"Que vous cherchiez à bâtir ou à décrocher des contrats, tout passe par une seule plateforme sécurisée.",how_tab_client:"Je veux bâtir",how_tab_pro:"Je suis entrepreneur",
+ met_eyebrow:"Tous les métiers, une seule place",met_h2:"Du petit changement au grand chantier",met_p:"Un carreau à reposer ou une maison à ériger — chaque projet trouve son professionnel vérifié.",
+ env_eyebrow:"Partout, tous les contextes",env_h2:"En ville, à la ferme, au chalet ou en condo",env_p:"Nos entrepreneurs maîtrisent chaque environnement de construction au Canada.",
+ disc_eyebrow:"La page « Pour vous »",disc_h2:"Les entrepreneurs de votre région, à découvrir",disc_p:"Dès votre inscription, WeBuild vous montre les pros qui viennent d'arriver près de chez vous — avec leurs réalisations. Comme à Shawinigan, ci-dessous.",disc_cta:"Explorer ma région",
+ esc_eyebrow:"Le cœur de WeBuild",esc_h2:"Votre argent, retenu en sécurité jusqu'à la livraison",esc_p:"Vous déposez les fonds sur WeBuild. Ils restent bloqués en séquestre. L'entrepreneur travaille en confiance, vous libérez le paiement à chaque jalon approuvé. Zéro avance risquée, zéro chantier abandonné.",esc_f1t:"Fonds protégés",esc_f1p:"L'argent n'est libéré qu'à votre approbation, jalon par jalon.",esc_f2t:"Litiges gérés",esc_f2p:"Un désaccord ? WeBuild agit comme tiers de confiance jusqu'à résolution.",esc_f3t:"Paiement par jalons",esc_f3p:"Divisez un grand projet en étapes claires et payables une à une.",esc_badge:"Argent remboursé si le jalon n'est jamais livré",
+ boost_eyebrow:"Pour les entrepreneurs",boost_h2:"Nouveau dans la région ? Mettez-vous à l'avant",boost_p:"Les nouveaux arrivants et les entreprises ambitieuses peuvent payer pour apparaître en vedette dans la page « Pour vous » de leur région. Plus de visibilité, plus de demandes, dès la première semaine.",boost_f1t:"Vedette régionale",boost_f1p:"Votre fiche en tête du fil des clients de votre secteur.",boost_f2t:"Portfolio automatique",boost_f2p:"Vos réalisations s'affichent seules aux clients qui cherchent votre métier.",boost_f3t:"Contact direct",boost_f3p:"Le client vous écrit directement — pas d'intermédiaire, pas d'attente.",boost_cta:"Faire grandir mon entreprise",
+ cov_eyebrow:"Couverture pancanadienne",cov_h2:"Du Québec à toutes les provinces",cov_p:"On grandit région par région. Le Québec d'abord — Montréal, Québec, la Mauricie, l'Estrie — puis tout le Canada.",cov_card_t:"Près de Shawinigan",
+ price_eyebrow:"Modèle transparent",price_h2:"On gagne quand la transaction réussit",price_p:"Une petite commission sécurise chaque paiement. Les entrepreneurs choisissent leur niveau de visibilité.",price_note:"Côté client, ouvrir un compte et publier un projet est <b>gratuit</b>. WeBuild prélève une commission de service de <b>5 %</b> sur chaque paiement sécurisé — c'est tout.",
+ faq_eyebrow:"Questions fréquentes",faq_h2:"Ce que les gens nous demandent",
+ cta_eyebrow:"Prêt à bâtir ?",cta_h2:"Votre prochain projet commence ici",cta_p:"Rejoignez les milliers de Canadiens qui construisent et rénovent en toute confiance avec WeBuild.",cta_b1:"J'ai un projet à réaliser",cta_b2:"Je veux des contrats",
+ foot_tag:"La marketplace qui met en relation les gens qui bâtissent avec les meilleurs entrepreneurs du Canada — paiement sécurisé de bout en bout.",foot_c1:"Plateforme",foot_l1:"Trouver un pro",foot_l2:"Devenir entrepreneur",foot_l3:"Page Pour vous",foot_l4:"Tarifs & commission",foot_c2:"Confiance",foot_l5:"Paiement séquestre",foot_l6:"Vérification RBQ",foot_l7:"Résolution de litiges",foot_l8:"Assurance chantier",foot_c3:"Entreprise",foot_l9:"À propos",foot_l10:"Régions desservies",foot_l11:"Blogue",foot_l12:"Contact",foot_legal1:"Confidentialité",foot_legal2:"Conditions",foot_legal3:"Cookies",
+ side_client:"Espace client",side_account:"Compte",cnav_discover:"Découvrir",cnav_post:"Publier un projet",cnav_projects:"Mes projets",cnav_messages:"Messages",cnav_profile:"Mon profil",
+ side_pro:"Espace entrepreneur",pnav_dash:"Tableau de bord",pnav_opps:"Opportunités",pnav_jobs:"Contrats & paiements",pnav_profile:"Ma vitrine",pnav_boost:"Mise en avant",pnav_messages:"Messages",
+ role_client:"Client · Shawinigan",role_pro:"Design intérieur · Shawinigan",rs_client:"Vue client",rs_pro:"Vue entrepreneur",
+ demo_note:"Ceci est un prototype de démonstration — les données sont fictives."
+},en:{
+ nav_how:"How it works",nav_trades:"Trades",nav_discover:"Discover",nav_pricing:"Pricing",nav_login:"Log in",nav_join:"Join",nav_logout:"Exit demo",
+ hero_eyebrow:"Construction marketplace · Canada",hero_h1:"Build with <em>confidence</em>,<br>from a single tile to a turnkey home.",hero_sub:"WeBuild connects people who want to build with the best contractors in their region — and holds every payment safe until the work is done.",hero_cta1:"I have a project",hero_cta2:"I'm a contractor",hero_t1:"Secure escrow payments",hero_t2:"Verified contractors (RBQ)",hero_t3:"4.9/5 · 2,400+ reviews",hv_c1t:"In escrow",hv_c2t:"Milestone approved",hv_c2v:"Foundation poured",
+ how_eyebrow:"Simple on both sides",how_h2:"How WeBuild works",how_p:"Whether you're looking to build or to win contracts, it all runs through one secure platform.",how_tab_client:"I want to build",how_tab_pro:"I'm a contractor",
+ met_eyebrow:"Every trade, one place",met_h2:"From a small fix to a full build",met_p:"A tile to reset or a house to raise — every project finds its verified professional.",
+ env_eyebrow:"Everywhere, every context",env_h2:"In the city, on the farm, at the cottage or in a condo",env_p:"Our contractors master every building environment across Canada.",
+ disc_eyebrow:"The \"For You\" page",disc_h2:"The contractors in your region, waiting to be found",disc_p:"The moment you sign up, WeBuild shows you the pros who just arrived near you — with their work. Like in Shawinigan, below.",disc_cta:"Explore my region",
+ esc_eyebrow:"The heart of WeBuild",esc_h2:"Your money, held safe until delivery",esc_p:"You deposit funds on WeBuild. They stay locked in escrow. The contractor works with confidence, you release payment at each approved milestone. No risky deposits, no abandoned job sites.",esc_f1t:"Protected funds",esc_f1p:"Money is released only on your approval, milestone by milestone.",esc_f2t:"Disputes handled",esc_f2p:"A disagreement? WeBuild acts as a trusted third party until it's resolved.",esc_f3t:"Milestone payments",esc_f3p:"Split a large project into clear stages, payable one at a time.",esc_badge:"Money refunded if a milestone is never delivered",
+ boost_eyebrow:"For contractors",boost_h2:"New in the area? Put yourself up front",boost_p:"Newcomers and ambitious businesses can pay to be featured on their region's \"For You\" page. More visibility, more requests, from week one.",boost_f1t:"Regional feature",boost_f1p:"Your card at the top of the feed for clients in your area.",boost_f2t:"Automatic portfolio",boost_f2p:"Your work shows itself to clients searching for your trade.",boost_f3t:"Direct contact",boost_f3p:"The client messages you directly — no middleman, no waiting.",boost_cta:"Grow my business",
+ cov_eyebrow:"Canada-wide coverage",cov_h2:"From Quebec to every province",cov_p:"We grow region by region. Quebec first — Montreal, Quebec City, Mauricie, Estrie — then all of Canada.",cov_card_t:"Near Shawinigan",
+ price_eyebrow:"Transparent model",price_h2:"We earn when the deal succeeds",price_p:"A small commission secures every payment. Contractors choose their level of visibility.",price_note:"For clients, opening an account and posting a project is <b>free</b>. WeBuild takes a <b>5%</b> service commission on each secured payment — that's it.",
+ faq_eyebrow:"Frequently asked",faq_h2:"What people ask us",
+ cta_eyebrow:"Ready to build?",cta_h2:"Your next project starts here",cta_p:"Join the thousands of Canadians building and renovating with confidence on WeBuild.",cta_b1:"I have a project",cta_b2:"I want contracts",
+ foot_tag:"The marketplace connecting people who build with Canada's best contractors — secure payments end to end.",foot_c1:"Platform",foot_l1:"Find a pro",foot_l2:"Become a contractor",foot_l3:"For You page",foot_l4:"Pricing & commission",foot_c2:"Trust",foot_l5:"Escrow payments",foot_l6:"RBQ verification",foot_l7:"Dispute resolution",foot_l8:"Job-site insurance",foot_c3:"Company",foot_l9:"About",foot_l10:"Regions served",foot_l11:"Blog",foot_l12:"Contact",foot_legal1:"Privacy",foot_legal2:"Terms",foot_legal3:"Cookies",
+ side_client:"Client space",side_account:"Account",cnav_discover:"Discover",cnav_post:"Post a project",cnav_projects:"My projects",cnav_messages:"Messages",cnav_profile:"My profile",
+ side_pro:"Contractor space",pnav_dash:"Dashboard",pnav_opps:"Opportunities",pnav_jobs:"Contracts & payments",pnav_profile:"My showcase",pnav_boost:"Get featured",pnav_messages:"Messages",
+ role_client:"Client · Shawinigan",role_pro:"Interior design · Shawinigan",rs_client:"Client view",rs_pro:"Contractor view",
+ demo_note:"This is a demonstration prototype — data is fictional."
+}};
+function setLang(l){
+  lang=l; document.documentElement.lang=l;
+  $('#lgfr').classList.toggle('on',l==='fr'); $('#lgen').classList.toggle('on',l==='en');
+  $$('[data-i18n]').forEach(e=>{const k=e.getAttribute('data-i18n'); if(T[l][k]!=null) e.innerHTML=T[l][k];});
+  $$('[data-i18n-ph]').forEach(e=>{const k=e.getAttribute('data-i18n-ph'); if(T[l][k]!=null) e.setAttribute('placeholder',T[l][k]);});
+  renderLandingDynamic();
+  if(currentView==='client') renderClient(cPage);
+  if(currentView==='pro') renderPro(pPage);
+  if(currentView==='auth') renderRoleCards(authRole);
+}
+/* ============================ DATA ============================ */
+const HOW={client:[
+  {fr:["Décrivez votre projet","Type de travaux, budget, échéancier, photos. En 2 minutes, gratuitement."],en:["Describe your project","Type of work, budget, timeline, photos. In 2 minutes, free."]},
+  {fr:["Recevez des entrepreneurs","Des pros vérifiés de votre région vous répondent avec un devis clair."],en:["Get matched with pros","Verified contractors in your region reply with a clear quote."]},
+  {fr:["Payez en sécurité","Vos fonds restent en séquestre. Vous libérez à chaque jalon approuvé."],en:["Pay securely","Your funds stay in escrow. You release at each approved milestone."]}
+],pro:[
+  {fr:["Créez votre vitrine","Métier, réalisations, région. Vos photos s'affichent aux bons clients."],en:["Build your showcase","Trade, past work, region. Your photos reach the right clients."]},
+  {fr:["Décrochez des contrats","Répondez aux projets de votre secteur ou soyez trouvé dans « Pour vous »."],en:["Win contracts","Bid on projects in your area or get found on the \"For You\" page."]},
+  {fr:["Soyez payé sans risque","Le client finance d'avance en séquestre. Vous livrez, vous êtes payé."],en:["Get paid, risk-free","The client pre-funds escrow. You deliver, you get paid."]}
+]};
+const MET=[
+ {img:'interior',fr:"Design intérieur",en:"Interior design",k:{fr:"Décoration & aménagement",en:"Decor & space planning"}},
+ {img:'house_exterior',fr:"Construction complète",en:"Full home build",k:{fr:"Clé en main",en:"Turnkey"}},
+ {img:'kitchen',fr:"Cuisine & armoires",en:"Kitchen & cabinets",k:{fr:"Rénovation",en:"Renovation"}},
+ {img:'bathroom',fr:"Salle de bain",en:"Bathroom",k:{fr:"Plomberie & finition",en:"Plumbing & finish"}},
+ {img:'tile',fr:"Carrelage & céramique",en:"Tiling & ceramic",k:{fr:"Pose & réparation",en:"Install & repair"}},
+ {img:'carpentry',fr:"Menuiserie & charpente",en:"Carpentry & framing",k:{fr:"Sur mesure",en:"Custom"}},
+ {img:'cabin',fr:"Chalet & bois rond",en:"Cottage & log",k:{fr:"Villégiature",en:"Getaway"}},
+ {img:'landscaping',fr:"Aménagement paysager",en:"Landscaping",k:{fr:"Extérieur",en:"Outdoor"}}
+];
+const MET_CHIPS=[
+ {fr:"Toiture",en:"Roofing"},{fr:"Électricité",en:"Electrical"},{fr:"Plomberie",en:"Plumbing"},{fr:"Peinture",en:"Painting"},
+ {fr:"Plancher",en:"Flooring"},{fr:"Fenêtres & portes",en:"Windows & doors"},{fr:"Fondation",en:"Foundation"},{fr:"Excavation",en:"Excavation"},
+ {fr:"Isolation",en:"Insulation"},{fr:"Chauffage / clim",en:"HVAC"},{fr:"Sous-sol",en:"Basement"},{fr:"Terrasse & clôture",en:"Deck & fence"},
+ {fr:"Béton & asphalte",en:"Concrete & asphalt"},{fr:"Piscine & spa",en:"Pool & spa"},{fr:"Agrandissement",en:"Extension"},{fr:"Bâtiment de ferme",en:"Farm building"},{fr:"Garage",en:"Garage"},{fr:"Domotique",en:"Smart home"}
+];
+const ENV=[
+ {i:'city',fr:"Ville & urbain",en:"City & urban",d:{fr:"Condos, plex, maisons de ville",en:"Condos, plexes, townhomes"}},
+ {i:'suburb',fr:"Banlieue",en:"Suburbs",d:{fr:"Unifamiliales, jumelés",en:"Single-family, semis"}},
+ {i:'farm',fr:"Ferme & agricole",en:"Farm & agricultural",d:{fr:"Granges, bâtiments, terres",en:"Barns, buildings, land"}},
+ {i:'cottage',fr:"Chalet & villégiature",en:"Cottage & getaway",d:{fr:"Bord de lac, montagne",en:"Lakeside, mountain"}},
+ {i:'condo',fr:"Condo & appartement",en:"Condo & apartment",d:{fr:"Rénovation en hauteur",en:"High-rise reno"}}
+];
+const PROS=[
+ {n:"Éric Lapointe",img:'interior',av:12,trade:{fr:"Design intérieur",en:"Interior design"},reg:"Shawinigan",rating:5.0,rev:8,badges:['new','boost'],desc:{fr:"Réaménagement d'espaces chaleureux, cuisines et aires ouvertes. Nouveau sur WeBuild.",en:"Warm space redesigns, kitchens and open areas. New on WeBuild."},price:{fr:"dès 2 500 $",en:"from $2,500"}},
+ {n:"Constructions Marchand",img:'house_exterior',av:33,trade:{fr:"Construction complète",en:"Full home build"},reg:"Trois-Rivières",rating:4.9,rev:41,badges:['boost'],desc:{fr:"Maisons clé en main et agrandissements majeurs en Mauricie depuis 12 ans.",en:"Turnkey homes and major extensions in Mauricie for 12 years."},price:{fr:"sur devis",en:"by quote"}},
+ {n:"Céramique Nadeau",img:'tile',av:52,trade:{fr:"Carrelage & céramique",en:"Tiling & ceramic"},reg:"Shawinigan",rating:4.8,rev:19,badges:['new'],desc:{fr:"Pose de céramique, dosserets et douches italiennes. Finition impeccable.",en:"Tile, backsplashes and walk-in showers. Impeccable finish."},price:{fr:"dès 45 $/pi²",en:"from $45/sqft"}},
+ {n:"Rénovation Bourassa",img:'kitchen',av:8,trade:{fr:"Cuisine & armoires",en:"Kitchen & cabinets"},reg:"Grand-Mère",rating:4.9,rev:27,badges:[],desc:{fr:"Cuisines sur mesure, armoires et comptoirs de quartz posés en 3 semaines.",en:"Custom kitchens, cabinets and quartz counters in 3 weeks."},price:{fr:"dès 9 000 $",en:"from $9,000"}},
+ {n:"Toitures Perron",img:'construction',av:60,trade:{fr:"Toiture",en:"Roofing"},reg:"Trois-Rivières",rating:4.7,rev:33,badges:[],desc:{fr:"Bardeaux, membrane élastomère et réparations d'urgence toute l'année.",en:"Shingles, elastomer membrane and year-round emergency repairs."},price:{fr:"dès 6 500 $",en:"from $6,500"}},
+ {n:"Paysages Éco-Vert",img:'landscaping',av:26,trade:{fr:"Aménagement paysager",en:"Landscaping"},reg:"Shawinigan",rating:5.0,rev:12,badges:['new'],desc:{fr:"Terrasses, pavé-uni, murets et plantations. Devis gratuit sur place.",en:"Patios, pavers, retaining walls and planting. Free on-site quote."},price:{fr:"dès 3 200 $",en:"from $3,200"}},
+ {n:"Chalets Boréal",img:'cabin',av:15,trade:{fr:"Chalet & bois rond",en:"Cottage & log"},reg:"Saint-Alexis-des-Monts",rating:4.9,rev:16,badges:['boost'],desc:{fr:"Construction de chalets clé en main en bois rond, bord de lac et montagne.",en:"Turnkey log cottage builds, lakeside and mountain."},price:{fr:"sur devis",en:"by quote"}},
+ {n:"Salle de bain Design+",img:'bathroom',av:23,trade:{fr:"Salle de bain",en:"Bathroom"},reg:"Grand-Mère",rating:4.8,rev:22,badges:[],desc:{fr:"Rénovation complète de salles de bain, plomberie et céramique incluses.",en:"Full bathroom renovation, plumbing and tile included."},price:{fr:"dès 7 500 $",en:"from $7,500"}},
+ {n:"Menuiserie Fortin",img:'carpentry',av:57,trade:{fr:"Menuiserie sur mesure",en:"Custom carpentry"},reg:"Shawinigan",rating:5.0,rev:9,badges:['new'],desc:{fr:"Escaliers, meubles intégrés et finition intérieure en bois massif.",en:"Stairs, built-ins and solid-wood interior finish."},price:{fr:"dès 1 800 $",en:"from $1,800"}}
+];
+const REGIONS_HOT=["Shawinigan","Trois-Rivières","Grand-Mère","Montréal","Québec"];
+const REGIONS=["Shawinigan","Trois-Rivières","Grand-Mère","Louiseville","Montréal","Laval","Québec","Sherbrooke","Gatineau","Drummondville","Saguenay","Toronto (ON)","Ottawa (ON)","Vancouver (BC)","Calgary (AB)"];
+const STATS=[
+ {n:2400,suf:"+",l:{fr:"Entrepreneurs vérifiés",en:"Verified contractors"}},
+ {n:18,suf:" M$",l:{fr:"Retenus en séquestre",en:"Held in escrow"}},
+ {n:96,suf:" %",l:{fr:"Projets livrés à temps",en:"Projects on time"}},
+ {n:120,suf:"+",l:{fr:"Régions au Canada",en:"Regions in Canada"}}
+];
+const PRICING=[
+ {k:{fr:"Client",en:"Client"},amt:{fr:"Gratuit",en:"Free"},per:"",d:{fr:"Publier et gérer vos projets",en:"Post and manage your projects"},feat:false,cta:{fr:"Publier un projet",en:"Post a project"},role:'client',li:{fr:["Projets illimités","Devis d'entrepreneurs vérifiés","Paiement séquestre sécurisé","Messagerie & suivi de jalons"],en:["Unlimited projects","Quotes from verified pros","Secure escrow payments","Messaging & milestone tracking"]}},
+ {k:{fr:"Entrepreneur",en:"Contractor"},amt:{fr:"0 $",en:"$0"},per:{fr:"/mois + 5% par contrat",en:"/mo + 5% per job"},d:{fr:"Accès complet aux opportunités",en:"Full access to opportunities"},feat:true,cta:{fr:"Créer ma vitrine",en:"Build my showcase"},role:'pro',li:{fr:["Vitrine & portfolio auto","Accès aux projets de la région","Séquestre = paiement garanti","Avis & badge de vérification RBQ"],en:["Auto showcase & portfolio","Access to regional projects","Escrow = guaranteed payment","Reviews & RBQ verified badge"]}},
+ {k:{fr:"Vedette régionale",en:"Regional feature"},amt:{fr:"99 $",en:"$99"},per:{fr:"/mois",en:"/mo"},d:{fr:"Le boost « Pour vous »",en:"The \"For You\" boost"},feat:false,cta:{fr:"Passer en vedette",en:"Get featured"},role:'pro',li:{fr:["En tête de la page « Pour vous »","Badge Vedette doré","3× plus de vues de profil","Statistiques de performance"],en:["Top of the \"For You\" page","Golden Featured badge","3× more profile views","Performance analytics"]}}
+];
+const FAQ=[
+ {q:{fr:"Comment fonctionne le paiement séquestre ?",en:"How does escrow payment work?"},a:{fr:"Vous déposez les fonds sur WeBuild avant le début des travaux. L'argent est bloqué en sécurité et n'est versé à l'entrepreneur qu'à votre approbation de chaque jalon. Vous gardez le contrôle du début à la fin.",en:"You deposit funds on WeBuild before work begins. The money is locked safely and released to the contractor only when you approve each milestone. You stay in control from start to finish."}},
+ {q:{fr:"Quels types de travaux puis-je publier ?",en:"What kinds of work can I post?"},a:{fr:"Absolument tout : d'un simple carreau à reposer jusqu'à une maison complète clé en main. Design intérieur, cuisine, salle de bain, toiture, chalet, ferme, paysagement — plus de 25 métiers couverts.",en:"Absolutely anything: from resetting a single tile to a full turnkey home. Interior design, kitchen, bathroom, roofing, cottage, farm, landscaping — 25+ trades covered."}},
+ {q:{fr:"Combien coûte WeBuild ?",en:"How much does WeBuild cost?"},a:{fr:"Gratuit pour les clients. WeBuild prélève une commission de service de 5 % sur chaque paiement sécurisé. Les entrepreneurs peuvent aussi payer pour être mis en vedette dans leur région.",en:"Free for clients. WeBuild takes a 5% service commission on each secured payment. Contractors can also pay to be featured in their region."}},
+ {q:{fr:"Les entrepreneurs sont-ils vérifiés ?",en:"Are contractors verified?"},a:{fr:"Oui. Nous vérifions la licence RBQ (au Québec), les assurances et les avis clients. Un badge de vérification apparaît sur chaque fiche admissible.",en:"Yes. We verify RBQ license (in Quebec), insurance and client reviews. A verification badge appears on every eligible profile."}},
+ {q:{fr:"Comment fonctionne la page « Pour vous » ?",en:"How does the \"For You\" page work?"},a:{fr:"Dès la connexion, elle met en avant les entrepreneurs qui viennent de s'inscrire dans votre région, avec leurs réalisations. Cela aide les nouveaux arrivants à se faire connaître et vous fait découvrir des talents près de chez vous.",en:"On login, it highlights contractors who just joined in your region, with their work. It helps newcomers get discovered and lets you find talent near you."}}
+];
+/* ============================ LANDING RENDER ============================ */
+function switchHow(side){cPageHow=side;$('#tab-client').classList.toggle('on',side==='client');$('#tab-pro').classList.toggle('on',side==='pro');renderHow();}
+let cPageHow='client';
+function renderHow(){
+  $('#howSteps').innerHTML=HOW[cPageHow].map(s=>`<div class="step reveal in"><h3>${L(s)[0]}</h3><p>${L(s)[1]}</p><span class="num-line"></span></div>`).join('');
+}
+function renderLandingDynamic(){
+  const mq=[...MET.map(m=>L(m)),...MET_CHIPS.slice(0,8).map(c=>L(c))];
+  $('#marqueeTrack').innerHTML=[...mq,...mq].map(x=>`<span>${x} ·</span>`).join('');
+  renderHow();
+  $('#metierGrid').innerHTML=MET.map(m=>`<div class="metier"><img data-img="${m.img}_0" alt="${L(m)}"><div class="lab"><div class="k">${L(m.k)}</div><h4>${L(m)}</h4></div></div>`).join('');
+  $('#metierChips').innerHTML=MET_CHIPS.map(c=>`<span class="chip"><span class="d"></span>${L(c)}</span>`).join('');
+  $('#envGrid').innerHTML=ENV.map(e=>`<div class="env"><div class="ei">${ENVICON[e.i]}</div><h4>${L(e)}</h4><p>${L(e.d)}</p></div>`).join('');
+  $('#teaserFeed').innerHTML=PROS.filter(p=>p.reg==='Shawinigan'||p.badges.includes('boost')).slice(0,3).map(proCard).join('');
+  $('#escrowFlow').innerHTML=ESCROW.map((s,i)=>`<div class="eflow"><div class="en">${i+1}</div><h4>${L(s.t)}</h4><p>${L(s.d)}</p>${i<4?'<span class="arrow"><svg viewBox="0 0 24 24" width="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>':''}</div>`).join('');
+  $('#statRow').innerHTML=STATS.map(s=>`<div class="stat"><div class="n" data-count="${s.n}" data-suf="${s.suf}">0</div><div class="l">${L(s.l)}</div></div>`).join('');
+  $('#regionList').innerHTML=REGIONS.map(r=>`<span class="rg ${REGIONS_HOT.includes(r)?'hot':''}">${r}</span>`).join('');
+  $('#regionSpotlight').innerHTML=PROS.filter(p=>p.reg==='Shawinigan').slice(0,3).map(p=>`<div style="display:flex;align-items:center;gap:.7rem;padding:.6rem 0;border-bottom:1px solid rgba(255,255,255,.08)"><img src="${AV(p.av)}" style="width:38px;height:38px;border-radius:50%;object-fit:cover" alt=""><div style="flex:1"><div style="color:#fff;font-weight:700;font-size:.88rem">${p.n}</div><div style="color:#9fb0c0;font-size:.76rem">${L(p.trade)}</div></div><div class="stars">${p.rating.toFixed(1)}</div></div>`).join('');
+  $('#priceGrid').innerHTML=PRICING.map(p=>`<div class="price ${p.feat?'feat':''}"><div class="pk">${L(p.k)}</div><div class="amt">${L(p.amt)} <small>${p.per?L(p.per):''}</small></div><div class="pd">${L(p.d)}</div><ul>${L(p.li).map(x=>`<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>${x}</li>`).join('')}</ul><button class="btn ${p.feat?'btn-gold':'btn-ghost'} btn-block" onclick="openAuth('${p.role}')">${L(p.cta)}</button></div>`).join('');
+  $('#faqList').innerHTML=FAQ.map(f=>`<div class="qa"><button onclick="this.parentElement.classList.toggle('open');const a=this.nextElementSibling;a.style.maxHeight=this.parentElement.classList.contains('open')?a.scrollHeight+'px':0">${L(f.q)}<svg class="pm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></button><div class="ans"><p>${L(f.a)}</p></div></div>`).join('');
+  applyImages(); io_reveal(); io_count();
+}
+const ENVICON={
+ city:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M6 21V8l5-3v16M11 21V9l7 4v8M9 9v0M9 12v0M15 13v0M15 16v0" stroke-linecap="round"/></svg>',
+ suburb:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21V10l6-4 6 4v11M15 21v-7l3-2 3 2v7" stroke-linejoin="round"/></svg>',
+ farm:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 21V9l8-5 8 5v12M4 21h16M9 21v-6h6v6M4 9l8 3 8-3" stroke-linejoin="round"/></svg>',
+ cottage:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-8 9 8M5 10v10h14V10M9 20v-5h6v5" stroke-linejoin="round"/></svg>',
+ condo:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="3" width="12" height="18" rx="1"/><path d="M9 7h0M12 7h0M15 7h0M9 11h0M12 11h0M15 11h0M9 15h0M15 15h0M11 21v-3h2v3" stroke-linecap="round"/></svg>'
+};
+const ESCROW=[
+ {t:{fr:"Financer",en:"Fund"},d:{fr:"Le client dépose les fonds sur WeBuild.",en:"The client deposits funds on WeBuild."}},
+ {t:{fr:"En séquestre",en:"In escrow"},d:{fr:"L'argent est bloqué, visible des deux côtés.",en:"Money is locked, visible to both sides."}},
+ {t:{fr:"Travaux",en:"Work"},d:{fr:"L'entrepreneur exécute chaque jalon.",en:"The contractor delivers each milestone."}},
+ {t:{fr:"Approbation",en:"Approval"},d:{fr:"Le client valide le jalon livré.",en:"The client approves the delivered milestone."}},
+ {t:{fr:"Libération",en:"Release"},d:{fr:"Paiement versé, commission de 5 % à WeBuild.",en:"Payment released, 5% commission to WeBuild."}}
+];
+function proCard(p){
+  const badges=(p.badges||[]).map(b=>b==='new'?`<span class="tag tag-new">${lang==='fr'?'Nouveau':'New'}</span>`:`<span class="tag tag-boost">★ ${lang==='fr'?'En vedette':'Featured'}</span>`).join('');
+  return `<article class="pro-card ${p.badges&&p.badges.includes('boost')?'boosted':''}">
+    <div class="pc-media"><img data-img="${p.img}_${(p.av||1)%3}" alt="${p.n}"><div class="pc-tags">${badges}</div></div>
+    <div class="pc-body">
+      <div class="pc-head"><img class="avatar" src="${AV(p.av)}" alt=""><div><div class="nm">${p.n}<svg class="verify" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9"/></svg></div><div class="sp">${L(p.trade)}</div></div></div>
+      <div class="pc-meta"><span class="st">★ ${p.rating.toFixed(1)}</span><span>(${p.rev} ${lang==='fr'?'avis':'reviews'})</span><span class="pc-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 0114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>${p.reg}</span></div>
+      <p class="pc-desc">${L(p.desc)}</p>
+      <div class="pc-foot"><button class="btn btn-navy btn-sm" style="flex:1" onclick="contactModal('${p.n.replace(/'/g,"\\'")}',${p.av})">${lang==='fr'?'Contacter':'Contact'}</button><button class="btn btn-ghost btn-sm" onclick="proProfileModal(${PROS.indexOf(p)})">${lang==='fr'?'Profil':'Profile'}</button></div>
+    </div></article>`;
+}
+/* ============================ ROUTER ============================ */
+function go(v){
+  $$('.view').forEach(x=>x.classList.remove('is-active'));
+  ({landing:'view-landing',auth:'view-auth',client:'app-client',pro:'app-pro'})[v];
+  const map={landing:'view-landing',auth:'view-auth',client:'app-client',pro:'app-pro'};
+  document.getElementById(map[v]).classList.add('is-active');
+  currentView=v; const isApp=(v==='client'||v==='pro');
+  $('#nav').style.display=isApp||v==='auth'?'none':'';
+  $('#pubFooter').style.display=(v==='landing')?'':'none';
+  $('#roleSwitch').style.display=isApp?'flex':'none';
+  if(isApp){$('#rsClient').classList.toggle('on',v==='client');$('#rsPro').classList.toggle('on',v==='pro');}
+  window.scrollTo(0,0); applyImages();
+}
+let authRole='client';
+function openAuth(role){authRole=role;renderRoleCards(role);go('auth');}
+function renderRoleCards(role){
+  authRole=role;
+  $('#authEyebrow').textContent=lang==='fr'?'Bienvenue sur WeBuild':'Welcome to WeBuild';
+  $('#authTitle').textContent=lang==='fr'?'Comment voulez-vous utiliser WeBuild ?':'How do you want to use WeBuild?';
+  const cards=[
+   {r:'client',t:{fr:"J'ai un projet à réaliser",en:"I have a project to build"},d:{fr:"Trouvez le bon entrepreneur, payez en toute sécurité.",en:"Find the right contractor, pay with full security."},img:'interior',cta:{fr:"Continuer comme client",en:"Continue as client"}},
+   {r:'pro',t:{fr:"Je suis un entrepreneur",en:"I'm a contractor"},d:{fr:"Décrochez des contrats et soyez payé sans risque.",en:"Win contracts and get paid, risk-free."},img:'construction',cta:{fr:"Continuer comme entrepreneur",en:"Continue as contractor"}}
+  ];
+  $('#roleCards').innerHTML=cards.map(c=>`<div style="background:rgba(255,255,255,${c.r===role?'.11':'.05'});border:1.5px solid ${c.r===role?'var(--gold)':'var(--line-navy)'};border-radius:var(--r-lg);overflow:hidden;transition:.3s">
+    <div style="height:150px;position:relative"><img data-img="${c.img}_1" style="width:100%;height:100%;object-fit:cover" alt=""><div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(10,20,32,.75))"></div></div>
+    <div style="padding:1.4rem 1.5rem 1.6rem"><h3 style="color:#fff;font-size:1.3rem;margin-bottom:.4rem">${L(c.t)}</h3><p style="color:#aebccb;font-size:.9rem;margin-bottom:1.2rem">${L(c.d)}</p><button class="btn ${c.r===role?'btn-gold':'btn-ghost-light'} btn-block" onclick="enterApp('${c.r}')">${L(c.cta)}</button></div></div>`).join('');
+  applyImages();
+}
+function enterApp(role){go(role);if(role==='client')renderClient(cPage);else renderPro(pPage);}
+function toggleNav(force){const n=document.getElementById('nav');const o=n.classList.toggle('open',force);document.getElementById('navToggle').setAttribute('aria-expanded',o);}
+document.querySelectorAll('#pubLinks a').forEach(a=>a.addEventListener('click',()=>toggleNav(false)));
+function scrollToId(id){const e=document.getElementById(id);if(e)e.scrollIntoView({behavior:'smooth'});}
+/* ============================ OBSERVERS ============================ */
+function io_reveal(){
+  const o=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');o.unobserve(e.target);}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  $$('.reveal:not(.in)').forEach(e=>o.observe(e));
+}
+function io_count(){
+  const o=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){countUp(e.target);o.unobserve(e.target);}})},{threshold:.5});
+  $$('[data-count]').forEach(e=>o.observe(e));
+}
+function countUp(el){const t=+el.dataset.count,suf=el.dataset.suf||'';let s=0,st=performance.now();
+  function tick(now){let p=Math.min((now-st)/1400,1);p=1-Math.pow(1-p,3);el.textContent=Math.round(t*p).toLocaleString(lang==='fr'?'fr-CA':'en-CA')+suf;if(p<1)requestAnimationFrame(tick);}requestAnimationFrame(tick);}
+function closeModal(){$('#modalBack').classList.remove('show');}
+function openModal(html){$('#modalBox').innerHTML=`<button class="modal-x" onclick="closeModal()">✕</button>`+html;$('#modalBack').classList.add('show');applyImages();}
+/* ============================ BOOT ============================ */
+window.addEventListener('scroll',()=>{$('#nav').classList.toggle('scrolled',window.scrollY>20);});
+document.getElementById('yr').textContent=new Date().getFullYear();
+setLang('fr');
+renderLandingDynamic();
+applyImages();
+</script>
+<script>
+/* ============================ APP DATA ============================ */
+const tt=(fr,en)=>lang==='fr'?fr:en;
+const CLIENT_PROJECTS=[
+ {title:{fr:"Rénovation cuisine complète",en:"Full kitchen renovation"},trade:{fr:"Cuisine & armoires",en:"Kitchen & cabinets"},pro:"Rénovation Bourassa",img:'kitchen',status:'progress',amount:14200,progress:60,env:{fr:"Maison · Shawinigan",en:"House · Shawinigan"},
+  ms:[{t:{fr:"Démolition & plomberie",en:"Demolition & plumbing"},v:3500,s:'done'},{t:{fr:"Armoires & comptoir",en:"Cabinets & countertop"},v:6200,s:'active'},{t:{fr:"Céramique & finition",en:"Tile & finish"},v:4500,s:'wait'}]},
+ {title:{fr:"Salle de bain à l'étage",en:"Upstairs bathroom"},trade:{fr:"Salle de bain",en:"Bathroom"},pro:"Salle de bain Design+",img:'bathroom',status:'escrow',amount:8900,progress:20,env:{fr:"Condo · Trois-Rivières",en:"Condo · Trois-Rivières"},
+  ms:[{t:{fr:"Dépôt en séquestre",en:"Escrow deposit"},v:8900,s:'done'},{t:{fr:"Plomberie & démolition",en:"Plumbing & demo"},v:3000,s:'active'},{t:{fr:"Céramique & pose",en:"Tile & install"},v:3900,s:'wait'},{t:{fr:"Finition & inspection",en:"Finish & inspection"},v:2000,s:'wait'}]},
+ {title:{fr:"Terrasse & pavé-uni cour arrière",en:"Backyard deck & pavers"},trade:{fr:"Aménagement paysager",en:"Landscaping"},pro:"Paysages Éco-Vert",img:'landscaping',status:'quotes',amount:0,progress:0,env:{fr:"Maison · Shawinigan",en:"House · Shawinigan"},quotes:3},
+ {title:{fr:"Pose de céramique · entrée",en:"Entryway tiling"},trade:{fr:"Carrelage",en:"Tiling"},pro:"Céramique Nadeau",img:'tile',status:'done',amount:2650,progress:100,env:{fr:"Condo · Grand-Mère",en:"Condo · Grand-Mère"}}
+];
+const ST_LABEL={progress:{c:'b-warn',fr:"En cours",en:"In progress"},escrow:{c:'b-navy',fr:"En séquestre",en:"In escrow"},quotes:{c:'b-gold',fr:"Devis reçus",en:"Quotes in"},done:{c:'b-ok',fr:"Terminé",en:"Completed"}};
+const OPPS=[
+ {title:{fr:"Réaménagement aire ouverte + cuisine",en:"Open-plan + kitchen redesign"},trade:{fr:"Design intérieur",en:"Interior design"},env:{fr:"Maison unifamiliale",en:"Single-family home"},reg:"Shawinigan",budget:"12 000 – 18 000 $",posted:{fr:"il y a 2 h",en:"2 h ago"},desc:{fr:"Ouvrir le mur entre cuisine et salon, nouvelle disposition et éclairage.",en:"Open the wall between kitchen and living room, new layout and lighting."}},
+ {title:{fr:"Finition sous-sol 700 pi²",en:"700 sqft basement finishing"},trade:{fr:"Rénovation",en:"Renovation"},env:{fr:"Banlieue",en:"Suburb"},reg:"Grand-Mère",budget:"20 000 – 28 000 $",posted:{fr:"il y a 5 h",en:"5 h ago"},desc:{fr:"Chambre, salle de bain et salle familiale au sous-sol, clé en main.",en:"Bedroom, bathroom and family room in the basement, turnkey."}},
+ {title:{fr:"Chalet neuf bord de lac",en:"New lakeside cottage"},trade:{fr:"Construction complète",en:"Full build"},env:{fr:"Villégiature",en:"Getaway"},reg:"Saint-Alexis-des-Monts",budget:"180 000 $ +",posted:{fr:"hier",en:"yesterday"},desc:{fr:"Construction clé en main d'un chalet 3 chambres, plans fournis.",en:"Turnkey 3-bedroom cottage build, plans provided."}},
+ {title:{fr:"Dosseret & plancher céramique",en:"Backsplash & tile floor"},trade:{fr:"Carrelage",en:"Tiling"},env:{fr:"Condo",en:"Condo"},reg:"Trois-Rivières",budget:"2 500 – 4 000 $",posted:{fr:"il y a 1 j",en:"1 d ago"},desc:{fr:"Pose de dosseret cuisine et plancher céramique 120 pi².",en:"Kitchen backsplash and 120 sqft tile floor install."}},
+ {title:{fr:"Terrasse bois traité 300 pi²",en:"300 sqft treated-wood deck"},trade:{fr:"Terrasse",en:"Deck"},env:{fr:"Maison",en:"House"},reg:"Shawinigan",budget:"6 000 – 9 000 $",posted:{fr:"il y a 3 j",en:"3 d ago"},desc:{fr:"Nouvelle terrasse avec garde-corps et escalier, côté cour.",en:"New deck with railing and stairs, backyard side."}}
+];
+const BOOST_TIERS=[
+ {k:{fr:"Quartier",en:"Neighbourhood"},price:49,per:{fr:"/sem.",en:"/wk"},reach:{fr:"Votre ville",en:"Your city"},f:{fr:["Vedette dans votre ville","Badge Vedette","Statistiques de base"],en:["Featured in your city","Featured badge","Basic analytics"]}},
+ {k:{fr:"Région",en:"Region"},price:99,per:{fr:"/mois",en:"/mo"},reach:{fr:"Toute la région",en:"Whole region"},pop:true,f:{fr:["Vedette régionale « Pour vous »","3× plus de vues","Priorité sur les opportunités","Statistiques avancées"],en:["Regional \"For You\" feature","3× more views","Priority on opportunities","Advanced analytics"]}},
+ {k:{fr:"Pro+",en:"Pro+"},price:199,per:{fr:"/mois",en:"/mo"},reach:{fr:"Multi-régions",en:"Multi-region"},f:{fr:["Jusqu'à 3 régions","Bannière d'accueil","Gestionnaire de compte","Rapport mensuel"],en:["Up to 3 regions","Homepage banner","Account manager","Monthly report"]}}
+];
+let boostSel=1;
+const CONVOS=[
+ {name:"Rénovation Bourassa",av:8,role:{fr:"Cuisine & armoires",en:"Kitchen & cabinets"},msgs:[
+   {me:false,t:{fr:"Bonjour Mishka ! Les armoires arrivent jeudi, on commence la pose vendredi.",en:"Hi Mishka! Cabinets arrive Thursday, we start install Friday."}},
+   {me:true,t:{fr:"Parfait. Le comptoir de quartz est confirmé ?",en:"Perfect. Is the quartz counter confirmed?"}},
+   {me:false,t:{fr:"Oui, gabarit pris mardi, pose la semaine suivante. Je libère le jalon 1 ?",en:"Yes, template Tuesday, install the week after. Shall I request milestone 1 release?"}}
+ ]},
+ {name:"Paysages Éco-Vert",av:26,role:{fr:"Aménagement paysager",en:"Landscaping"},msgs:[
+   {me:false,t:{fr:"Voici le devis pour la terrasse : 7 400 $ tout inclus.",en:"Here's the deck quote: $7,400 all in."}},
+   {me:true,t:{fr:"Merci ! On peut commencer début juillet ?",en:"Thanks! Can we start early July?"}}
+ ]},
+ {name:"Céramique Nadeau",av:52,role:{fr:"Carrelage",en:"Tiling"},msgs:[
+   {me:false,t:{fr:"Projet d'entrée terminé, merci encore ! N'hésitez pas à laisser un avis.",en:"Entryway project done, thanks again! Feel free to leave a review."}}
+ ]}
+];
+let convoSel=0;
+/* ============================ CLIENT PORTAL ============================ */
+function renderClient(page){
+  cPage=page;currentView='client';
+  $$('#app-client .side a[data-cpage]').forEach(a=>a.classList.toggle('on',a.dataset.cpage===page));
+  const m=$('#client-main');
+  if(page==='discover'){
+    const trades=['all',...new Set(PROS.map(p=>L(p.trade)))];
+    m.innerHTML=`<div class="app-top"><div><h1>${tt('Pour vous','For You')}</h1><div class="sub">${tt('Nouveaux entrepreneurs près de','New contractors near')} <b>Shawinigan</b> · ${tt('mis à jour à l\'instant','updated just now')}</div></div><div class="right"><button class="btn btn-navy btn-sm" onclick="renderClient('post')">+ ${tt('Publier un projet','Post a project')}</button></div></div>
+    <div class="filters"><div class="select"><select id="fReg" onchange="filterDisc()"><option value="all">${tt('Toutes les régions','All regions')}</option>${REGIONS.map(r=>`<option>${r}</option>`).join('')}</select></div>${trades.map(t=>`<button class="fchip ${t==='all'?'on':''}" data-trade="${t}" onclick="pickTrade(this)">${t==='all'?tt('Tous les métiers','All trades'):t}</button>`).join('')}</div>
+    <div class="feed-grid" id="discFeed"></div>`;
+    filterDisc();
+  }
+  else if(page==='post'){
+    m.innerHTML=`<div class="app-top"><div><h1>${tt('Publier un projet','Post a project')}</h1><div class="sub">${tt('Gratuit · recevez des devis d\'entrepreneurs vérifiés','Free · get quotes from verified contractors')}</div></div></div>
+    <div class="grid-cards g2"><div class="card card-pad">
+      <div class="field"><label>${tt('Type de travaux','Type of work')}</label><div class="select" style="width:100%"><select class="inp" style="border-radius:100px" id="pjTrade">${[...MET.map(x=>L(x)),...MET_CHIPS.map(x=>L(x))].map(t=>`<option>${t}</option>`).join('')}</select></div></div>
+      <div class="field"><label>${tt('Environnement','Environment')}</label><div class="select" style="width:100%"><select class="inp" style="border-radius:100px">${ENV.map(e=>`<option>${L(e)}</option>`).join('')}</select></div></div>
+      <div class="field"><label>${tt('Budget estimé','Estimated budget')}</label><div class="select" style="width:100%"><select class="inp" style="border-radius:100px"><option>${tt('Moins de 5 000 $','Under $5,000')}</option><option>5 000 – 20 000 $</option><option>20 000 – 75 000 $</option><option>75 000 – 200 000 $</option><option>200 000 $ +</option></select></div></div>
+      <div class="field"><label>${tt('Échéancier','Timeline')}</label><div class="select" style="width:100%"><select class="inp" style="border-radius:100px"><option>${tt('Dès que possible','As soon as possible')}</option><option>${tt('1 à 3 mois','1–3 months')}</option><option>${tt('3 à 6 mois','3–6 months')}</option><option>${tt('Je planifie','Just planning')}</option></select></div></div>
+    </div>
+    <div class="card card-pad"><div class="field"><label>${tt('Décrivez votre projet','Describe your project')}</label><textarea class="inp" data-i18n-ph="" placeholder="${tt('Ex : Refaire ma cuisine, ouvrir le mur du salon, nouvelles armoires et comptoir de quartz…','Ex: Redo my kitchen, open the living-room wall, new cabinets and quartz counter…')}"></textarea></div>
+      <div class="field"><label>${tt('Photos (optionnel)','Photos (optional)')}</label><div style="border:1.5px dashed var(--line);border-radius:14px;padding:1.4rem;text-align:center;color:var(--muted);font-size:.88rem"><svg viewBox="0 0 24 24" width="26" fill="none" stroke="currentColor" stroke-width="1.8" style="margin-bottom:.4rem"><path d="M4 16l5-5 4 4 3-3 4 4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" stroke-linejoin="round"/></svg><div>${tt('Glissez vos photos ici','Drop your photos here')}</div></div></div>
+      <button class="btn btn-gold btn-block" onclick="submitProject()">${tt('Publier et recevoir des devis','Post and get quotes')}</button>
+      <p class="center muted" style="font-size:.8rem;margin-top:.7rem">${tt('En publiant, vos fonds ne sont engagés qu\'au moment où vous acceptez un devis.','By posting, your funds are only committed when you accept a quote.')}</p>
+    </div></div>`;
+  }
+  else if(page==='projects'){
+    m.innerHTML=`<div class="app-top"><div><h1>${tt('Mes projets','My projects')}</h1><div class="sub">${CLIENT_PROJECTS.length} ${tt('projets','projects')} · ${tt('2 en séquestre','2 in escrow')}</div></div><div class="right"><button class="btn btn-navy btn-sm" onclick="renderClient('post')">+ ${tt('Nouveau','New')}</button></div></div>
+    <div class="grid-cards">${CLIENT_PROJECTS.map((p,i)=>{const s=ST_LABEL[p.status];return `<div class="row-item"><img class="row-thumb" data-img="${p.img}_${i%3}" alt=""><div style="flex:1;min-width:0"><div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap"><b>${L(p.title)}</b><span class="badge ${s.c}">${tt(s.fr,s.en)}</span></div><div class="muted" style="font-size:.85rem">${L(p.trade)} · ${L(p.env)} · ${p.pro}</div>${p.status==='quotes'?`<div class="pill-note" style="margin-top:.5rem">${p.quotes} ${tt('devis reçus — à comparer','quotes received — compare')}</div>`:`<div style="display:flex;align-items:center;gap:.7rem;margin-top:.5rem"><div class="progressbar" style="flex:1;max-width:220px"><i style="width:${p.progress}%"></i></div><span class="muted" style="font-size:.8rem">${p.progress}%</span></div>`}</div><div style="text-align:right"><div style="font-family:var(--f-display);font-weight:700;font-size:1.1rem">${p.amount?p.amount.toLocaleString('fr-CA')+' $':'—'}</div><button class="btn btn-ghost btn-sm mt1" onclick="clientProject(${i})">${tt('Ouvrir','Open')}</button></div></div>`}).join('')}</div>`;
+  }
+  else if(page==='messages'){ m.innerHTML=chatHTML('client'); renderChat(); }
+  applyImages();
+}
+function pickTrade(btn){$$('#discFeed').length;document.querySelectorAll('[data-trade]').forEach(b=>b.classList.remove('on'));btn.classList.add('on');filterDisc();}
+function filterDisc(){
+  if(!$('#discFeed'))return;
+  const reg=$('#fReg')?$('#fReg').value:'all';
+  const trade=(document.querySelector('[data-trade].on')||{}).dataset?document.querySelector('[data-trade].on').dataset.trade:'all';
+  let list=PROS.slice().sort((a,b)=>(b.badges.includes('boost')-a.badges.includes('boost'))||(b.badges.includes('new')-a.badges.includes('new')));
+  if(reg!=='all')list=list.filter(p=>p.reg===reg);
+  if(trade&&trade!=='all')list=list.filter(p=>L(p.trade)===trade);
+  const f=$('#discFeed');
+  f.innerHTML=list.length?list.map(proCard).join(''):`<div class="card card-pad center muted" style="grid-column:1/-1">${tt('Aucun entrepreneur pour ce filtre — élargissez votre recherche.','No contractor for this filter — broaden your search.')}</div>`;
+  applyImages();
+}
+function submitProject(){
+  openModal(`<div class="modal-hd"><div class="pill-note" style="margin-bottom:.8rem"><svg viewBox="0 0 24 24" width="15" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5" stroke-linecap="round"/></svg>${tt('Projet publié','Project posted')}</div><h3 style="font-size:1.5rem">${tt('C\'est parti !','You\'re all set!')}</h3></div>
+  <div class="modal-bd"><p class="muted" style="margin-bottom:1rem">${tt('Votre projet est visible par les entrepreneurs vérifiés de votre région. En général, les premiers devis arrivent en quelques heures.','Your project is now visible to verified contractors in your region. First quotes usually arrive within hours.')}</p>
+  <div style="font-weight:800;margin-bottom:.6rem">${tt('Déjà disponibles près de vous','Already available near you')}</div>
+  <div class="grid-cards">${PROS.filter(p=>p.reg==='Shawinigan').slice(0,2).map(p=>`<div class="row-item"><img class="row-thumb" src="${AV(p.av)}" style="width:48px;height:48px;border-radius:50%" alt=""><div style="flex:1"><b>${p.n}</b><div class="muted" style="font-size:.82rem">${L(p.trade)} · ★ ${p.rating.toFixed(1)}</div></div><button class="btn btn-navy btn-sm" onclick="closeModal();contactModal('${p.n}',${p.av})">${tt('Contacter','Contact')}</button></div>`).join('')}</div>
+  <button class="btn btn-gold btn-block mt2" onclick="closeModal();renderClient('projects')">${tt('Voir mes projets','View my projects')}</button></div>`);
+}
+function clientProject(i){
+  const p=CLIENT_PROJECTS[i];const s=ST_LABEL[p.status];
+  const ms=p.ms||[{t:{fr:"Projet complété",en:"Project completed"},v:p.amount,s:'done'}];
+  const held=ms.filter(x=>x.s!=='done').reduce((a,b)=>a+b.v,0);
+  const paid=ms.filter(x=>x.s==='done').reduce((a,b)=>a+b.v,0);
+  const m=$('#client-main');
+  m.innerHTML=`<div class="app-top"><div><a onclick="renderClient('projects')" style="color:var(--navy-600);font-weight:700;font-size:.85rem;cursor:pointer">← ${tt('Mes projets','My projects')}</a><h1 style="margin-top:.3rem">${L(p.title)}</h1><div class="sub">${L(p.trade)} · ${L(p.env)} · ${p.pro}</div></div><div class="right"><span class="badge ${s.c}">${tt(s.fr,s.en)}</span></div></div>
+  <div class="grid-cards g2" style="align-items:start"><div class="card card-pad">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem"><b>${tt('Jalons & séquestre','Milestones & escrow')}</b><span class="badge b-navy">${tt('Séquestre WeBuild','WeBuild escrow')}</span></div>
+    ${ms.map((x,j)=>`<div class="milestone"><div class="ms-dot ${x.s==='done'?'ms-done':x.s==='active'?'ms-active':'ms-wait'}">${x.s==='done'?'✓':j+1}</div><div style="flex:1"><div style="font-weight:700">${L(x.t)}</div><div class="muted" style="font-size:.82rem">${x.v.toLocaleString('fr-CA')} $ · ${x.s==='done'?tt('libéré','released'):x.s==='active'?tt('en séquestre — prêt à libérer','in escrow — ready to release'):tt('à venir','upcoming')}</div>${x.s==='active'?`<button class="btn btn-gold btn-sm mt1" onclick="releaseMs(${i},${j})">${tt('Approuver & libérer','Approve & release')}</button>`:''}</div></div>`).join('')}
+  </div>
+  <div style="display:grid;gap:1.1rem">
+    <div class="card card-pad"><div class="muted" style="font-size:.82rem;font-weight:700">${tt('Retenu en séquestre','Held in escrow')}</div><div style="font-family:var(--f-display);font-size:2rem;font-weight:600;color:var(--navy-700)">${held.toLocaleString('fr-CA')} $</div><div class="muted" style="font-size:.82rem;margin-top:.2rem">${tt('déjà libéré','already released')} : ${paid.toLocaleString('fr-CA')} $</div><div class="progressbar mt1"><i style="width:${p.progress}%"></i></div></div>
+    <div class="card card-pad"><div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.8rem"><img src="${AV((PROS.find(x=>x.n===p.pro)||{av:8}).av)}" style="width:44px;height:44px;border-radius:50%" alt=""><div><div style="font-weight:800">${p.pro}</div><div class="stars">★ ${(PROS.find(x=>x.n===p.pro)||{rating:4.9}).rating.toFixed(1)}</div></div></div><button class="btn btn-navy btn-block btn-sm" onclick="renderClient('messages')">${tt('Envoyer un message','Send a message')}</button></div>
+    <div class="card card-pad" style="background:var(--navy-900);color:#fff"><div style="display:flex;gap:.6rem;align-items:flex-start"><svg viewBox="0 0 24 24" width="20" fill="none" stroke="var(--gold-light)" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z" stroke-linejoin="round"/></svg><div style="font-size:.85rem;color:#c3d0dd">${tt('Vos fonds sont protégés. Rien n\'est versé sans votre approbation.','Your funds are protected. Nothing is paid without your approval.')}</div></div></div>
+  </div></div>`;
+  applyImages();
+}
+function releaseMs(i,j){
+  const p=CLIENT_PROJECTS[i];p.ms[j].s='done';const nx=p.ms[j+1];if(nx)nx.s='active';
+  p.progress=Math.round(p.ms.filter(x=>x.s==='done').reduce((a,b)=>a+b.v,0)/p.ms.reduce((a,b)=>a+b.v,0)*100);
+  if(p.ms.every(x=>x.s==='done'))p.status='done';
+  openModal(`<div class="modal-hd"><div class="pill-note" style="margin-bottom:.8rem"><svg viewBox="0 0 24 24" width="15" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5" stroke-linecap="round"/></svg>${tt('Jalon libéré','Milestone released')}</div><h3 style="font-size:1.4rem">${tt('Paiement versé à l\'entrepreneur','Payment sent to contractor')}</h3></div><div class="modal-bd"><p class="muted">${tt('Le montant a été libéré du séquestre. WeBuild a prélevé sa commission de 5 %. Le prochain jalon est maintenant actif.','The amount has been released from escrow. WeBuild took its 5% commission. The next milestone is now active.')}</p><button class="btn btn-navy btn-block mt2" onclick="closeModal();clientProject(${i})">${tt('Continuer','Continue')}</button></div>`);
+}
+/* ============================ PRO PORTAL ============================ */
+function renderPro(page){
+  pPage=page;currentView='pro';
+  $$('#app-pro .side a[data-ppage]').forEach(a=>a.classList.toggle('on',a.dataset.ppage===page));
+  const m=$('#pro-main');
+  if(page==='dashboard'){
+    const tiles=[
+     {t:tt('Nouvelles opportunités','New opportunities'),n:OPPS.filter(o=>o.reg==='Shawinigan'||o.reg==='Grand-Mère').length,d:'+3 '+tt('cette semaine','this week'),up:true,ic:'<path d="M3 7h18v13H3zM8 7V4h8v3" stroke-linejoin="round"/>'},
+     {t:tt('Vues de profil','Profile views'),n:'312',d:'+38% '+tt('depuis le boost','since boost'),up:true,ic:'<circle cx="12" cy="12" r="3"/><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z"/>'},
+     {t:tt('En attente séquestre','Escrow pending'),n:'9 200 $',d:tt('2 jalons à venir','2 milestones ahead'),up:true,ic:'<path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke-linecap="round" stroke-linejoin="round"/>'},
+     {t:tt('Note moyenne','Average rating'),n:'5,0',d:'8 '+tt('avis','reviews'),up:true,ic:'<path d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.3 5.8 20.9l1.6-6.8L2.2 8.9l6.9-.6z"/>'}
+    ];
+    m.innerHTML=`<div class="app-top"><div><h1>${tt('Bonjour, Éric','Hello, Éric')}</h1><div class="sub">${tt('Voici votre activité sur','Here\'s your activity on')} WeBuild · Shawinigan</div></div><div class="right"><button class="btn btn-gold btn-sm" onclick="renderPro('boost')">★ ${tt('Booster ma vitrine','Boost my showcase')}</button></div></div>
+    <div class="grid-cards g4 keep">${tiles.map(t=>`<div class="stat-tile"><div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${t.ic}</svg>${t.t}</div><div class="n">${t.n}</div><div class="d ${t.up?'up':'down'}">▲ ${t.d}</div></div>`).join('')}</div>
+    <div class="grid-cards g2" style="margin-top:1.1rem;align-items:start">
+      <div class="card card-pad"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem"><b>${tt('Complétez votre vitrine','Complete your showcase')}</b><span class="badge b-gold">80%</span></div><div class="progressbar" style="margin:.6rem 0 1rem"><i style="width:80%"></i></div><div class="muted" style="font-size:.86rem;margin-bottom:1rem">${tt('Ajoutez 2 réalisations de plus pour atteindre 100 % et gagner en visibilité.','Add 2 more projects to reach 100% and gain visibility.')}</div><button class="btn btn-ghost btn-sm" onclick="renderPro('profile')">${tt('Modifier ma vitrine','Edit my showcase')}</button></div>
+      <div class="card card-pad" style="background:linear-gradient(150deg,var(--navy-700),var(--navy-900));color:#fff"><div style="display:flex;justify-content:space-between;align-items:center"><b style="color:#fff">${tt('Vedette régionale active','Regional feature active')}</b><span class="badge b-gold">★ ${tt('Boosté','Boosted')}</span></div><div style="color:#c3d0dd;font-size:.86rem;margin:.7rem 0 1rem">${tt('Vous apparaissez en tête de la page « Pour vous » à Shawinigan. Renouvellement dans 21 jours.','You appear at the top of the \"For You\" page in Shawinigan. Renews in 21 days.')}</div><button class="btn btn-gold btn-sm" onclick="renderPro('boost')">${tt('Gérer le boost','Manage boost')}</button></div>
+    </div>
+    <div class="section-title"><h3>${tt('Opportunités pour vous','Opportunities for you')}</h3><a onclick="renderPro('opps')" style="cursor:pointer">${tt('Tout voir','See all')} →</a></div>
+    <div class="grid-cards">${OPPS.slice(0,2).map(oppCard).join('')}</div>`;
+  }
+  else if(page==='opps'){
+    m.innerHTML=`<div class="app-top"><div><h1>${tt('Opportunités','Opportunities')}</h1><div class="sub">${tt('Projets publiés près de','Projects posted near')} <b>Shawinigan</b> ${tt('qui correspondent à vos métiers','matching your trades')}</div></div></div>
+    <div class="filters"><button class="fchip on">${tt('Tous','All')}</button><button class="fchip">${tt('Design intérieur','Interior')}</button><button class="fchip">${tt('Rénovation','Renovation')}</button><button class="fchip">${tt('< 20 km','< 20 km')}</button></div>
+    <div class="grid-cards">${OPPS.map(oppCard).join('')}</div>`;
+  }
+  else if(page==='jobs'){
+    const jobs=CLIENT_PROJECTS.filter(p=>p.status!=='quotes');
+    m.innerHTML=`<div class="app-top"><div><h1>${tt('Contrats & paiements','Contracts & payments')}</h1><div class="sub">${tt('Vos chantiers actifs et vos versements séquestre','Your active jobs and escrow payouts')}</div></div></div>
+    <div class="grid-cards g4 keep" style="margin-bottom:1.2rem"><div class="stat-tile"><div class="t">${tt('Versé ce mois','Paid this month')}</div><div class="n">6 150 $</div></div><div class="stat-tile"><div class="t">${tt('En séquestre','In escrow')}</div><div class="n">9 200 $</div></div><div class="stat-tile"><div class="t">${tt('Contrats actifs','Active jobs')}</div><div class="n">${jobs.length}</div></div><div class="stat-tile"><div class="t">${tt('Commission WeBuild','WeBuild fee')}</div><div class="n">5 %</div></div></div>
+    <div class="grid-cards">${jobs.map((p,idx)=>{const i=CLIENT_PROJECTS.indexOf(p);const active=(p.ms||[]).find(x=>x.s==='active');return `<div class="row-item"><img class="row-thumb" data-img="${p.img}_${idx%3}" alt=""><div style="flex:1;min-width:0"><b>${L(p.title)}</b><div class="muted" style="font-size:.84rem">${tt('Client','Client')}: Mishka T. · ${L(p.env)}</div><div style="margin-top:.4rem">${active?`<span class="badge b-warn">${tt('Jalon en séquestre','Milestone in escrow')} · ${active.v.toLocaleString('fr-CA')} $</span>`:`<span class="badge b-ok">${tt('Payé intégralement','Fully paid')}</span>`}</div></div><div style="text-align:right"><div style="font-family:var(--f-display);font-weight:700;font-size:1.05rem">${p.amount.toLocaleString('fr-CA')} $</div><button class="btn btn-ghost btn-sm mt1" onclick="renderPro('messages')">${tt('Discuter','Chat')}</button></div></div>`}).join('')}</div>`;
+  }
+  else if(page==='profile'){
+    const gal=['interior','kitchen','bathroom','tile','carpentry','reno'];
+    m.innerHTML=`<div class="app-top"><div><h1>${tt('Ma vitrine','My showcase')}</h1><div class="sub">${tt('C\'est exactement ce que les clients voient dans « Pour vous »','This is exactly what clients see in \"For You\"')}</div></div><div class="right"><button class="btn btn-navy btn-sm" onclick="alert(T[lang].demo_note)">${tt('Modifier','Edit')}</button></div></div>
+    <div class="grid-cards g2" style="align-items:start"><div>
+      <div class="card card-pad" style="margin-bottom:1.1rem"><div style="display:flex;gap:1rem;align-items:center;margin-bottom:1rem"><img src="${AV(12)}" style="width:64px;height:64px;border-radius:50%;border:2px solid var(--gold-soft)" alt=""><div><div style="font-family:var(--f-display);font-size:1.3rem;font-weight:600">Éric Lapointe</div><div class="muted">${tt('Design intérieur','Interior design')} · Shawinigan</div><div class="stars mt1">★ 5,0 · 8 ${tt('avis','reviews')}</div></div></div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap"><span class="badge b-ok">✓ ${tt('RBQ vérifiée','RBQ verified')}</span><span class="badge b-navy">${tt('Assuré','Insured')}</span><span class="badge b-gold">★ ${tt('En vedette','Featured')}</span></div>
+        <p class="muted" style="font-size:.9rem;margin-top:1rem">${tt('Réaménagement d\'espaces chaleureux, cuisines et aires ouvertes. Nouveau sur WeBuild, 12 ans de métier.','Warm space redesigns, kitchens and open areas. New on WeBuild, 12 years of experience.')}</p></div>
+      <div class="card card-pad"><b>${tt('Réalisations','Portfolio')}</b><div class="gallery mt1">${gal.map((g,i)=>`<img data-img="${g}_${i%3}" class="${i===0?'big':''}" alt="">`).join('')}</div></div>
+    </div>
+    <div style="display:grid;gap:1.1rem">
+      <div class="card card-pad"><b>${tt('Aperçu dans « Pour vous »','Preview in \"For You\"')}</b><div class="mt1">${proCard(PROS[0])}</div></div>
+      <div class="card card-pad"><b>${tt('Avis récents','Recent reviews')}</b>${[{n:'Julie R.',t:{fr:"Éric a transformé notre salon. Ponctuel, propre, à l'écoute.",en:"Éric transformed our living room. Punctual, clean, attentive."}},{n:'Marc B.',t:{fr:"Devis clair et paiement séquestre rassurant. Je recommande.",en:"Clear quote and reassuring escrow. Highly recommend."}}].map(r=>`<div class="milestone"><img src="${AV(40)}" style="width:34px;height:34px;border-radius:50%" alt=""><div><div class="stars">★★★★★</div><div style="font-size:.88rem">${L(r.t)}</div><div class="muted" style="font-size:.78rem">— ${r.n}</div></div></div>`).join('')}</div>
+    </div></div>`;
+  }
+  else if(page==='boost'){
+    m.innerHTML=`<div class="app-top"><div><h1>${tt('Mise en avant','Get featured')}</h1><div class="sub">${tt('Apparaissez en vedette dans la page « Pour vous » de votre région','Get featured on your region\'s \"For You\" page')}</div></div></div>
+    <div class="grid-cards g2" style="align-items:start"><div>
+      <div class="grid-cards g3 keep">${BOOST_TIERS.map((b,i)=>`<div class="boost-tier ${i===boostSel?'sel':''}" onclick="boostSel=${i};renderPro('boost')"><div class="bt-top"><b>${L(b.k)}</b>${b.pop?`<span class="badge b-gold">${tt('Populaire','Popular')}</span>`:''}</div><div class="amt">${b.price} $<small style="font-size:.75rem;color:var(--muted);font-weight:600">${L(b.per)}</small></div><div class="muted" style="font-size:.8rem;margin:.2rem 0 .8rem">${tt('Portée','Reach')}: ${L(b.reach)}</div><ul style="list-style:none;display:grid;gap:.45rem">${L(b.f).map(x=>`<li style="display:flex;gap:.45rem;font-size:.82rem"><svg viewBox="0 0 24 24" width="15" fill="none" stroke="var(--ok)" stroke-width="2.5" style="flex:none;margin-top:.15rem"><path d="M20 6L9 17l-5-5" stroke-linecap="round"/></svg>${x}</li>`).join('')}</ul></div>`).join('')}</div>
+      <button class="btn btn-gold btn-block mt2" onclick="boostBuy()">${tt('Activer','Activate')} « ${L(BOOST_TIERS[boostSel].k)} » — ${BOOST_TIERS[boostSel].price} $ ${L(BOOST_TIERS[boostSel].per)}</button>
+      <p class="center muted" style="font-size:.8rem;margin-top:.7rem">${tt('Sans engagement · annulable à tout moment','No commitment · cancel anytime')}</p>
+    </div>
+    <div class="card card-pad"><b>${tt('Aperçu : votre fiche boostée','Preview: your boosted card')}</b><div class="muted" style="font-size:.84rem;margin:.3rem 0 1rem">${tt('Voici comment les clients de Shawinigan vous verront, en tête du fil.','This is how clients in Shawinigan will see you, at the top of the feed.')}</div>${proCard({...PROS[0],badges:['new','boost']})}</div>
+    </div>`;
+  }
+  else if(page==='messages'){ m.innerHTML=chatHTML('pro'); renderChat(); }
+  applyImages();
+}
+function oppCard(o){
+  return `<div class="opp"><div class="top"><div><h4>${L(o.title)}</h4><div class="meta"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 0114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>${o.reg}</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg>${L(o.env)}</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg>${L(o.posted)}</span></div></div><div class="price">${o.budget}</div></div><p class="muted" style="font-size:.9rem;margin-bottom:1rem">${L(o.desc)}</p><div style="display:flex;gap:.5rem"><span class="badge b-navy">${L(o.trade)}</span><button class="btn btn-navy btn-sm" style="margin-left:auto" onclick="bidModal('${L(o.title).replace(/'/g,"\\'")}')">${tt('Soumissionner','Send a bid')}</button></div></div>`;
+}
+function bidModal(title){
+  openModal(`<div class="modal-hd"><span class="eyebrow">${tt('Soumission','Your bid')}</span><h3 style="font-size:1.4rem;margin-top:.3rem">${title}</h3></div><div class="modal-bd">
+   <div class="field"><label>${tt('Votre prix (CA$)','Your price (CA$)')}</label><input class="inp" placeholder="14 500"></div>
+   <div class="field"><label>${tt('Délai proposé','Proposed timeline')}</label><input class="inp" placeholder="${tt('4 à 6 semaines','4–6 weeks')}"></div>
+   <div class="field"><label>${tt('Message au client','Message to client')}</label><textarea class="inp" placeholder="${tt('Présentez votre approche, vos réalisations similaires…','Pitch your approach, similar past work…')}"></textarea></div>
+   <div class="pill-note" style="margin-bottom:1rem"><svg viewBox="0 0 24 24" width="15" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg>${tt('Paiement garanti par séquestre à l\'acceptation','Payment guaranteed by escrow on acceptance')}</div>
+   <button class="btn btn-gold btn-block" onclick="closeModal();toast('${tt('Soumission envoyée !','Bid sent!')}')">${tt('Envoyer la soumission','Send bid')}</button></div>`);
+}
+function boostBuy(){
+  const b=BOOST_TIERS[boostSel];
+  openModal(`<div class="modal-hd"><div class="pill-note" style="margin-bottom:.8rem;background:var(--navy-800);color:var(--gold-light)">★ ${tt('Mise en avant','Get featured')}</div><h3 style="font-size:1.4rem">${tt('Activer','Activate')} « ${L(b.k)} »</h3></div><div class="modal-bd">
+   <div style="display:flex;justify-content:space-between;padding:.8rem 0;border-bottom:1px solid var(--line)"><span>${tt('Forfait','Plan')} ${L(b.k)}</span><b>${b.price} $ ${L(b.per)}</b></div>
+   <div style="display:flex;justify-content:space-between;padding:.8rem 0;border-bottom:1px solid var(--line)"><span>${tt('Portée','Reach')}</span><span>${L(b.reach)}</span></div>
+   <div class="field" style="margin-top:1rem"><label>${tt('Carte de crédit','Credit card')}</label><input class="inp" placeholder="•••• •••• •••• 4242"></div>
+   <button class="btn btn-gold btn-block" onclick="closeModal();toast('${tt('Vedette activée ! Vous êtes en tête à Shawinigan.','Feature activated! You\'re at the top in Shawinigan.')}');renderPro('dashboard')">${tt('Payer et activer','Pay and activate')}</button>
+   <p class="center muted" style="font-size:.78rem;margin-top:.7rem">${tt('Démo — aucun paiement réel n\'est effectué.','Demo — no real payment is processed.')}</p></div>`);
+}
+/* ============================ SHARED: CHAT + MODALS ============================ */
+function chatHTML(side){
+  return `<div class="app-top"><div><h1>${tt('Messages','Messages')}</h1><div class="sub">${tt('Discutez et suivez vos jalons en un seul endroit','Chat and track your milestones in one place')}</div></div></div>
+  <div class="chat"><div class="chat-list" id="chatList"></div><div class="chat-main"><div class="chat-head" id="chatHead"></div><div class="chat-body" id="chatBody"></div><div class="chat-input"><input class="inp" id="chatInput" placeholder="${tt('Écrivez un message…','Type a message…')}" onkeydown="if(event.key==='Enter')sendMsg()"><button class="btn btn-navy" onclick="sendMsg()">${tt('Envoyer','Send')}</button></div></div></div>`;
+}
+function renderChat(){
+  $('#chatList').innerHTML=CONVOS.map((c,i)=>`<div class="chat-c ${i===convoSel?'on':''}" onclick="convoSel=${i};renderChat()"><img class="av" src="${AV(c.av)}" alt=""><div style="min-width:0"><div class="nm">${c.name}</div><div class="pv">${L(c.msgs[c.msgs.length-1].t)}</div></div></div>`).join('');
+  const c=CONVOS[convoSel];
+  $('#chatHead').innerHTML=`<img src="${AV(c.av)}" style="width:40px;height:40px;border-radius:50%" alt=""><div><div style="font-weight:800">${c.name}</div><div class="muted" style="font-size:.8rem">${L(c.role)} · <span style="color:var(--ok)">${tt('en ligne','online')}</span></div></div>`;
+  $('#chatBody').innerHTML=c.msgs.map(msg=>`<div class="bubble ${msg.me?'me':'them'}">${L(msg.t)}</div>`).join('');
+  const b=$('#chatBody');b.scrollTop=b.scrollHeight;
+}
+function sendMsg(){
+  const inp=$('#chatInput');if(!inp.value.trim())return;
+  CONVOS[convoSel].msgs.push({me:true,t:{fr:inp.value,en:inp.value}});inp.value='';renderChat();
+  setTimeout(()=>{CONVOS[convoSel].msgs.push({me:false,t:{fr:"Bien reçu, merci ! Je reviens vers vous rapidement.",en:"Got it, thanks! I'll get back to you shortly."}});renderChat();},1100);
+}
+function contactModal(name,av){
+  openModal(`<div class="modal-hd"><div style="display:flex;gap:.8rem;align-items:center"><img src="${AV(av)}" style="width:52px;height:52px;border-radius:50%;border:2px solid var(--gold-soft)" alt=""><div><h3 style="font-size:1.25rem">${name}</h3><div class="muted" style="font-size:.85rem">${tt('Répond généralement en 2 h','Usually replies within 2 h')}</div></div></div></div><div class="modal-bd">
+   <div class="field"><label>${tt('Votre message','Your message')}</label><textarea class="inp" placeholder="${tt('Bonjour, je cherche à…','Hi, I\'m looking to…')}"></textarea></div>
+   <div class="pill-note" style="margin-bottom:1rem"><svg viewBox="0 0 24 24" width="15" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg>${tt('Paiement 100 % sécurisé par séquestre WeBuild','100% secure payment via WeBuild escrow')}</div>
+   <button class="btn btn-gold btn-block" onclick="closeModal();toast('${tt('Message envoyé à','Message sent to')} ${name.replace(/'/g,"")}')">${tt('Envoyer le message','Send message')}</button></div>`);
+}
+function proProfileModal(idx){
+  const p=PROS[idx];const gal=[p.img,'reno','carpentry','tile'];
+  openModal(`<div style="height:150px;position:relative;border-radius:var(--r-lg) var(--r-lg) 0 0;overflow:hidden"><img data-img="${p.img}_0" style="width:100%;height:100%;object-fit:cover" alt=""></div>
+  <div class="modal-bd" style="padding-top:1.2rem"><div style="display:flex;gap:.9rem;align-items:center;margin-bottom:.9rem"><img src="${AV(p.av)}" style="width:60px;height:60px;border-radius:50%;border:2px solid var(--gold-soft);margin-top:-2.4rem;background:#fff" alt=""><div><h3 style="font-size:1.3rem">${p.n}</h3><div class="muted" style="font-size:.86rem">${L(p.trade)} · ${p.reg}</div></div><div style="margin-left:auto" class="stars">★ ${p.rating.toFixed(1)}</div></div>
+   <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1rem"><span class="badge b-ok">✓ ${tt('RBQ vérifiée','RBQ verified')}</span><span class="badge b-navy">${tt('Assuré','Insured')}</span>${p.badges.includes('new')?`<span class="badge b-gold">${tt('Nouveau','New')}</span>`:''}</div>
+   <p class="muted" style="font-size:.9rem;margin-bottom:1rem">${L(p.desc)}</p>
+   <div class="gallery" style="margin-bottom:1.2rem">${gal.map((g,i)=>`<img data-img="${g}_${i%3}" alt="">`).join('')}</div>
+   <div style="display:flex;gap:.6rem"><button class="btn btn-navy" style="flex:1" onclick="closeModal();contactModal('${p.n.replace(/'/g,"\\'")}',${p.av})">${tt('Contacter','Contact')}</button><button class="btn btn-gold" style="flex:1" onclick="closeModal();toast('${tt('Projet lancé en séquestre','Project started in escrow')}')">${tt('Payer via séquestre','Pay via escrow')}</button></div></div>`);
+}
+function toast(msg){
+  let el=document.createElement('div');el.textContent=msg;
+  el.style.cssText='position:fixed;bottom:5rem;left:50%;transform:translateX(-50%);background:var(--navy-900);color:#fff;padding:.9rem 1.4rem;border-radius:100px;font-weight:700;font-size:.9rem;z-index:200;box-shadow:var(--sh-lg);animation:fade .3s';
+  document.body.appendChild(el);setTimeout(()=>{el.style.opacity=0;el.style.transition='opacity .4s';setTimeout(()=>el.remove(),400);},2200);
+}
+</script>
+</body>
+</html>

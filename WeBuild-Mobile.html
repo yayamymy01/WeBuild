@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+<title>WeBuild — App mobile</title>
+<meta name="description" content="WeBuild mobile — trouvez un entrepreneur près de chez vous, payez en sécurité par séquestre.">
+<meta name="theme-color" content="#0A1420">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy-900:#0A1420;--navy-800:#0E1C2E;--navy-700:#15293F;--navy-600:#1E3A5A;--navy-500:#2C4E71;
+  --gold:#C9A24B;--gold-light:#E4C77A;--gold-soft:#F4E7C4;--gold-deep:#A9832F;
+  --cream:#F6F1E7;--paper:#FCFAF5;--white:#fff;
+  --ink:#132030;--ink-soft:#33475b;--muted:#647587;--faint:#93a1af;
+  --line:#E7E0D0;--line-2:#F0EBDF;
+  --ok:#2E9E6B;--ok-soft:#E3F3EA;--warn:#D98A2B;--warn-soft:#FBEEDA;--danger:#C6503E;
+  --r:16px;--r-lg:22px;
+  --sh-sm:0 1px 3px rgba(16,32,50,.07);
+  --sh:0 12px 30px -12px rgba(16,32,50,.2);
+  --sh-gold:0 12px 26px -12px rgba(169,131,47,.55);
+  --f-display:'Fraunces',Georgia,serif;--f-body:'Manrope',system-ui,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --tab-h:66px;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{font-family:var(--f-body);color:var(--ink);background:
+  radial-gradient(120% 90% at 80% 0,#1a3b5c,transparent),
+  radial-gradient(90% 70% at 10% 100%,rgba(201,162,75,.14),transparent 60%),
+  linear-gradient(160deg,#0d1a2b,#060c14);
+  display:grid;place-items:center;min-height:100dvh;padding:24px;overflow:hidden}
+h1,h2,h3,h4{font-family:var(--f-display);font-weight:600;line-height:1.1;letter-spacing:-.01em}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+/* ===== DEVICE FRAME ===== */
+.stage{display:flex;flex-direction:column;align-items:center;gap:16px}
+.device{position:relative;width:392px;height:840px;max-height:calc(100dvh - 48px);background:#05090f;border-radius:52px;padding:11px;box-shadow:0 50px 100px -30px rgba(0,0,0,.7),0 0 0 2px rgba(255,255,255,.06);overflow:hidden}
+.screen{position:relative;width:100%;height:100%;background:var(--paper);border-radius:42px;overflow:hidden;display:flex;flex-direction:column}
+.notch{position:absolute;top:16px;left:50%;transform:translateX(-50%);width:120px;height:28px;background:#05090f;border-radius:0 0 18px 18px;z-index:60}
+.hint{color:#8fa3b8;font-size:.82rem;font-weight:600;letter-spacing:.01em;opacity:.9}
+.hint b{color:var(--gold-light)}
+/* ===== STATUS BAR ===== */
+.statusbar{height:44px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 26px 0 30px;font-size:.8rem;font-weight:800;color:var(--ink);z-index:20}
+.statusbar.on-dark{color:#fff}
+.statusbar .ic{display:flex;gap:6px;align-items:center}
+.statusbar svg{width:17px;height:17px}
+/* ===== APP BAR ===== */
+.appbar{flex:none;padding:.35rem 1rem .65rem;display:flex;align-items:center;gap:.7rem;min-height:52px;background:var(--paper);z-index:15;border-bottom:1px solid transparent;transition:border-color .3s}
+.appbar.line{border-color:var(--line)}
+.appbar.dark{background:var(--navy-900);color:#fff}
+.appbar .logo{font-family:var(--f-display);font-weight:600;font-size:1.28rem}
+.appbar .logo b{color:var(--gold-deep)}
+.appbar.dark .logo b{color:var(--gold-light)}
+.appbar .title{font-family:var(--f-display);font-size:1.35rem;font-weight:600}
+.appbar .sub{font-size:.72rem;color:var(--muted);font-weight:600;margin-top:-2px}
+.appbar-spacer{margin-left:auto}
+.iconbtn{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:rgba(20,40,63,.06);color:var(--ink)}
+.appbar.dark .iconbtn{background:rgba(255,255,255,.1);color:#fff}
+.iconbtn svg{width:20px;height:20px}
+.lang-mini{display:inline-flex;border:1.5px solid var(--line);border-radius:100px;overflow:hidden;font-size:.72rem;font-weight:800}
+.lang-mini button{padding:.32em .6em;color:var(--muted)}
+.lang-mini button.on{background:var(--navy-800);color:#fff}
+.appbar.dark .lang-mini{border-color:rgba(255,255,255,.2)}
+/* ===== CONTENT ===== */
+.content{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding-bottom:calc(var(--tab-h) + 14px)}
+.content::-webkit-scrollbar{display:none}
+.content{scrollbar-width:none}
+.pad{padding:0 1rem}
+.view-anim{animation:slidein .32s var(--ease)}
+@keyframes slidein{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+/* ===== TABBAR ===== */
+.tabbar{position:absolute;bottom:0;left:0;right:0;height:calc(var(--tab-h) + env(safe-area-inset-bottom,0px));display:flex;align-items:flex-start;padding-top:8px;background:rgba(252,250,245,.92);backdrop-filter:blur(16px);border-top:1px solid var(--line);z-index:40}
+.tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--faint);font-size:.62rem;font-weight:700;padding-top:2px;transition:color .2s}
+.tab svg{width:23px;height:23px;transition:transform .2s}
+.tab.on{color:var(--navy-800)}
+.tab.on svg{transform:translateY(-1px)}
+.tab.center{position:relative}
+.tab.center .fab{width:48px;height:48px;border-radius:16px;background:linear-gradient(135deg,var(--gold-light),var(--gold));display:grid;place-items:center;box-shadow:var(--sh-gold);margin-top:-18px;color:var(--navy-900)}
+.tab.center .fab svg{width:24px;height:24px}
+/* ===== BUTTONS ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;font-weight:700;font-size:.95rem;padding:.9em 1.3em;border-radius:100px;transition:transform .2s var(--ease),box-shadow .2s}
+.btn:active{transform:scale(.97)}
+.btn svg{width:1.05em;height:1.05em}
+.btn-gold{background:linear-gradient(135deg,var(--gold-light),var(--gold));color:var(--navy-900);box-shadow:var(--sh-gold)}
+.btn-navy{background:var(--navy-800);color:#fff}
+.btn-ghost{background:var(--white);border:1.5px solid var(--line);color:var(--ink)}
+.btn-light{background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.25);color:#fff}
+.btn-white{background:#fff;color:var(--navy-800)}
+.btn-block{width:100%}
+.btn-sm{padding:.62em 1em;font-size:.84rem}
+/* ===== BADGES / CHIPS ===== */
+.badge{display:inline-flex;align-items:center;gap:.3rem;font-size:.68rem;font-weight:800;padding:.3em .7em;border-radius:100px;text-transform:uppercase;letter-spacing:.02em}
+.b-ok{background:var(--ok-soft);color:#1d6e49}.b-warn{background:var(--warn-soft);color:#9a5d16}
+.b-navy{background:rgba(30,58,90,.1);color:var(--navy-700)}.b-gold{background:var(--gold-soft);color:var(--gold-deep)}
+.tag{font-size:.64rem;font-weight:800;padding:.3em .7em;border-radius:100px;text-transform:uppercase;letter-spacing:.02em}
+.tag-new{background:rgba(46,158,107,.94);color:#fff}.tag-boost{background:linear-gradient(135deg,var(--gold-light),var(--gold));color:var(--navy-900)}
+.chips{display:flex;gap:.5rem;overflow-x:auto;padding:.2rem 1rem .3rem;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;padding:.5rem .95rem;border-radius:100px;background:#fff;border:1.5px solid var(--line);font-size:.82rem;font-weight:700;color:var(--ink-soft);transition:.2s}
+.chip.on{background:var(--navy-800);color:#fff;border-color:var(--navy-800)}
+.stars{color:var(--gold);font-size:.85rem;letter-spacing:.5px}
+.pill-note{display:inline-flex;align-items:center;gap:.45rem;background:var(--gold-soft);color:var(--gold-deep);padding:.5rem .9rem;border-radius:100px;font-size:.8rem;font-weight:700}
+/* ===== SECTION HEADERS ===== */
+.sec-t{display:flex;align-items:center;justify-content:space-between;margin:1.3rem 0 .7rem}
+.sec-t h3{font-size:1.15rem}
+.sec-t a{font-size:.8rem;font-weight:700;color:var(--navy-600)}
+/* ===== FEED CARD ===== */
+.fcard{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-sm);margin-bottom:1rem}
+.fcard.boost{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold),var(--sh-sm)}
+.fcard-media{position:relative;aspect-ratio:16/10;background:linear-gradient(135deg,#26456a,#0E1C2E)}
+.fcard-media img{width:100%;height:100%;object-fit:cover}
+.fcard-tags{position:absolute;top:.6rem;left:.6rem;display:flex;gap:.35rem}
+.fcard-body{padding:.9rem 1rem 1.05rem}
+.fcard-head{display:flex;align-items:center;gap:.6rem;margin-bottom:.55rem}
+.av{border-radius:50%;object-fit:cover;flex:none;background:var(--cream)}
+.av-44{width:44px;height:44px;border:2px solid var(--gold-soft)}
+.av-40{width:40px;height:40px}.av-36{width:36px;height:36px}.av-56{width:56px;height:56px;border:2px solid var(--gold-soft)}
+.fcard .nm{font-weight:800;font-size:.98rem;display:flex;align-items:center;gap:.3rem}
+.verify{width:15px;height:15px;color:var(--navy-600);flex:none}
+.fcard .sp{font-size:.78rem;color:var(--muted)}
+.fmeta{display:flex;align-items:center;gap:.8rem;font-size:.8rem;color:var(--muted);margin-bottom:.55rem;flex-wrap:wrap}
+.fmeta .st{color:var(--gold-deep);font-weight:800}
+.fmeta span{display:inline-flex;align-items:center;gap:.25rem}
+.fmeta svg{width:.95em;height:.95em}
+.fdesc{font-size:.86rem;color:var(--ink-soft);margin-bottom:.9rem}
+.frow{display:flex;gap:.5rem}
+/* ===== CARDS / TILES / ROWS ===== */
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:1.1rem;box-shadow:var(--sh-sm)}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.tile{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:.9rem 1rem;box-shadow:var(--sh-sm)}
+.tile .t{font-size:.72rem;color:var(--muted);font-weight:700;display:flex;align-items:center;gap:.35rem}
+.tile .t svg{width:.95rem;height:.95rem;color:var(--gold-deep)}
+.tile .n{font-family:var(--f-display);font-size:1.55rem;font-weight:600;margin-top:.25rem;line-height:1}
+.tile .d{font-size:.7rem;font-weight:800;margin-top:.2rem}
+.up{color:var(--ok)}.down{color:var(--danger)}
+.row{display:flex;gap:.8rem;align-items:center;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:.75rem;box-shadow:var(--sh-sm);margin-bottom:.7rem}
+.row-thumb{width:60px;height:52px;border-radius:11px;object-fit:cover;flex:none;background:var(--cream)}
+.progress{height:7px;border-radius:100px;background:var(--line-2);overflow:hidden}
+.progress i{display:block;height:100%;border-radius:100px;background:linear-gradient(90deg,var(--gold),var(--gold-deep))}
+.divider{height:1px;background:var(--line);margin:1rem 0}
+.field{margin-bottom:.9rem}
+.field label{display:block;font-size:.8rem;font-weight:700;margin-bottom:.35rem;color:var(--ink-soft)}
+.inp{width:100%;font-family:inherit;font-size:.95rem;padding:.8rem .9rem;border:1.5px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}
+select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23647587' stroke-width='3'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .9rem center}
+textarea.inp{min-height:96px;resize:none;line-height:1.5}
+/* milestone */
+.ms{display:flex;gap:.8rem;padding:.85rem 0;border-bottom:1px solid var(--line-2)}
+.ms:last-child{border:none}
+.ms-dot{width:28px;height:28px;border-radius:50%;flex:none;display:grid;place-items:center;font-weight:800;font-size:.78rem}
+.ms-done{background:var(--ok);color:#fff}.ms-active{background:var(--gold);color:var(--navy-900)}.ms-wait{background:var(--line);color:var(--muted)}
+/* gallery */
+.gal{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.4rem}
+.gal img{aspect-ratio:1;object-fit:cover;border-radius:10px;width:100%;background:var(--cream)}
+.gal img.big{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+/* chat */
+.chat-c{display:flex;gap:.7rem;padding:.75rem .3rem;border-bottom:1px solid var(--line-2)}
+.chat-c .nm{font-weight:800;font-size:.9rem}.chat-c .pv{font-size:.8rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chat-thread{display:flex;flex-direction:column;gap:.5rem;padding:1rem}
+.bubble{max-width:80%;padding:.65rem .9rem;border-radius:16px;font-size:.88rem;line-height:1.4}
+.bubble.them{background:#fff;border:1px solid var(--line);border-bottom-left-radius:4px}
+.bubble.me{background:var(--navy-800);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+.chat-input{display:flex;gap:.5rem;padding:.7rem 1rem;border-top:1px solid var(--line);background:var(--paper)}
+/* opp */
+.opp{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:1rem;box-shadow:var(--sh-sm);margin-bottom:.8rem}
+.opp .top{display:flex;justify-content:space-between;gap:.6rem}
+.opp h4{font-size:1rem}.opp .price{font-family:var(--f-display);font-weight:700;color:var(--navy-700);font-size:1rem;white-space:nowrap}
+.opp .meta{display:flex;gap:.7rem;flex-wrap:wrap;font-size:.76rem;color:var(--muted);margin:.4rem 0 .7rem}
+.opp .meta span{display:inline-flex;align-items:center;gap:.25rem}.opp .meta svg{width:.9em;height:.9em}
+/* boost tiers */
+.btier{border:1.5px solid var(--line);border-radius:var(--r);padding:1rem;background:#fff;margin-bottom:.7rem;transition:.2s}
+.btier.sel{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold),var(--sh-sm)}
+.btier .top{display:flex;justify-content:space-between;align-items:center}
+.btier .amt{font-family:var(--f-display);font-size:1.4rem;font-weight:600}
+/* hero (feed top) */
+.feedhero{background:radial-gradient(120% 120% at 85% 0,var(--navy-600),var(--navy-900));color:#fff;padding:1.1rem 1rem 1.2rem;border-radius:0 0 26px 26px;margin-bottom:.3rem}
+.feedhero .loc{display:inline-flex;align-items:center;gap:.35rem;font-size:.78rem;color:var(--gold-light);font-weight:700}
+.feedhero h2{color:#fff;font-size:1.4rem;margin:.35rem 0 .2rem}
+.feedhero p{color:#b9c6d4;font-size:.84rem}
+/* ===== SPLASH (role choice, image-led) ===== */
+.splash{position:absolute;inset:0;z-index:80;background:radial-gradient(120% 80% at 82% 6%,var(--navy-700),var(--navy-900));color:#fff;display:flex;flex-direction:column;padding:1.1rem 1.15rem calc(1.2rem + env(safe-area-inset-bottom,0));overflow-y:auto;transition:transform .5s var(--ease),opacity .4s}
+.splash::-webkit-scrollbar{display:none}
+.splash{scrollbar-width:none}
+.splash.hide{transform:translateY(-101%);opacity:0;pointer-events:none}
+.splash .glow{position:absolute;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(201,162,75,.2),transparent 70%);top:-90px;right:-80px;pointer-events:none}
+.splash-head{display:flex;align-items:center;justify-content:space-between;padding-top:1.5rem}
+.splash-head .logo{font-family:var(--f-display);font-weight:600;font-size:1.5rem}
+.splash-head .logo b{color:var(--gold-light)}
+.splash-head .lang-mini{border-color:rgba(255,255,255,.25)}
+.splash-head .lang-mini button{color:#c3d0dd}
+.splash-head .lang-mini button.on{color:#fff}
+.splash-mid{flex:1;display:flex;flex-direction:column;justify-content:center;padding:1.3rem 0 1rem}
+.splash-mid h1{font-size:1.75rem;line-height:1.1}
+.splash-mid h1 em{font-style:italic;color:var(--gold-light)}
+.splash-sub{color:#aebccb;font-size:.9rem;margin:.4rem 0 1.15rem}
+.role-cards{display:grid;gap:.9rem}
+.role-card{display:block;width:100%;background:var(--paper);border-radius:20px;overflow:hidden;text-align:left;box-shadow:0 22px 44px -22px rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.1);transition:transform .25s var(--ease),box-shadow .25s}
+.role-card:active{transform:scale(.985)}
+.rc-img{position:relative;height:134px;background:linear-gradient(135deg,#26456a,#0E1C2E)}
+.rc-img img{width:100%;height:100%;object-fit:cover}
+.rc-img:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,20,32,.02),rgba(10,20,32,.5))}
+.rc-badge{position:absolute;top:.7rem;left:.7rem;z-index:2;background:rgba(252,250,245,.94);color:var(--navy-800);font-size:.64rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:.34em .75em;border-radius:100px}
+.rc-body{padding:.85rem 1rem 1rem;color:var(--ink)}
+.rc-title{font-family:var(--f-display);font-size:1.22rem;font-weight:600}
+.rc-desc{font-size:.83rem;color:var(--muted);margin:.28rem 0 .75rem;line-height:1.45}
+.rc-go{display:inline-flex;align-items:center;gap:.35rem;font-weight:800;font-size:.85rem;color:var(--gold-deep)}
+.rc-go svg{width:1rem;height:1rem}
+.splash-foot{display:flex;flex-wrap:wrap;gap:.5rem 1.1rem;justify-content:center;padding:.3rem 0 .2rem}
+.splash-foot .t{display:inline-flex;align-items:center;gap:.4rem;font-size:.76rem;color:#9fb0c0;font-weight:600}
+.splash-foot svg{width:.95rem;height:.95rem;color:var(--gold-light);flex:none}
+/* ===== SHEET ===== */
+.sheet-back{position:absolute;inset:0;z-index:90;background:rgba(6,12,20,.55);backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .3s;display:flex;align-items:flex-end}
+.sheet-back.show{opacity:1;pointer-events:auto}
+.sheet{width:100%;background:var(--paper);border-radius:26px 26px 0 0;padding:1rem 1.2rem calc(1.4rem + env(safe-area-inset-bottom,0));max-height:88%;overflow-y:auto;transform:translateY(100%);transition:transform .38s var(--ease);scrollbar-width:none}
+.sheet::-webkit-scrollbar{display:none}
+.sheet-back.show .sheet{transform:none}
+.sheet-grab{width:40px;height:5px;border-radius:100px;background:var(--line);margin:0 auto 1rem}
+.sheet h3{font-size:1.3rem;margin-bottom:.3rem}
+/* toast */
+.toast-host{position:absolute;left:0;right:0;bottom:calc(var(--tab-h) + 20px);display:flex;justify-content:center;z-index:95;pointer-events:none}
+.toast{background:var(--navy-900);color:#fff;padding:.75rem 1.15rem;border-radius:100px;font-weight:700;font-size:.85rem;box-shadow:var(--sh);animation:pop .3s var(--ease)}
+@keyframes pop{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.muted{color:var(--muted)}.center{text-align:center}
+.mt1{margin-top:.8rem}.mt2{margin-top:1.4rem}
+/* ===== REAL MOBILE: full screen ===== */
+@media (max-width:520px){
+  body{padding:0;overflow:auto;background:var(--paper)}
+  .stage{gap:0}
+  .device{width:100vw;height:100dvh;max-height:none;border-radius:0;padding:0;box-shadow:none}
+  .screen{border-radius:0}
+  .notch{display:none}
+  .hint{display:none}
+  .statusbar{height:max(38px,env(safe-area-inset-top,20px));align-items:flex-end;padding-bottom:4px}
+}
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="device" id="device">
+    <div class="notch"></div>
+    <div class="screen">
+      <div class="statusbar" id="statusbar">
+        <span id="clock">9:41</span>
+        <span class="ic">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 22h3v-8H2zM7 22h3V9H7zM12 22h3V4h-3zM17 22h3v-6h-3z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 6c3.3 0 6.3 1.3 8.5 3.4l-1.4 1.4C17.3 9.1 14.8 8 12 8s-5.3 1.1-7.1 2.8L3.5 9.4C5.7 7.3 8.7 6 12 6zm0 4c2 0 3.8.8 5.1 2.1l-1.5 1.5C14.8 12.6 13.5 12 12 12s-2.8.6-3.6 1.6l-1.5-1.5C8.2 10.8 10 10 12 10zm0 4c.9 0 1.7.4 2.2 1L12 21l-2.2-2.8c.5-.6 1.3-1 2.2-1z"/></svg>
+          <svg viewBox="0 0 26 24" fill="none"><rect x="1" y="7" width="20" height="11" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="9" width="15" height="7" rx="1.5" fill="currentColor"/><rect x="22.5" y="10.5" width="2" height="4" rx="1" fill="currentColor"/></svg>
+        </span>
+      </div>
+      <header class="appbar" id="appbar"></header>
+      <main class="content" id="content"></main>
+      <nav class="tabbar" id="tabbar"></nav>
+    </div>
+
+    <!-- SPLASH : choix de rôle centré, avec image -->
+    <div class="splash" id="splash">
+      <div class="glow"></div>
+      <div class="splash-head">
+        <div class="logo">We<b>Build</b></div>
+        <div class="lang-mini"><button id="slgfr" class="on" onclick="setLang('fr')">FR</button><button id="slgen" onclick="setLang('en')">EN</button></div>
+      </div>
+      <div class="splash-mid">
+        <h1 id="sp_h1">Bâtir en <em>confiance</em></h1>
+        <p class="splash-sub" id="sp_pick">Choisis comment tu veux commencer</p>
+        <div class="role-cards">
+          <button class="role-card" onclick="enter('client')">
+            <div class="rc-img"><img data-img="interior_0" alt=""><span class="rc-badge" id="sp_r1b">Client</span></div>
+            <div class="rc-body">
+              <div class="rc-title" id="sp_r1t">J'ai un projet</div>
+              <div class="rc-desc" id="sp_r1d">Trouvez le bon entrepreneur près de chez vous, comparez les devis et payez en sécurité par séquestre.</div>
+              <span class="rc-go"><span id="sp_go1">Continuer</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </div>
+          </button>
+          <button class="role-card" onclick="enter('pro')">
+            <div class="rc-img"><img data-img="construction_0" alt=""><span class="rc-badge" id="sp_r2b">Entrepreneur</span></div>
+            <div class="rc-body">
+              <div class="rc-title" id="sp_r2t">Je suis un entrepreneur</div>
+              <div class="rc-desc" id="sp_r2d">Décrochez des contrats dans votre région, affichez vos réalisations et soyez payé sans risque.</div>
+              <span class="rc-go"><span id="sp_go2">Continuer</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div class="splash-foot" id="sp_trust"></div>
+    </div>
+
+    <!-- SHEET -->
+    <div class="sheet-back" id="sheetBack" onclick="if(event.target===this)closeSheet()"><div class="sheet" id="sheet"></div></div>
+    <div class="toast-host" id="toastHost"></div>
+  </div>
+  <p class="hint">Ouvre-le sur ton <b>téléphone</b> pour le plein écran — ou navigue ici dans la maquette.</p>
+</div>
+<script>
+/* ===== IMAGES ===== */
+const U=id=>`https://images.unsplash.com/photo-${id}?w=900&q=80&auto=format&fit=crop`;
+const AV=n=>`https://i.pravatar.cc/120?img=${n}`;
+const IMG={
+ house_exterior:['1600596542815-ffad4c1539a9','1523217582562-09d0def993a6','1691425700585-c108acad6467'].map(U),
+ interior:['1564078516393-cf04bd966897','1724582586529-62622e50c0b3','1705321963943-de94bb3f0dd3'].map(U),
+ kitchen:['1628745277862-bc0b2d68c50c','1502005097973-6a7082348e28','1556912167-f556f1f39fdf'].map(U),
+ bathroom:['1576698483491-8c43f0862543','1572742482459-e04d6cfdd6f3','1742134131017-44d377a611b1'].map(U),
+ cabin:['1623398243568-dae0e12aa2d0','1635678976860-1c1a59fd66c1','1616404236921-103982790572'].map(U),
+ landscaping:['1729058015948-592a8e4a1772','1681853108586-f29b4ef5c0fb','1749803915455-a7642520d0d3'].map(U),
+ tile:['1523413307857-ef24c53571ae','1523413363574-c30aa1c2a516','1703868669362-562283170216'].map(U),
+ construction:['1587582423116-ec07293f0395','1672627170267-fca17bb54156','1676802037786-3697d60497ae'].map(U),
+ carpentry:['1513467535987-fd81bc7d62f8','1505798577917-a65157d3320a'].map(U),
+ reno:['1618832515490-e181c4794a45'].map(U)
+};
+function applyImages(){document.querySelectorAll('img[data-img]:not([data-done])').forEach(img=>{img.setAttribute('data-done','1');const k=img.getAttribute('data-img');const m=k.match(/^(.*)_(\d+)$/);let src;if(m&&IMG[m[1]])src=IMG[m[1]][(+m[2])%IMG[m[1]].length];else if(IMG[k])src=IMG[k][0];if(!src)return;img.onerror=()=>{img.style.visibility='hidden';};img.src=src;});}
+/* ===== STATE / HELPERS ===== */
+const $=s=>document.querySelector(s);
+let lang='fr', role='client', view='feed', param=null;
+const tt=(fr,en)=>lang==='fr'?fr:en;
+const L=o=>o?(o[lang]??o.fr):'';
+/* ===== DATA ===== */
+const PROS=[
+ {n:"Éric Lapointe",img:'interior',av:12,trade:{fr:"Design intérieur",en:"Interior design"},reg:"Shawinigan",rating:5.0,rev:8,badges:['new','boost'],desc:{fr:"Réaménagement d'espaces chaleureux, cuisines et aires ouvertes. Nouveau sur WeBuild.",en:"Warm space redesigns, kitchens and open areas. New on WeBuild."}},
+ {n:"Constructions Marchand",img:'house_exterior',av:33,trade:{fr:"Construction complète",en:"Full home build"},reg:"Trois-Rivières",rating:4.9,rev:41,badges:['boost'],desc:{fr:"Maisons clé en main et agrandissements majeurs en Mauricie depuis 12 ans.",en:"Turnkey homes and major extensions in Mauricie for 12 years."}},
+ {n:"Céramique Nadeau",img:'tile',av:52,trade:{fr:"Carrelage & céramique",en:"Tiling & ceramic"},reg:"Shawinigan",rating:4.8,rev:19,badges:['new'],desc:{fr:"Pose de céramique, dosserets et douches italiennes. Finition impeccable.",en:"Tile, backsplashes and walk-in showers. Impeccable finish."}},
+ {n:"Rénovation Bourassa",img:'kitchen',av:8,trade:{fr:"Cuisine & armoires",en:"Kitchen & cabinets"},reg:"Grand-Mère",rating:4.9,rev:27,badges:[],desc:{fr:"Cuisines sur mesure, armoires et comptoirs de quartz posés en 3 semaines.",en:"Custom kitchens, cabinets and quartz counters in 3 weeks."}},
+ {n:"Paysages Éco-Vert",img:'landscaping',av:26,trade:{fr:"Aménagement paysager",en:"Landscaping"},reg:"Shawinigan",rating:5.0,rev:12,badges:['new'],desc:{fr:"Terrasses, pavé-uni, murets et plantations. Devis gratuit sur place.",en:"Patios, pavers, retaining walls and planting. Free on-site quote."}},
+ {n:"Chalets Boréal",img:'cabin',av:15,trade:{fr:"Chalet & bois rond",en:"Cottage & log"},reg:"St-Alexis-des-Monts",rating:4.9,rev:16,badges:['boost'],desc:{fr:"Construction de chalets clé en main en bois rond, bord de lac et montagne.",en:"Turnkey log cottage builds, lakeside and mountain."}},
+ {n:"Salle de bain Design+",img:'bathroom',av:23,trade:{fr:"Salle de bain",en:"Bathroom"},reg:"Grand-Mère",rating:4.8,rev:22,badges:[],desc:{fr:"Rénovation complète de salles de bain, plomberie et céramique incluses.",en:"Full bathroom renovation, plumbing and tile included."}},
+ {n:"Menuiserie Fortin",img:'carpentry',av:57,trade:{fr:"Menuiserie sur mesure",en:"Custom carpentry"},reg:"Shawinigan",rating:5.0,rev:9,badges:['new'],desc:{fr:"Escaliers, meubles intégrés et finition intérieure en bois massif.",en:"Stairs, built-ins and solid-wood interior finish."}}
+];
+const TRADES=[{fr:"Tous",en:"All"},{fr:"Design intérieur",en:"Interior design"},{fr:"Cuisine",en:"Kitchen"},{fr:"Salle de bain",en:"Bathroom"},{fr:"Carrelage",en:"Tiling"},{fr:"Construction",en:"Full build"},{fr:"Paysager",en:"Landscaping"},{fr:"Chalet",en:"Cottage"}];
+let discTrade=0;
+const CLIENT_PROJECTS=[
+ {title:{fr:"Rénovation cuisine complète",en:"Full kitchen renovation"},trade:{fr:"Cuisine & armoires",en:"Kitchen & cabinets"},pro:"Rénovation Bourassa",img:'kitchen',status:'progress',amount:14200,progress:60,env:{fr:"Maison · Shawinigan",en:"House · Shawinigan"},
+  ms:[{t:{fr:"Démolition & plomberie",en:"Demolition & plumbing"},v:3500,s:'done'},{t:{fr:"Armoires & comptoir",en:"Cabinets & countertop"},v:6200,s:'active'},{t:{fr:"Céramique & finition",en:"Tile & finish"},v:4500,s:'wait'}]},
+ {title:{fr:"Salle de bain à l'étage",en:"Upstairs bathroom"},trade:{fr:"Salle de bain",en:"Bathroom"},pro:"Salle de bain Design+",img:'bathroom',status:'escrow',amount:8900,progress:22,env:{fr:"Condo · Trois-Rivières",en:"Condo · Trois-Rivières"},
+  ms:[{t:{fr:"Dépôt en séquestre",en:"Escrow deposit"},v:8900,s:'done'},{t:{fr:"Plomberie & démolition",en:"Plumbing & demo"},v:3000,s:'active'},{t:{fr:"Céramique & pose",en:"Tile & install"},v:3900,s:'wait'},{t:{fr:"Finition & inspection",en:"Finish & inspection"},v:2000,s:'wait'}]},
+ {title:{fr:"Terrasse & pavé-uni",en:"Deck & pavers"},trade:{fr:"Paysager",en:"Landscaping"},pro:"Paysages Éco-Vert",img:'landscaping',status:'quotes',amount:0,progress:0,env:{fr:"Maison · Shawinigan",en:"House · Shawinigan"},quotes:3},
+ {title:{fr:"Pose céramique · entrée",en:"Entryway tiling"},trade:{fr:"Carrelage",en:"Tiling"},pro:"Céramique Nadeau",img:'tile',status:'done',amount:2650,progress:100,env:{fr:"Condo · Grand-Mère",en:"Condo · Grand-Mère"}}
+];
+const ST={progress:{c:'b-warn',fr:"En cours",en:"In progress"},escrow:{c:'b-navy',fr:"En séquestre",en:"In escrow"},quotes:{c:'b-gold',fr:"Devis reçus",en:"Quotes in"},done:{c:'b-ok',fr:"Terminé",en:"Completed"}};
+const OPPS=[
+ {title:{fr:"Réaménagement aire ouverte + cuisine",en:"Open-plan + kitchen redesign"},trade:{fr:"Design intérieur",en:"Interior design"},env:{fr:"Unifamiliale",en:"Single-family"},reg:"Shawinigan",budget:"12–18 k$",posted:{fr:"il y a 2 h",en:"2 h ago"},desc:{fr:"Ouvrir le mur cuisine/salon, nouvelle disposition et éclairage.",en:"Open the kitchen/living wall, new layout and lighting."}},
+ {title:{fr:"Finition sous-sol 700 pi²",en:"700 sqft basement"},trade:{fr:"Rénovation",en:"Renovation"},env:{fr:"Banlieue",en:"Suburb"},reg:"Grand-Mère",budget:"20–28 k$",posted:{fr:"il y a 5 h",en:"5 h ago"},desc:{fr:"Chambre, salle de bain et salle familiale, clé en main.",en:"Bedroom, bathroom and family room, turnkey."}},
+ {title:{fr:"Chalet neuf bord de lac",en:"New lakeside cottage"},trade:{fr:"Construction",en:"Full build"},env:{fr:"Villégiature",en:"Getaway"},reg:"St-Alexis",budget:"180 k$ +",posted:{fr:"hier",en:"yesterday"},desc:{fr:"Chalet 3 chambres clé en main, plans fournis.",en:"Turnkey 3-bed cottage, plans provided."}},
+ {title:{fr:"Dosseret & plancher céramique",en:"Backsplash & tile floor"},trade:{fr:"Carrelage",en:"Tiling"},env:{fr:"Condo",en:"Condo"},reg:"Trois-Rivières",budget:"2,5–4 k$",posted:{fr:"il y a 1 j",en:"1 d ago"},desc:{fr:"Dosseret cuisine et plancher céramique 120 pi².",en:"Kitchen backsplash and 120 sqft tile floor."}}
+];
+const BOOST=[
+ {k:{fr:"Quartier",en:"Neighbourhood"},price:49,per:{fr:"/sem.",en:"/wk"},f:{fr:["Vedette dans votre ville","Badge Vedette"],en:["Featured in your city","Featured badge"]}},
+ {k:{fr:"Région",en:"Region"},price:99,per:{fr:"/mois",en:"/mo"},pop:true,f:{fr:["Vedette « Pour vous »","3× plus de vues","Priorité opportunités"],en:["\"For You\" feature","3× more views","Priority on jobs"]}},
+ {k:{fr:"Pro+",en:"Pro+"},price:199,per:{fr:"/mois",en:"/mo"},f:{fr:["Jusqu'à 3 régions","Bannière d'accueil","Rapport mensuel"],en:["Up to 3 regions","Home banner","Monthly report"]}}
+];
+let boostSel=1;
+const CONVOS=[
+ {name:"Rénovation Bourassa",av:8,role:{fr:"Cuisine & armoires",en:"Kitchen & cabinets"},msgs:[{me:false,t:{fr:"Bonjour ! Les armoires arrivent jeudi, pose vendredi.",en:"Hi! Cabinets arrive Thursday, install Friday."}},{me:true,t:{fr:"Parfait. Le comptoir de quartz est confirmé ?",en:"Perfect. Is the quartz counter confirmed?"}},{me:false,t:{fr:"Oui ! Je libère le jalon 1 ?",en:"Yes! Shall I request milestone 1 release?"}}]},
+ {name:"Paysages Éco-Vert",av:26,role:{fr:"Paysager",en:"Landscaping"},msgs:[{me:false,t:{fr:"Devis pour la terrasse : 7 400 $ tout inclus.",en:"Deck quote: $7,400 all in."}},{me:true,t:{fr:"Merci ! On peut commencer début juillet ?",en:"Thanks! Can we start early July?"}}]},
+ {name:"Céramique Nadeau",av:52,role:{fr:"Carrelage",en:"Tiling"},msgs:[{me:false,t:{fr:"Entrée terminée, merci ! Laissez un avis 🙂",en:"Entryway done, thanks! Leave a review 🙂"}}]}
+];
+let convoSel=0;
+/* ===== ICONS ===== */
+const I={
+ feed:'<path d="M12 2l2.4 7.4H22l-6 4.4 2.3 7.2L12 16.4 3.7 21l2.3-7.2-6-4.4h7.6z" stroke-linejoin="round"/>',
+ post:'<path d="M12 5v14M5 12h14" stroke-linecap="round"/>',
+ projects:'<path d="M3 7h18v13H3zM8 7V4h8v3" stroke-linejoin="round"/>',
+ messages:'<path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke-linejoin="round"/>',
+ profile:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6" stroke-linecap="round"/>',
+ home:'<path d="M3 12l9-8 9 8M5 10v10h14V10" stroke-linejoin="round"/>',
+ opps:'<path d="M3 7h18v13H3zM8 7V4h8v3" stroke-linejoin="round"/>',
+ jobs:'<path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z" stroke-linejoin="round"/>',
+ vitrine:'<path d="M4 9l1-4h14l1 4M4 9v10h16V9M4 9h16M9 19v-5h6v5" stroke-linejoin="round"/>',
+ back:'<path d="M15 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round"/>',
+ loc:'<path d="M12 21s-7-5.5-7-11a7 7 0 0114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/>',
+ swap:'<path d="M7 8h13l-4-4M17 16H4l4 4" stroke-linecap="round" stroke-linejoin="round"/>',
+ shield:'<path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z" stroke-linejoin="round"/>',
+ star:'<path d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.3 5.8 20.9l1.6-6.8L2.2 8.9l6.9-.6z"/>',
+ eye:'<circle cx="12" cy="12" r="3"/><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z"/>',
+ bolt:'<path d="M13 2L3 14h7l-1 8 10-12h-7z" stroke-linejoin="round"/>',
+ clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/>'
+};
+const svg=(p,w=22)=>`<svg viewBox="0 0 24 24" width="${w}" fill="none" stroke="currentColor" stroke-width="2">${p}</svg>`;
+const svgf=(p,w=16)=>`<svg viewBox="0 0 24 24" width="${w}" fill="currentColor">${p}</svg>`;
+/* ===== TABS ===== */
+const CLIENT_TABS=[{id:'feed',l:{fr:"Pour vous",en:"For you"},i:'feed'},{id:'projects',l:{fr:"Projets",en:"Projects"},i:'projects'},{id:'post',l:{fr:"Publier",en:"Post"},i:'post',center:true},{id:'messages',l:{fr:"Messages",en:"Messages"},i:'messages'},{id:'profile',l:{fr:"Profil",en:"Profile"},i:'profile'}];
+const PRO_TABS=[{id:'home',l:{fr:"Accueil",en:"Home"},i:'home'},{id:'opps',l:{fr:"Contrats",en:"Jobs"},i:'opps'},{id:'jobs',l:{fr:"Séquestre",en:"Escrow"},i:'jobs',center:true,cicon:'shield'},{id:'vitrine',l:{fr:"Vitrine",en:"Showcase"},i:'vitrine'},{id:'messages',l:{fr:"Messages",en:"Messages"},i:'messages'}];
+const SUBPARENT={chat:'messages',projectDetail:'projects',boost:'vitrine'};
+function tabs(){return role==='client'?CLIENT_TABS:PRO_TABS;}
+function renderTabbar(){
+  const active=SUBPARENT[view]||view;
+  $('#tabbar').innerHTML=tabs().map(t=>{
+    const on=t.id===active?'on':'';
+    if(t.center)return `<button class="tab center ${on}" onclick="navigate('${t.id}')"><span class="fab">${svg(I[t.cicon||t.i],24)}</span><span>${L(t.l)}</span></button>`;
+    return `<button class="tab ${on}" onclick="navigate('${t.id}')">${svg(I[t.i],23)}<span>${L(t.l)}</span></button>`;
+  }).join('');
+}
+/* ===== APPBAR ===== */
+function setAppbar(cfg){
+  const langMini=`<div class="lang-mini"><button class="${lang==='fr'?'on':''}" onclick="setLang('fr')">FR</button><button class="${lang==='en'?'on':''}" onclick="setLang('en')">EN</button></div>`;
+  const swap=`<button class="iconbtn" title="switch" onclick="switchRole()">${svg(I.swap,19)}</button>`;
+  let html;
+  if(cfg.back){
+    html=`<button class="iconbtn" onclick="navigate('${cfg.back}')">${svg(I.back,20)}</button><div><div class="title" style="font-size:1.15rem">${cfg.title}</div>${cfg.sub?`<div class="sub">${cfg.sub}</div>`:''}</div>`;
+  }else{
+    html=`<div>${cfg.logo?`<div class="logo">We<b>Build</b></div>`:`<div class="title">${cfg.title}</div>`}${cfg.sub?`<div class="sub">${cfg.sub}</div>`:''}</div><div class="appbar-spacer"></div>${langMini}${swap}`;
+  }
+  const bar=$('#appbar');bar.className='appbar line'+(cfg.dark?' dark':'');bar.innerHTML=html;
+}
+/* ===== ROUTER ===== */
+function enter(r){role=r;$('#splash').classList.add('hide');view=r==='client'?'feed':'home';renderTabbar();render();}
+function switchRole(){role=role==='client'?'pro':'client';view=role==='client'?'feed':'home';renderTabbar();render();toast(role==='client'?tt('Vue client','Client view'):tt('Vue entrepreneur','Contractor view'));}
+function navigate(v,p){view=v;param=p??null;renderTabbar();render();$('#content').scrollTop=0;}
+function render(){
+  const f={feed:viewFeed,post:viewPost,projects:viewProjects,projectDetail:viewProjectDetail,messages:viewMessages,chat:viewChat,profile:viewProfile,home:proHome,opps:proOpps,jobs:proJobs,vitrine:proVitrine,boost:proBoost};
+  (f[view]||viewFeed)();
+  $('#content').firstElementChild&&$('#content').firstElementChild.classList.add('view-anim');
+  applyImages();
+}
+function set(html){$('#content').innerHTML=html;}
+/* ===== SHARED PIECES ===== */
+function proCard(p){
+  const idx=PROS.indexOf(p);
+  const tags=(p.badges||[]).map(b=>b==='new'?`<span class="tag tag-new">${tt('Nouveau','New')}</span>`:`<span class="tag tag-boost">★ ${tt('Vedette','Featured')}</span>`).join(' ');
+  return `<article class="fcard ${p.badges.includes('boost')?'boost':''}">
+   <div class="fcard-media"><img data-img="${p.img}_${p.av%3}" alt=""><div class="fcard-tags">${tags}</div></div>
+   <div class="fcard-body">
+    <div class="fcard-head"><img class="av av-44" src="${AV(p.av)}" alt=""><div><div class="nm">${p.n}${svgf('<path d="M9 12l2 2 4-4" stroke="%23fff"/>')&&''}<svg class="verify" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9"/></svg></div><div class="sp">${L(p.trade)}</div></div></div>
+    <div class="fmeta"><span class="st">★ ${p.rating.toFixed(1)}</span><span>(${p.rev} ${tt('avis','reviews')})</span><span>${svg(I.loc,13)}${p.reg}</span></div>
+    <p class="fdesc">${L(p.desc)}</p>
+    <div class="frow"><button class="btn btn-navy btn-sm" style="flex:1" onclick="contactSheet(${idx})">${tt('Contacter','Contact')}</button><button class="btn btn-ghost btn-sm" onclick="profileSheet(${idx})">${tt('Profil','Profile')}</button></div>
+   </div></article>`;
+}
+function oppCard(o,i){
+  return `<div class="opp"><div class="top"><div><h4>${L(o.title)}</h4><div class="meta"><span>${svg(I.loc,12)}${o.reg}</span><span>${L(o.env)}</span><span>${svg(I.clock,12)}${L(o.posted)}</span></div></div><div class="price">${o.budget}</div></div><p class="muted" style="font-size:.84rem;margin-bottom:.8rem">${L(o.desc)}</p><div style="display:flex;gap:.5rem;align-items:center"><span class="badge b-navy">${L(o.trade)}</span><button class="btn btn-navy btn-sm" style="margin-left:auto" onclick="bidSheet(${i})">${tt('Soumissionner','Bid')}</button></div></div>`;
+}
+/* ===== CLIENT VIEWS ===== */
+function viewFeed(){
+  setAppbar({logo:true,sub:'Shawinigan, QC'});
+  let list=PROS.slice().sort((a,b)=>(b.badges.includes('boost')-a.badges.includes('boost'))||(b.badges.includes('new')-a.badges.includes('new')));
+  const tr=TRADES[discTrade];
+  if(discTrade>0)list=list.filter(p=>L(p.trade).toLowerCase().includes(L(tr).toLowerCase())|| (L(tr)==='Construction'&&L(p.trade).includes('Construction'))||(L(tr)==='Paysager'&&p.img==='landscaping')||(L(tr)==='Chalet'&&p.img==='cabin')||(L(tr)==='Cuisine'&&p.img==='kitchen')||(L(tr)==='Salle de bain'&&p.img==='bathroom')||(L(tr)==='Carrelage'&&p.img==='tile'));
+  set(`<div class="feedhero"><span class="loc">${svg(I.loc,14)} ${tt('Près de vous','Near you')}</span><h2>${tt('Nouveaux pros à découvrir','New pros to discover')}</h2><p>${tt('Ils viennent de rejoindre WeBuild dans votre région.','They just joined WeBuild in your region.')}</p></div>
+   <div class="chips">${TRADES.map((t,i)=>`<button class="chip ${i===discTrade?'on':''}" onclick="discTrade=${i};render()">${L(t)}</button>`).join('')}</div>
+   <div class="pad" style="padding-top:.8rem">${list.length?list.map(proCard).join(''):`<div class="card center muted">${tt('Aucun pro pour ce filtre.','No pro for this filter.')}</div>`}</div>`);
+}
+function viewPost(){
+  setAppbar({title:tt('Publier un projet','Post a project'),sub:tt('Gratuit · devis vérifiés','Free · verified quotes')});
+  set(`<div class="pad" style="padding-top:.8rem">
+   <div class="field"><label>${tt('Type de travaux','Type of work')}</label><select class="inp">${['Design intérieur','Cuisine & armoires','Salle de bain','Carrelage','Construction complète','Toiture','Plomberie','Électricité','Aménagement paysager','Chalet'].map(x=>`<option>${x}</option>`).join('')}</select></div>
+   <div class="field"><label>${tt('Environnement','Environment')}</label><select class="inp"><option>${tt('Ville / condo','City / condo')}</option><option>${tt('Banlieue','Suburb')}</option><option>${tt('Ferme','Farm')}</option><option>${tt('Chalet','Cottage')}</option></select></div>
+   <div class="field"><label>${tt('Budget estimé','Estimated budget')}</label><select class="inp"><option>${tt('Moins de 5 000 $','Under $5,000')}</option><option>5 000 – 20 000 $</option><option>20 000 – 75 000 $</option><option>75 000 $ +</option></select></div>
+   <div class="field"><label>${tt('Décrivez votre projet','Describe your project')}</label><textarea class="inp" placeholder="${tt('Ex : refaire ma cuisine, ouvrir le mur du salon…','Ex: redo my kitchen, open the living-room wall…')}"></textarea></div>
+   <div class="field"><label>${tt('Photos (optionnel)','Photos (optional)')}</label><div style="border:1.5px dashed var(--line);border-radius:12px;padding:1.1rem;text-align:center;color:var(--muted);font-size:.84rem">${svg('<path d="M4 16l5-5 4 4 3-3 4 4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" stroke-linejoin="round"/>',24)}<div style="margin-top:.3rem">${tt('Ajouter des photos','Add photos')}</div></div></div>
+   <button class="btn btn-gold btn-block" onclick="postedSheet()">${tt('Publier et recevoir des devis','Post and get quotes')}</button>
+   <p class="center muted" style="font-size:.76rem;margin-top:.6rem">${tt('Vos fonds ne sont engagés qu\'à l\'acceptation d\'un devis.','Funds are only committed when you accept a quote.')}</p></div>`);
+}
+function viewProjects(){
+  setAppbar({title:tt('Mes projets','My projects'),sub:`${CLIENT_PROJECTS.length} ${tt('projets','projects')} · ${tt('2 en séquestre','2 in escrow')}`});
+  set(`<div class="pad" style="padding-top:.9rem">${CLIENT_PROJECTS.map((p,i)=>{const s=ST[p.status];return `<div class="row" onclick="navigate('projectDetail',${i})"><img class="row-thumb" data-img="${p.img}_${i%3}" alt=""><div style="flex:1;min-width:0"><div style="display:flex;align-items:center;gap:.4rem;flex-wrap:wrap"><b style="font-size:.92rem">${L(p.title)}</b></div><div class="muted" style="font-size:.78rem;margin:.1rem 0 .4rem">${L(p.env)} · ${p.pro}</div><span class="badge ${s.c}">${tt(s.fr,s.en)}</span>${p.status!=='quotes'?`<div class="progress" style="margin-top:.5rem"><i style="width:${p.progress}%"></i></div>`:''}</div><div style="text-align:right"><div style="font-family:var(--f-display);font-weight:700;font-size:.98rem">${p.amount?p.amount.toLocaleString('fr-CA')+' $':'—'}</div>${svg(I.back.replace('15 6l-6 6 6 6','9 6l6 6-6 6'),18)}</div></div>`}).join('')}</div>`);
+}
+function viewProjectDetail(){
+  const i=param||0,p=CLIENT_PROJECTS[i],s=ST[p.status];const ms=p.ms||[{t:{fr:"Complété",en:"Completed"},v:p.amount,s:'done'}];
+  const held=ms.filter(x=>x.s!=='done').reduce((a,b)=>a+b.v,0),paid=ms.filter(x=>x.s==='done').reduce((a,b)=>a+b.v,0);
+  setAppbar({back:'projects',title:L(p.title),sub:`${L(p.trade)} · ${p.pro}`});
+  const pr=PROS.find(x=>x.n===p.pro)||{av:8,rating:4.9};
+  set(`<div class="pad" style="padding-top:.9rem">
+   <div class="card" style="background:var(--navy-900);color:#fff;margin-bottom:.9rem"><div style="display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:.72rem;color:#9fb0c0;font-weight:700">${tt('Retenu en séquestre','Held in escrow')}</div><div style="font-family:var(--f-display);font-size:1.7rem;font-weight:600;color:var(--gold-light)">${held.toLocaleString('fr-CA')} $</div></div><span class="badge b-gold">${tt(s.fr,s.en)}</span></div><div class="progress" style="margin-top:.7rem;background:rgba(255,255,255,.15)"><i style="width:${p.progress}%"></i></div><div style="font-size:.74rem;color:#9fb0c0;margin-top:.4rem">${tt('Déjà libéré','Released')}: ${paid.toLocaleString('fr-CA')} $</div></div>
+   <div class="card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem"><b>${tt('Jalons','Milestones')}</b><span class="badge b-navy">${tt('Séquestre WeBuild','WeBuild escrow')}</span></div>
+   ${ms.map((x,j)=>`<div class="ms"><div class="ms-dot ${x.s==='done'?'ms-done':x.s==='active'?'ms-active':'ms-wait'}">${x.s==='done'?'✓':j+1}</div><div style="flex:1"><div style="font-weight:700;font-size:.9rem">${L(x.t)}</div><div class="muted" style="font-size:.78rem">${x.v.toLocaleString('fr-CA')} $ · ${x.s==='done'?tt('libéré','released'):x.s==='active'?tt('prêt à libérer','ready to release'):tt('à venir','upcoming')}</div>${x.s==='active'?`<button class="btn btn-gold btn-sm mt1" onclick="releaseSheet(${i},${j})">${tt('Approuver & libérer','Approve & release')}</button>`:''}</div></div>`).join('')}</div>
+   <div class="row mt1" style="margin-top:.9rem"><img class="av av-44" src="${AV(pr.av)}" alt=""><div style="flex:1"><b style="font-size:.9rem">${p.pro}</b><div class="stars">★ ${pr.rating.toFixed(1)}</div></div><button class="btn btn-navy btn-sm" onclick="role='client';navigate('chat',0)">${tt('Message','Message')}</button></div>
+   </div>`);
+}
+function viewProfile(){
+  setAppbar({title:tt('Mon profil','My profile')});
+  set(`<div class="pad" style="padding-top:1rem">
+   <div class="card center"><img class="av av-56" src="${AV(45)}" style="margin:0 auto .6rem" alt=""><div style="font-family:var(--f-display);font-size:1.3rem;font-weight:600">Mishka T.</div><div class="muted" style="font-size:.85rem">${tt('Client','Client')} · Shawinigan, QC</div></div>
+   <div class="sec-t"><h3>${tt('Compte','Account')}</h3></div>
+   ${[[I.projects,tt('Mes projets','My projects'),"navigate('projects')"],[I.messages,tt('Messages','Messages'),"navigate('messages')"],[I.shield,tt('Paiements & séquestre','Payments & escrow'),"toast('"+tt('Démo','Demo')+"')"],[I.star,tt('Mes avis','My reviews'),"toast('"+tt('Démo','Demo')+"')"]].map(r=>`<div class="row" onclick="${r[2]}"><span class="iconbtn">${svg(r[0],19)}</span><b style="flex:1;font-size:.9rem">${r[1]}</b>${svg('<path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>',18)}</div>`).join('')}
+   <button class="btn btn-ghost btn-block mt2" onclick="switchRole()">${svg(I.swap,17)} ${tt('Passer en vue entrepreneur','Switch to contractor view')}</button>
+   <p class="center muted" style="font-size:.76rem;margin-top:1rem">${tt('Prototype de démonstration — données fictives.','Demo prototype — fictional data.')}</p></div>`);
+}
+/* ===== PRO VIEWS ===== */
+function proHome(){
+  setAppbar({logo:true,sub:tt('Bonjour, Éric','Hello, Éric')});
+  const tiles=[[I.opps,tt('Opportunités','Opportunities'),'4','+3','up'],[I.eye,tt('Vues profil','Profile views'),'312','+38%','up'],[I.shield,tt('En séquestre','In escrow'),'9 200 $','2 '+tt('jalons','ms'),'up'],[I.star,tt('Note','Rating'),'5,0','8 '+tt('avis','rev'),'up']];
+  set(`<div class="pad" style="padding-top:.9rem">
+   <div class="tiles">${tiles.map(t=>`<div class="tile"><div class="t">${svg(t[0],15)}${t[1]}</div><div class="n">${t[2]}</div><div class="d ${t[4]}">▲ ${t[3]}</div></div>`).join('')}</div>
+   <div class="card mt1" style="margin-top:.9rem;background:linear-gradient(150deg,var(--navy-700),var(--navy-900));color:#fff"><div style="display:flex;justify-content:space-between;align-items:center"><b style="color:#fff">${tt('Vedette régionale','Regional feature')}</b><span class="badge b-gold">★ ${tt('Actif','Active')}</span></div><div style="color:#c3d0dd;font-size:.82rem;margin:.5rem 0 .8rem">${tt('Vous êtes en tête de « Pour vous » à Shawinigan. Renouvellement dans 21 j.','You\'re at the top of \"For You\" in Shawinigan. Renews in 21 d.')}</div><button class="btn btn-gold btn-sm" onclick="navigate('boost')">${tt('Gérer le boost','Manage boost')}</button></div>
+   <div class="card mt1" style="margin-top:.9rem"><div style="display:flex;justify-content:space-between;align-items:center"><b>${tt('Complétez votre vitrine','Complete showcase')}</b><span class="badge b-gold">80%</span></div><div class="progress" style="margin:.6rem 0 .8rem"><i style="width:80%"></i></div><button class="btn btn-ghost btn-sm" onclick="navigate('vitrine')">${tt('Modifier','Edit')}</button></div>
+   <div class="sec-t"><h3>${tt('Opportunités pour vous','Opportunities for you')}</h3><a onclick="navigate('opps')">${tt('Tout voir','All')} →</a></div>
+   ${OPPS.slice(0,2).map(oppCard).join('')}</div>`);
+}
+function proOpps(){
+  setAppbar({title:tt('Opportunités','Opportunities'),sub:tt('Projets près de Shawinigan','Projects near Shawinigan')});
+  set(`<div class="chips">${[tt('Tous','All'),tt('Design','Design'),tt('Rénovation','Reno'),'< 20 km'].map((c,i)=>`<button class="chip ${i===0?'on':''}">${c}</button>`).join('')}</div><div class="pad" style="padding-top:.7rem">${OPPS.map(oppCard).join('')}</div>`);
+}
+function proJobs(){
+  setAppbar({title:tt('Contrats & séquestre','Jobs & escrow'),sub:tt('Vos chantiers et versements','Your jobs and payouts')});
+  const jobs=CLIENT_PROJECTS.filter(p=>p.status!=='quotes');
+  set(`<div class="pad" style="padding-top:.9rem"><div class="tiles" style="margin-bottom:.9rem"><div class="tile"><div class="t">${tt('Versé ce mois','Paid this mo.')}</div><div class="n">6 150 $</div></div><div class="tile"><div class="t">${tt('En séquestre','In escrow')}</div><div class="n">9 200 $</div></div></div>
+   ${jobs.map((p,idx)=>{const active=(p.ms||[]).find(x=>x.s==='active');return `<div class="row"><img class="row-thumb" data-img="${p.img}_${idx%3}" alt=""><div style="flex:1;min-width:0"><b style="font-size:.9rem">${L(p.title)}</b><div class="muted" style="font-size:.78rem;margin:.1rem 0 .35rem">Mishka T. · ${L(p.env)}</div>${active?`<span class="badge b-warn">${tt('Jalon en séquestre','In escrow')} · ${active.v.toLocaleString('fr-CA')} $</span>`:`<span class="badge b-ok">${tt('Payé','Paid')}</span>`}</div></div>`}).join('')}</div>`);
+}
+function proVitrine(){
+  setAppbar({title:tt('Ma vitrine','My showcase'),sub:tt('Ce que voient les clients','What clients see')});
+  const gal=['interior','kitchen','bathroom','tile','carpentry','reno'];
+  set(`<div class="pad" style="padding-top:.9rem">
+   <div class="card" style="margin-bottom:.9rem"><div style="display:flex;gap:.8rem;align-items:center"><img class="av av-56" src="${AV(12)}" alt=""><div><div style="font-family:var(--f-display);font-size:1.15rem;font-weight:600">Éric Lapointe</div><div class="muted" style="font-size:.8rem">${tt('Design intérieur','Interior design')} · Shawinigan</div><div class="stars" style="margin-top:.2rem">★ 5,0 · 8 ${tt('avis','reviews')}</div></div></div>
+   <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.7rem"><span class="badge b-ok">✓ ${tt('RBQ vérifiée','RBQ verified')}</span><span class="badge b-navy">${tt('Assuré','Insured')}</span><span class="badge b-gold">★ ${tt('Vedette','Featured')}</span></div></div>
+   <div class="card" style="margin-bottom:.9rem"><b>${tt('Réalisations','Portfolio')}</b><div class="gal mt1">${gal.map((g,i)=>`<img data-img="${g}_${i%3}" class="${i===0?'big':''}" alt="">`).join('')}</div></div>
+   <button class="btn btn-gold btn-block" onclick="navigate('boost')">${svg(I.bolt,17)} ${tt('Passer en vedette','Get featured')}</button></div>`);
+}
+function proBoost(){
+  setAppbar({back:'vitrine',title:tt('Mise en avant','Get featured')});
+  set(`<div class="pad" style="padding-top:.9rem">
+   <div class="card" style="margin-bottom:.9rem"><b>${tt('Aperçu : votre fiche boostée','Preview: boosted card')}</b><div class="muted" style="font-size:.8rem;margin:.2rem 0 .8rem">${tt('En tête du fil à Shawinigan.','Top of the feed in Shawinigan.')}</div>${proCard({...PROS[0],badges:['new','boost']})}</div>
+   ${BOOST.map((b,i)=>`<div class="btier ${i===boostSel?'sel':''}" onclick="boostSel=${i};render()"><div class="top"><b>${L(b.k)}${b.pop?` · <span style="color:var(--gold-deep);font-size:.75rem">${tt('Populaire','Popular')}</span>`:''}</b><div class="amt">${b.price} $<small style="font-size:.7rem;color:var(--muted)">${L(b.per)}</small></div></div><div style="margin-top:.5rem;display:grid;gap:.3rem">${L(b.f).map(x=>`<div style="display:flex;gap:.4rem;font-size:.82rem"><svg viewBox="0 0 24 24" width="15" fill="none" stroke="var(--ok)" stroke-width="2.5" style="flex:none;margin-top:.1rem"><path d="M20 6L9 17l-5-5" stroke-linecap="round"/></svg>${x}</div>`).join('')}</div></div>`).join('')}
+   <button class="btn btn-gold btn-block mt1" onclick="boostBuy()">${tt('Activer','Activate')} « ${L(BOOST[boostSel].k)} » — ${BOOST[boostSel].price} $</button>
+   <p class="center muted" style="font-size:.74rem;margin-top:.5rem">${tt('Sans engagement · démo, aucun paiement réel','No commitment · demo, no real payment')}</p></div>`);
+}
+/* ===== MESSAGES / CHAT ===== */
+function viewMessages(){
+  setAppbar({title:'Messages'});
+  set(`<div class="pad" style="padding-top:.6rem">${CONVOS.map((c,i)=>`<div class="chat-c" onclick="navigate('chat',${i})"><img class="av av-44" src="${AV(c.av)}" alt=""><div style="flex:1;min-width:0"><div class="nm">${c.name}</div><div class="pv">${L(c.msgs[c.msgs.length-1].t)}</div></div></div>`).join('')}</div>`);
+}
+function viewChat(){
+  const i=param||0,c=CONVOS[i];convoSel=i;
+  setAppbar({back:'messages',title:c.name,sub:`${L(c.role)} · ${tt('en ligne','online')}`});
+  set(`<div style="display:flex;flex-direction:column;height:100%"><div class="chat-thread" id="thread" style="flex:1;overflow-y:auto">${c.msgs.map(m=>`<div class="bubble ${m.me?'me':'them'}">${L(m.t)}</div>`).join('')}</div><div class="chat-input"><input class="inp" id="ci" placeholder="${tt('Message…','Message…')}" onkeydown="if(event.key==='Enter')sendMsg()"><button class="btn btn-navy btn-sm" onclick="sendMsg()">${tt('Envoi','Send')}</button></div></div>`);
+  const t=$('#thread');if(t)t.scrollTop=t.scrollHeight;
+}
+function sendMsg(){const inp=$('#ci');if(!inp||!inp.value.trim())return;CONVOS[convoSel].msgs.push({me:true,t:{fr:inp.value,en:inp.value}});viewChat();setTimeout(()=>{CONVOS[convoSel].msgs.push({me:false,t:{fr:"Bien reçu, merci ! Je reviens vite.",en:"Got it, thanks! Back soon."}});if(view==='chat')viewChat();},1000);}
+/* ===== SHEETS ===== */
+function openSheet(html){$('#sheet').innerHTML=`<div class="sheet-grab"></div>`+html;$('#sheetBack').classList.add('show');applyImages();}
+function closeSheet(){$('#sheetBack').classList.remove('show');}
+function contactSheet(i){const p=PROS[i];openSheet(`<div style="display:flex;gap:.7rem;align-items:center;margin-bottom:1rem"><img class="av av-56" src="${AV(p.av)}" alt=""><div><h3 style="font-size:1.2rem">${p.n}</h3><div class="muted" style="font-size:.82rem">${L(p.trade)} · ${tt('répond en ~2 h','replies in ~2 h')}</div></div></div><div class="field"><label>${tt('Votre message','Your message')}</label><textarea class="inp" placeholder="${tt('Bonjour, je cherche à…','Hi, I\'m looking to…')}"></textarea></div><div class="pill-note" style="margin-bottom:.9rem">${svg(I.shield,15)} ${tt('Paiement sécurisé par séquestre','Secure escrow payment')}</div><button class="btn btn-gold btn-block" onclick="closeSheet();toast('${tt('Message envoyé','Message sent')}')">${tt('Envoyer','Send')}</button>`);}
+function profileSheet(i){const p=PROS[i];const gal=[p.img,'reno','carpentry','tile'];openSheet(`<div style="display:flex;gap:.7rem;align-items:center;margin-bottom:.8rem"><img class="av av-56" src="${AV(p.av)}" alt=""><div style="flex:1"><h3 style="font-size:1.2rem">${p.n}</h3><div class="muted" style="font-size:.82rem">${L(p.trade)} · ${p.reg}</div></div><div class="stars">★ ${p.rating.toFixed(1)}</div></div><div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.8rem"><span class="badge b-ok">✓ ${tt('RBQ vérifiée','RBQ verified')}</span><span class="badge b-navy">${tt('Assuré','Insured')}</span></div><p class="muted" style="font-size:.85rem;margin-bottom:.8rem">${L(p.desc)}</p><div class="gal" style="margin-bottom:1rem">${gal.map((g,j)=>`<img data-img="${g}_${j%3}" alt="">`).join('')}</div><div style="display:flex;gap:.5rem"><button class="btn btn-navy" style="flex:1" onclick="closeSheet();contactSheet(${i})">${tt('Contacter','Contact')}</button><button class="btn btn-gold" style="flex:1" onclick="closeSheet();toast('${tt('Projet lancé en séquestre','Started in escrow')}')">${tt('Séquestre','Escrow')}</button></div>`);}
+function bidSheet(i){const o=OPPS[i];openSheet(`<h3>${tt('Soumission','Your bid')}</h3><p class="muted" style="font-size:.85rem;margin-bottom:1rem">${L(o.title)}</p><div class="field"><label>${tt('Votre prix (CA$)','Your price (CA$)')}</label><input class="inp" placeholder="14 500"></div><div class="field"><label>${tt('Délai','Timeline')}</label><input class="inp" placeholder="${tt('4 à 6 semaines','4–6 weeks')}"></div><div class="field"><label>${tt('Message','Message')}</label><textarea class="inp" placeholder="${tt('Votre approche…','Your approach…')}"></textarea></div><button class="btn btn-gold btn-block" onclick="closeSheet();toast('${tt('Soumission envoyée !','Bid sent!')}')">${tt('Envoyer la soumission','Send bid')}</button>`);}
+function boostBuy(){const b=BOOST[boostSel];openSheet(`<div class="pill-note" style="background:var(--navy-800);color:var(--gold-light);margin-bottom:.8rem">★ ${tt('Mise en avant','Get featured')}</div><h3>${tt('Activer','Activate')} « ${L(b.k)} »</h3><div style="display:flex;justify-content:space-between;padding:.7rem 0;border-bottom:1px solid var(--line);margin-top:.5rem"><span>${tt('Forfait','Plan')}</span><b>${b.price} $ ${L(b.per)}</b></div><div class="field" style="margin-top:.9rem"><label>${tt('Carte','Card')}</label><input class="inp" placeholder="•••• •••• •••• 4242"></div><button class="btn btn-gold btn-block" onclick="closeSheet();toast('${tt('Vedette activée !','Feature activated!')}');navigate('home')">${tt('Payer et activer','Pay & activate')}</button><p class="center muted" style="font-size:.74rem;margin-top:.5rem">${tt('Démo — aucun paiement réel.','Demo — no real payment.')}</p>`);}
+function postedSheet(){openSheet(`<div class="pill-note" style="margin-bottom:.8rem">✓ ${tt('Projet publié','Project posted')}</div><h3>${tt('C\'est parti !','You\'re all set!')}</h3><p class="muted" style="font-size:.86rem;margin:.5rem 0 1rem">${tt('Votre projet est visible par les pros vérifiés de votre région. Premiers devis en quelques heures.','Your project is visible to verified pros in your region. First quotes within hours.')}</p>${PROS.filter(p=>p.reg==='Shawinigan').slice(0,2).map((p,ix)=>`<div class="row"><img class="av av-40" src="${AV(p.av)}" alt=""><div style="flex:1"><b style="font-size:.88rem">${p.n}</b><div class="muted" style="font-size:.78rem">${L(p.trade)} · ★ ${p.rating.toFixed(1)}</div></div><button class="btn btn-navy btn-sm" onclick="closeSheet();contactSheet(${PROS.indexOf(p)})">${tt('Contacter','Contact')}</button></div>`).join('')}<button class="btn btn-gold btn-block mt1" onclick="closeSheet();navigate('projects')">${tt('Voir mes projets','View my projects')}</button>`);}
+function releaseSheet(i,j){openSheet(`<div class="pill-note" style="margin-bottom:.8rem">${svg(I.shield,15)} ${tt('Libérer un jalon','Release a milestone')}</div><h3>${tt('Approuver le travail ?','Approve the work?')}</h3><p class="muted" style="font-size:.86rem;margin:.5rem 0 1rem">${tt('Le montant sera versé à l\'entrepreneur depuis le séquestre. WeBuild prélève 5 %. Le prochain jalon s\'active.','The amount will be paid to the contractor from escrow. WeBuild takes 5%. The next milestone activates.')}</p><button class="btn btn-gold btn-block" onclick="doRelease(${i},${j})">${tt('Approuver & libérer','Approve & release')}</button><button class="btn btn-ghost btn-block mt1" onclick="closeSheet()">${tt('Annuler','Cancel')}</button>`);}
+function doRelease(i,j){const p=CLIENT_PROJECTS[i];p.ms[j].s='done';if(p.ms[j+1])p.ms[j+1].s='active';p.progress=Math.round(p.ms.filter(x=>x.s==='done').reduce((a,b)=>a+b.v,0)/p.ms.reduce((a,b)=>a+b.v,0)*100);if(p.ms.every(x=>x.s==='done'))p.status='done';closeSheet();navigate('projectDetail',i);toast(tt('Paiement libéré ✓','Payment released ✓'));}
+/* ===== i18n splash ===== */
+function setLang(l){lang=l;
+ $('#slgfr').classList.toggle('on',l==='fr');$('#slgen').classList.toggle('on',l==='en');
+ $('#sp_h1').innerHTML=tt('Bâtir en <em>confiance</em>','Build with <em>confidence</em>');
+ $('#sp_pick').textContent=tt("Choisis comment tu veux commencer","Choose how you'd like to start");
+ $('#sp_r1b').textContent=tt('Client','Client');
+ $('#sp_r1t').textContent=tt("J'ai un projet",'I have a project');
+ $('#sp_r1d').textContent=tt("Trouvez le bon entrepreneur près de chez vous, comparez les devis et payez en sécurité par séquestre — du carrelage à la maison complète.","Find the right contractor near you, compare quotes and pay safely via escrow — from a single tile to a full home.");
+ $('#sp_go1').textContent=tt('Continuer','Continue');
+ $('#sp_r2b').textContent=tt('Entrepreneur','Contractor');
+ $('#sp_r2t').textContent=tt('Je suis un entrepreneur',"I'm a contractor");
+ $('#sp_r2d').textContent=tt("Décrochez des contrats dans votre région, affichez vos réalisations dans « Pour vous » et soyez payé sans risque.","Win contracts in your region, showcase your work on the “For You” page and get paid risk-free.");
+ $('#sp_go2').textContent=tt('Continuer','Continue');
+ $('#sp_trust').innerHTML=[[I.shield,tt('Séquestre','Escrow')],['<path d="M9 12l2 2 4-4" stroke-linecap="round"/><circle cx="12" cy="12" r="9"/>',tt('RBQ vérifiée','RBQ verified')],[I.star,tt('4,9/5','4.9/5')]].map(t=>`<span class="t">${svg(t[0],15)}${t[1]}</span>`).join('');
+ if(!$('#splash').classList.contains('hide')){renderTabbar();}else{renderTabbar();render();}
+}
+/* ===== TOAST / CLOCK / BOOT ===== */
+function toast(m){const h=$('#toastHost');h.innerHTML=`<div class="toast">${m}</div>`;setTimeout(()=>{if(h.firstChild){h.firstChild.style.transition='opacity .4s';h.firstChild.style.opacity=0;setTimeout(()=>h.innerHTML='',400);}},2000);}
+function clock(){const d=new Date();$('#clock').textContent=d.getHours()+':'+String(d.getMinutes()).padStart(2,'0');}
+clock();setInterval(clock,30000);
+setLang('fr');
+applyImages();
+</script>
+</body>
+</html>

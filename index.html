@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WeBuild — La marketplace de construction au Canada</title>
+<meta name="description" content="WeBuild met en relation les gens qui veulent bâtir avec les meilleurs entrepreneurs de leur région. Paiement sécurisé par séquestre. Choisissez la version bureau ou mobile.">
+<meta property="og:title" content="WeBuild — Bâtir en confiance, partout au Canada">
+<meta property="og:description" content="Trouvez l'entrepreneur idéal près de chez vous. Paiement retenu en sécurité jusqu'à la fin des travaux.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0A1420">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy-900:#0A1420;--navy-700:#15293F;--gold:#C9A24B;--gold-light:#E4C77A;--cream:#F6F1E7;--muted:#9fb0c0;--f-d:'Fraunces',serif;--f-b:'Manrope',system-ui,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--f-b);min-height:100dvh;color:#fff;background:radial-gradient(120% 90% at 82% 6%,var(--navy-700),var(--navy-900) 62%);display:grid;place-items:center;padding:1.5rem;overflow-x:hidden}
+.glow{position:fixed;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(201,162,75,.16),transparent 70%);bottom:-140px;left:-120px;pointer-events:none}
+.wrap{width:100%;max-width:940px;text-align:center;position:relative;z-index:1}
+.logo{font-family:var(--f-d);font-weight:600;font-size:2rem;letter-spacing:-.02em;margin-bottom:.4rem}
+.logo b{color:var(--gold-light);font-weight:600}
+.eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-light);margin-bottom:1.1rem}
+h1{font-family:var(--f-d);font-weight:600;font-size:clamp(2rem,5.5vw,3.4rem);line-height:1.08;letter-spacing:-.015em;margin-bottom:.8rem}
+h1 em{font-style:italic;color:var(--gold-light)}
+.lead{color:#c3d0dd;font-size:clamp(1rem,1.6vw,1.15rem);max-width:52ch;margin:0 auto 2.6rem}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;text-align:left}
+@media(max-width:680px){.cards{grid-template-columns:1fr}}
+.card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.13);border-radius:22px;overflow:hidden;transition:transform .3s cubic-bezier(.22,1,.36,1),border-color .3s,box-shadow .3s;text-decoration:none;color:inherit;display:block}
+.card:hover{transform:translateY(-6px);border-color:var(--gold);box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
+.card .media{height:190px;position:relative;overflow:hidden;background:linear-gradient(135deg,#26456a,#0E1C2E)}
+.card .media img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.card:hover .media img{transform:scale(1.06)}
+.card .media:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,20,32,.05),rgba(10,20,32,.6))}
+.tagpill{position:absolute;top:.9rem;left:.9rem;z-index:2;background:rgba(252,250,245,.94);color:var(--navy-900);font-size:.68rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:.34em .8em;border-radius:100px}
+.suggest{position:absolute;top:.9rem;right:.9rem;z-index:2;background:linear-gradient(135deg,var(--gold-light),var(--gold));color:var(--navy-900);font-size:.66rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:.34em .8em;border-radius:100px;display:none}
+.card .body{padding:1.3rem 1.4rem 1.5rem}
+.card h3{font-family:var(--f-d);font-weight:600;font-size:1.4rem;margin-bottom:.35rem}
+.card p{color:var(--muted);font-size:.92rem;margin-bottom:1.1rem}
+.go{display:inline-flex;align-items:center;gap:.45rem;font-weight:800;font-size:.95rem;color:var(--gold-light)}
+.go svg{width:1.05em;height:1.05em}
+.trust{display:flex;gap:1.4rem;justify-content:center;flex-wrap:wrap;margin-top:2.4rem;color:var(--muted);font-size:.84rem;font-weight:600}
+.trust span{display:inline-flex;align-items:center;gap:.45rem}
+.trust svg{width:1.05em;height:1.05em;color:var(--gold-light)}
+.foot{margin-top:2.4rem;color:#6d8093;font-size:.78rem}
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<div class="wrap">
+  <div class="logo">We<b>Build</b></div>
+  <div class="eyebrow">Marketplace de construction · Canada</div>
+  <h1>Bâtir en <em>confiance</em>,<br>du carrelage à la maison clé en main.</h1>
+  <p class="lead">Choisissez votre version pour explorer la plateforme — mise en relation client / entrepreneur, page « Pour vous » régionale et paiement sécurisé par séquestre.</p>
+  <div class="cards">
+    <a class="card" href="WeBuild.html" id="deskCard">
+      <div class="media"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&q=80&auto=format&fit=crop" alt="Version bureau"><span class="tagpill">Bureau</span><span class="suggest" id="deskSug">Recommandé</span></div>
+      <div class="body"><h3>Version bureau</h3><p>Site complet : landing marketing + les deux portails (client et entrepreneur), séquestre et mise en avant.</p><span class="go">Ouvrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    </a>
+    <a class="card" href="WeBuild-Mobile.html" id="mobCard">
+      <div class="media"><img src="https://images.unsplash.com/photo-1564078516393-cf04bd966897?w=900&q=80&auto=format&fit=crop" alt="Version mobile"><span class="tagpill">Mobile</span><span class="suggest" id="mobSug">Recommandé</span></div>
+      <div class="body"><h3>Version mobile</h3><p>L'app pensée téléphone : barre d'onglets, fiches pleine largeur et feuilles coulissantes. Plein écran sur mobile.</p><span class="go">Ouvrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    </a>
+  </div>
+  <div class="trust">
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z" stroke-linejoin="round"/></svg>Paiement séquestre sécurisé</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9"/></svg>Entrepreneurs vérifiés (RBQ)</span>
+    <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.3 5.8 20.9l1.6-6.8L2.2 8.9l6.9-.6z"/></svg>4,9/5 · 2 400+ avis</span>
+  </div>
+  <div class="foot">© <span id="yr"></span> WeBuild Technologies Inc. · Montréal, QC — prototype de démonstration</div>
+</div>
+<script>
+document.getElementById('yr').textContent=new Date().getFullYear();
+if(/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)){document.getElementById('mobSug').style.display='block';}
+else{document.getElementById('deskSug').style.display='block';}
+</script>
+</body>
+</html>
